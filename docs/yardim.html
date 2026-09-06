@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KünefeSMP | Yardım ve Rehber</title>
+    <!-- FontAwesome İkonları -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: #0d0401;
+            color: #ffffff;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #3d1708 0%, #1c0a03 60%, #0d0401 100%);
+            background-attachment: fixed;
+            padding-bottom: 60px;
+        }
+
+        /* --- ÜST MENÜ (NAVBAR) --- */
+        header {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-box {
+            background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+            color: #422006;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            box-shadow: 0 4px 0 #b45309;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            background: rgba(35, 17, 8, 0.85);
+            border: 2px solid #ca8a04;
+            padding: 10px 24px;
+            border-radius: 30px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        nav ul li a {
+            color: #fef08a;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s, transform 0.2s;
+            text-transform: uppercase;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #22c55e;
+            transform: translateY(-1px);
+        }
+
+        .user-btn {
+            background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+            color: #422006;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            box-shadow: 0 4px 0 #b45309;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* --- SAYFA BAŞLIĞI --- */
+        .page-header {
+            text-align: center;
+            margin: 30px 0 40px;
+        }
+
+        .page-title {
+            font-size: 36px;
+            font-weight: 900;
+            color: #facc15;
+            text-shadow: 0 4px 15px rgba(250, 204, 21, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .page-desc {
+            color: #fde047;
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        /* --- İÇERİK ANAMENÜ KONTEYNERİ --- */
+        .help-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* SEKME / KART BAŞLIKLARI */
+        .section-title {
+            font-size: 22px;
+            font-weight: 900;
+            color: #fef08a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(202, 138, 4, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .section-title i {
+            color: #22c55e;
+        }
+
+        /* --- 1. KOMUTLAR TABLOSU --- */
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 15px;
+        }
+
+        .command-card {
+            background: rgba(35, 17, 8, 0.85);
+            border: 2px solid #ca8a04;
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .cmd-code {
+            background: #1c0a03;
+            color: #facc15;
+            border: 1px solid #b45309;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .cmd-desc {
+            color: #e2e8f0;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        /* --- 2. SUNUCU KURALLARI --- */
+        .rules-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .rule-card {
+            background: rgba(35, 17, 8, 0.85);
+            border: 2px solid #ca8a04;
+            border-left: 6px solid #ef4444;
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .rule-num {
+            background: #ef4444;
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 900;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .rule-text h4 {
+            color: #fef08a;
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .rule-text p {
+            color: #cbd5e1;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* --- 3. CANLI DESTEK / DISCORD İLETİŞİM --- */
+        .support-banner {
+            background: linear-gradient(135deg, rgba(22, 101, 52, 0.9) 0%, rgba(20, 83, 45, 0.9) 100%);
+            border: 3px solid #4ade80;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .support-info h3 {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .support-info p {
+            color: #dcfce7;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .support-btn {
+            background: #22c55e;
+            color: #ffffff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 900;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 0 #14532d;
+            transition: all 0.1s ease;
+        }
+
+        .support-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #14532d;
+        }
+
+        .support-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 3px 0 #14532d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ÜST MENÜ -->
+    <header>
+        <a href="index.html" class="logo-box">
+            <i class="fa-solid fa-crown"></i>
+        </a>
+
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> ANASAYFA</a></li>
+                <li><a href="magaza.html"><i class="fa-solid fa-cart-shopping"></i> MAĞAZA</a></li>
+                <li><a href="yardim.html" class="active"><i class="fa-solid fa-circle-question"></i> YARDIM</a></li>
+                <li><a href="https://discord.gg/Mj6QMcNQ2" target="_blank"><i class="fa-solid fa-headset"></i> DESTEK</a></li>
+            </ul>
+        </nav>
+
+        <a href="https://discord.gg/Mj6QMcNQ2" target="_blank" class="user-btn">
+            <i class="fa-solid fa-user"></i>
+        </a>
+    </header>
+
+    <!-- BAŞLIK -->
+    <div class="page-header">
+        <h1 class="page-title">YARDIM VE REHBER</h1>
+        <p class="page-desc">Komutlar, sunucu kuralları ve canlı destek rehberi</p>
+    </div>
+
+    <!-- İÇERİK -->
+    <div class="help-container">
+
+        <!-- 1. TEMEL KOMUTLAR -->
+        <section>
+            <div class="section-title">
+                <i class="fa-solid fa-terminal"></i>
+                <span>TEMEL SUNUCU KOMUTLARI</span>
+            </div>
+            <div class="commands-grid">
+                <div class="command-card">
+                    <span class="cmd-code">/spawn</span>
+                    <span class="cmd-desc">Ana doğma alanına ışınlanır.</span>
+                </div>
+                <div class="command-card">
+                    <span class="cmd-code">/sethome [isim]</span>
+                    <span class="cmd-desc">Bulunduğun konumu ev olarak kaydeder.</span>
+                </div>
+                <div class="command-card">
+                    <span class="cmd-code">/home [isim]</span>
+                    <span class="cmd-desc">Kaydettiğin eve ışınlanır.</span>
+                </div>
+                <div class="command-card">
+                    <span class="cmd-code">/tpa [oyuncu]</span>
+                    <span class="cmd-desc">Oyuncuya ışınlanma isteği gönderir.</span>
+                </div>
+                <div class="command-card">
+                    <span class="cmd-code">/tpaccept</span>
+                    <span class="cmd-desc">Gelen ışınlanma isteğini kabul eder.</span>
+                </div>
+                <div class="command-card">
+                    <span class="cmd-code">/claim</span>
+                    <span class="cmd-desc">Arazini korumak için claim atar.</span>
+                </div>
+                <div class="command-card">
+                    <span class="cmd-code">/ah</span>
+                    <span class="cmd-desc">Oyuncu pazarını (pazar alanı) açar.</span>
+                </div>
+                <div class="command-card">
+                    <span class="cmd-code">/kits</span>
+                    <span class="cmd-desc">Alabileceğin kit menüsünü gösterir.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SUNUCU KURALLARI -->
+        <section>
+            <div class="section-title">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>SUNUCU KURALLARI</span>
+            </div>
+            <div class="rules-list">
+                <div class="rule-card">
+                    <div class="rule-num">1</div>
+                    <div class="rule-text">
+                        <h4>Hile ve Üçüncü Taraf Yazılım Yasaktır</h4>
+                        <p>X-Ray, Oto-Clicker, Fly veya oyunda haksız avantaj sağlayan tüm istemci ve modlar süresiz uzaklaştırma sebebidir.</p>
+                    </div>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-num">2</div>
+                    <div class="rule-text">
+                        <h4>Saygılı Sohbet ve İletişim</h4>
+                        <p>Sohbet üzerinden küfür, hakaret, siyaset, dini değerlere saldırı ve reklam yapmak kesinlikle yasaktır.</p>
+                    </div>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-num">3</div>
+                    <div class="rule-text">
+                        <h4>Grief ve Yapılara Zarar Verme Yasaktır</h4>
+                        <p>Başka oyuncuların yapılarına izinsiz zarar vermek, etrafını kapatmak veya lav/su ile sabote etmek yasaktır.</p>
+                    </div>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-num">4</div>
+                    <div class="rule-text">
+                        <h4>Tuzak ve Dolandırıcılık Yasaktır</h4>
+                        <p>Oyuncuları ışınlanma (TPA) tuzağına düşürmek veya pazar sistemleri üzerinden aldatmak ceza sebebidir.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. CANLI DESTEK & İLETİŞİM -->
+        <section>
+            <div class="support-banner">
+                <div class="support-info">
+                    <h3><i class="fa-solid fa-headset"></i> CANLI DESTEK & TALEP</h3>
+                    <p>Sorunun çözülmedi mi? Discord sunucumuzdan 7/24 destek bileti açabilirsin.</p>
+                </div>
+                <a href="https://discord.gg/Mj6QMcNQ2" target="_blank" class="support-btn">
+                    <i class="fa-brands fa-discord"></i> DISCORD DESTEK BİLETİ AÇ
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
