@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KünefeSMP | Destek Merkezi</title>
+    <!-- FontAwesome İkonları -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: #0d0401;
+            color: #ffffff;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #3d1708 0%, #1c0a03 60%, #0d0401 100%);
+            background-attachment: fixed;
+            padding-bottom: 60px;
+        }
+
+        /* --- ÜST MENÜ (NAVBAR) --- */
+        header {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-box {
+            background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+            color: #422006;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            box-shadow: 0 4px 0 #b45309;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            background: rgba(35, 17, 8, 0.85);
+            border: 2px solid #ca8a04;
+            padding: 10px 24px;
+            border-radius: 30px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        nav ul li a {
+            color: #fef08a;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s, transform 0.2s;
+            text-transform: uppercase;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #22c55e;
+            transform: translateY(-1px);
+        }
+
+        .user-btn {
+            background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+            color: #422006;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            box-shadow: 0 4px 0 #b45309;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* --- SAYFA BAŞLIĞI --- */
+        .page-header {
+            text-align: center;
+            margin: 30px 0 40px;
+        }
+
+        .page-title {
+            font-size: 36px;
+            font-weight: 900;
+            color: #facc15;
+            text-shadow: 0 4px 15px rgba(250, 204, 21, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .page-desc {
+            color: #fde047;
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        /* --- İÇERİK KONTEYNERİ --- */
+        .support-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 900;
+            color: #fef08a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(202, 138, 4, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .section-title i {
+            color: #22c55e;
+        }
+
+        /* BANNER */
+        .support-banner {
+            background: linear-gradient(135deg, rgba(22, 101, 52, 0.9) 0%, rgba(20, 83, 45, 0.9) 100%);
+            border: 3px solid #4ade80;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .support-info h3 {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .support-info p {
+            color: #dcfce7;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .support-btn {
+            background: #22c55e;
+            color: #ffffff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 900;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 0 #14532d;
+            transition: all 0.1s ease;
+        }
+
+        .support-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #14532d;
+        }
+
+        .support-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 3px 0 #14532d;
+        }
+
+        /* KARTLAR */
+        .faq-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-card {
+            background: rgba(35, 17, 8, 0.85);
+            border: 2px solid #ca8a04;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .faq-q {
+            color: #facc15;
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-a {
+            color: #cbd5e1;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ÜST MENÜ -->
+    <header>
+        <a href="index.html" class="logo-box">
+            <i class="fa-solid fa-crown"></i>
+        </a>
+
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> ANASAYFA</a></li>
+                <li><a href="magaza.html"><i class="fa-solid fa-cart-shopping"></i> MAĞAZA</a></li>
+                <li><a href="yardim.html"><i class="fa-solid fa-circle-question"></i> YARDIM</a></li>
+                <li><a href="destek.html" class="active"><i class="fa-solid fa-headset"></i> DESTEK</a></li>
+                <li><a href="https://discord.gg/Mj6QMcNQ2" target="_blank"><i class="fa-solid fa-ban"></i> CEZALAR</a></li>
+            </ul>
+        </nav>
+
+        <a href="https://discord.gg/Mj6QMcNQ2" target="_blank" class="user-btn">
+            <i class="fa-solid fa-user"></i>
+        </a>
+    </header>
+
+    <!-- BAŞLIK -->
+    <div class="page-header">
+        <h1 class="page-title">DESTEK MERKEZİ</h1>
+        <p class="page-desc">Soruların ve bildirimlerin için 7/24 yanınızdayız</p>
+    </div>
+
+    <!-- İÇERİK -->
+    <div class="support-container">
+
+        <!-- DISCORD BİLET BANNERI -->
+        <div class="support-banner">
+            <div class="support-info">
+                <h3><i class="fa-brands fa-discord"></i> CANLI DESTEK BİLETİ</h3>
+                <p>Ödeme sorunları, hile bildirimleri veya soruların için Discord'da bilet oluşturabilirsin.</p>
+            </div>
+            <a href="https://discord.gg/Mj6QMcNQ2" target="_blank" class="support-btn">
+                <i class="fa-solid fa-ticket"></i> BİLET OLUŞTUR
+            </a>
+        </div>
+
+        <!-- DESTEK SSS -->
+        <section>
+            <div class="section-title">
+                <i class="fa-solid fa-circle-question"></i>
+                <span>DESTEK HAKKINDA SIKÇA SORULAN SORULAR</span>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-card">
+                    <div class="faq-q">
+                        <i class="fa-solid fa-cart-check"></i>
+                        <span>Satın aldığım ürün ne zaman hesabıma teslim edilir?</span>
+                    </div>
+                    <div class="faq-a">
+                        Mağazadan aldığın ürünler sistem tarafından otomatik olarak yüklenir. Yoğunluğa bağlı olarak 1-5 dakika sürebilir. Eğer gelmediyse Discord bilet kanalından yetkililere ulaşabilirsin.
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <div class="faq-q">
+                        <i class="fa-solid fa-shield-cat"></i>
+                        <span>Hile veya kural ihlali yapan birini nasıl bildirebilirim?</span>
+                    </div>
+                    <div class="faq-a">
+                        Kural ihlali yapan oyuncuları ekran görüntüsü veya video kaydı alarak Discord sunucumuzdaki bilet kanalından yetkili ekibimize iletebilirsin.
+                    </div>
+                </div>
+
+                <div class="faq-card">
+                    <div class="faq-q">
+                        <i class="fa-solid fa-bug"></i>
+                        <span>Sunucu hatası (bug) buldum, ne yapmalıyım?</span>
+                    </div>
+                    <div class="faq-a">
+                        Oyun içinde bulduğun hataları bize bildirerek sunucu gelişimine katkıda bulunabilir ve özel ödüller kazanabilirsin. Bugları kendi yararına kullanmak ceza sebebidir.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
