@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mağaza | KünefeSMP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: #0f1117;
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        /* Üst Başlık */
+        .page-header {
+            max-width: 1300px;
+            margin: 0 auto 30px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .back-btn {
+            background: #202634;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #2e374a;
+        }
+
+        /* Ana Düzen (Sol Kenar + Sağ Kartlar) */
+        .shop-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 25px;
+        }
+
+        /* Sol Panel */
+        .sidebar-card {
+            background: #171a23;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar-logo {
+            background: #facc15;
+            color: #000;
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 0 4px 0 #ca8a04;
+        }
+
+        .category-title {
+            width: 100%;
+            font-size: 12px;
+            color: #8b92a5;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+        }
+
+        .category-item {
+            width: 100%;
+            background: #202533;
+            padding: 12px 16px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 800;
+            color: #fff;
+            cursor: pointer;
+            border: 1px solid #31384d;
+        }
+
+        /* VIP Ürün Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        /* Ürün Kartı */
+        .product-card {
+            background: #171a23;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+            padding-top: 10px;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: #facc15;
+        }
+
+        .product-body {
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* VIP İkon Kutuları */
+        .vip-img-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
+        }
+
+        .vip-title {
+            font-size: 15px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        /* Fiyat Alanı */
+        .current-price {
+            font-size: 24px;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        /* Satın Al Butonu */
+        .buy-btn {
+            background: linear-gradient(180deg, #fef08a 0%, #facc15 100%);
+            color: #000;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 900;
+            font-size: 13px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 0 #ca8a04;
+            margin: 0 15px 15px 15px;
+            transition: transform 0.1s;
+        }
+
+        .buy-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #ca8a04;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-header">
+        <h1 class="page-title">Özel Üyelikler (VIP)</h1>
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> SİTEYE DÖN</a>
+    </div>
+
+    <div class="shop-container">
+        <!-- SOL PANEL -->
+        <div>
+            <div class="sidebar-card">
+                <div class="sidebar-logo">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+            </div>
+
+            <div class="sidebar-card">
+                <div class="category-title"><i class="fa-solid fa-layer-group"></i> Kategoriler</div>
+                <div class="category-item">
+                    <i class="fa-solid fa-tree"></i> Survival
+                </div>
+            </div>
+        </div>
+
+        <!-- SAĞ VIP KARTLARI -->
+        <div class="products-grid">
+
+            <!-- VIP -->
+            <div class="product-card">
+                <div class="product-body">
+                    <div class="vip-img-box" style="background: #fde047; color: #854d0e;">VIP</div>
+                    <div class="vip-title">VIP - 30 GÜN</div>
+                    <div class="current-price">100.00 ₺</div>
+                </div>
+                <a href="https://discord.gg/Mj6QMcNQ2" target="_blank" class="buy-btn">
+                    <i class="fa-solid fa-cart-shopping"></i> SATIN AL
+                </a>
+            </div>
+
+            <!-- MEGAVIP -->
+            <div class="product-card">
+                <div class="product-body">
+                    <div class="vip-img-box" style="background: #86efac; color: #166534;">MEGAVIP</div>
+                    <div class="vip-title">MEGAVIP - 30 GÜN</div>
+                    <div class="current-price">200.00 ₺</div>
+                </div>
+                <a href="https://discord.gg/Mj6QMcNQ2" target="_blank" class="buy-btn">
+                    <i class="fa-solid fa-cart-shopping"></i> SATIN AL
+                </a>
+            </div>
+
+            <!-- ULTRAVIP -->
+            <div class="product-card">
+                <div class="product-body">
+                    <div class="vip-img-box" style="background: #d8b4fe; color: #6b21a8;">ULTRAVIP</div>
+                    <div class="vip-title">ULTRAVIP - 30 GÜN</div>
+                    <div class="current-price">350.00 ₺</div>
+                </div>
+                <a href="https://discord.gg/Mj6QMcNQ2" target="_blank" class="buy-btn">
+                    <i class="fa-solid fa-cart-shopping"></i> SATIN AL
+                </a>
+            </div>
+
+            <!-- KUNEFEVIP -->
+            <div class="product-card">
+                <div class="product-body">
+                    <div class="vip-img-box" style="background: #a5f3fc; color: #155e75;">KUNEFEVIP</div>
+                    <div class="vip-title">KUNEFEVIP - 30 GÜN</div>
+                    <div class="current-price">550.00 ₺</div>
+                </div>
+                <a href="https://discord.gg/Mj6QMcNQ2" target="_blank" class="buy-btn">
+                    <i class="fa-solid fa-cart-shopping"></i> SATIN AL
+                </a>
+            </div>
+
+            <!-- SPONSOR -->
+            <div class="product-card">
+                <div class="product-body">
+                    <div class="vip-img-box" style="background: #f472b6; color: #831843;">SPONSOR</div>
+                    <div class="vip-title">SPONSOR - 45 GÜN</div>
+                    <div class="current-price">2,500.00 ₺</div>
+                </div>
+                <a href="https://discord.gg/Mj6QMcNQ2" target="_blank" class="buy-btn">
+                    <i class="fa-solid fa-cart-shopping"></i> SATIN AL
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
