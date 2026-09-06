@@ -17,7 +17,8 @@
         }
 
         body {
-            background-color: #0f1117;
+            /* Sıcak Künefe Arka Planı */
+            background: radial-gradient(circle at top center, #2e1205 0%, #170802 60%, #0d0401 100%);
             color: #ffffff;
             min-height: 100vh;
             padding: 30px;
@@ -37,27 +38,35 @@
             font-weight: 900;
             letter-spacing: 1px;
             text-transform: uppercase;
+            color: #facc15;
+            text-shadow: 0 2px 10px rgba(250, 204, 21, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .back-btn {
-            background: #202634;
+            background: linear-gradient(135deg, #15803d 0%, #166534 100%);
             color: #fff;
-            padding: 10px 20px;
-            border-radius: 10px;
+            padding: 12px 22px;
+            border-radius: 12px;
             text-decoration: none;
             font-size: 14px;
             font-weight: 800;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: background 0.2s;
+            box-shadow: 0 4px 0 #14532d, 0 5px 15px rgba(22, 101, 52, 0.4);
+            transition: all 0.2s;
+            border: 1px solid #22c55e;
         }
 
         .back-btn:hover {
-            background: #2e374a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #14532d, 0 8px 20px rgba(22, 101, 52, 0.6);
         }
 
-        /* Ana Düzen (Sol Kenar + Sağ Kartlar) */
+        /* Ana Düzen */
         .shop-container {
             max-width: 1300px;
             margin: 0 auto;
@@ -68,53 +77,57 @@
 
         /* Sol Panel */
         .sidebar-card {
-            background: #171a23;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
+            background: rgba(35, 17, 8, 0.85);
+            border: 2px solid #ca8a04;
+            border-radius: 18px;
             padding: 20px;
             margin-bottom: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
 
         .sidebar-logo {
-            background: #facc15;
-            color: #000;
-            width: 60px;
-            height: 60px;
-            border-radius: 14px;
+            background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+            color: #422006;
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 30px;
-            box-shadow: 0 4px 0 #ca8a04;
+            font-size: 36px;
+            box-shadow: 0 5px 0 #b45309;
         }
 
         .category-title {
             width: 100%;
             font-size: 12px;
-            color: #8b92a5;
+            color: #fde047;
             margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 8px;
             text-transform: uppercase;
+            font-weight: 800;
         }
 
         .category-item {
             width: 100%;
-            background: #202533;
-            padding: 12px 16px;
-            border-radius: 10px;
+            background: linear-gradient(135deg, #166534 0%, #14532d 100%);
+            padding: 14px 18px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             font-size: 14px;
             font-weight: 800;
             color: #fff;
             cursor: pointer;
-            border: 1px solid #31384d;
+            border: 1.5px solid #22c55e;
+            box-shadow: 0 4px 0 #0f391b;
         }
 
         /* VIP Ürün Grid */
@@ -126,26 +139,27 @@
 
         /* Ürün Kartı */
         .product-card {
-            background: #171a23;
-            border: 2px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(42, 20, 10, 0.9) 0%, rgba(25, 11, 5, 0.95) 100%);
+            border: 2px solid #ca8a04;
+            border-radius: 18px;
             overflow: hidden;
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             text-align: center;
-            transition: transform 0.2s, border-color 0.2s;
-            padding-top: 10px;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
         .product-card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-6px);
             border-color: #facc15;
+            box-shadow: 0 12px 25px rgba(250, 204, 21, 0.25);
         }
 
         .product-body {
-            padding: 20px 15px;
+            padding: 25px 15px 15px 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -153,62 +167,66 @@
 
         /* VIP İkon Kutuları */
         .vip-img-box {
-            width: 100px;
-            height: 100px;
-            border-radius: 12px;
+            width: 110px;
+            height: 110px;
+            border-radius: 16px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
+            margin-bottom: 18px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+            border: 2px solid rgba(255,255,255,0.2);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
         }
 
         .vip-title {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 900;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             text-transform: uppercase;
+            color: #fef08a;
+            letter-spacing: 0.5px;
         }
 
         /* Fiyat Alanı */
         .current-price {
             font-size: 24px;
             font-weight: 900;
-            color: #fff;
+            color: #22c55e;
+            text-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
             margin-bottom: 15px;
         }
 
-        /* Satın Al Butonu */
+        /* Satın Al Butonu (Kadayıf Sarısı) */
         .buy-btn {
             background: linear-gradient(180deg, #fef08a 0%, #facc15 100%);
-            color: #000;
+            color: #422006;
             text-decoration: none;
             padding: 12px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-weight: 900;
             font-size: 13px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 6px;
-            box-shadow: 0 4px 0 #ca8a04;
-            margin: 0 15px 15px 15px;
-            transition: transform 0.1s;
+            gap: 8px;
+            box-shadow: 0 4px 0 #b45309;
+            margin: 0 15px 18px 15px;
+            transition: all 0.1s;
         }
 
         .buy-btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 #ca8a04;
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #b45309;
         }
     </style>
 </head>
 <body>
 
     <div class="page-header">
-        <h1 class="page-title">Özel Üyelikler (VIP)</h1>
+        <h1 class="page-title"><i class="fa-solid fa-stroopwafel"></i> ÖZEL ÜYELİKLER (VIP)</h1>
         <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> SİTEYE DÖN</a>
     </div>
 
@@ -235,7 +253,7 @@
             <!-- VIP -->
             <div class="product-card">
                 <div class="product-body">
-                    <div class="vip-img-box" style="background: #fde047; color: #854d0e;">VIP</div>
+                    <div class="vip-img-box" style="background: linear-gradient(135deg, #fef08a, #facc15); color: #713f12;">VIP</div>
                     <div class="vip-title">VIP - 30 GÜN</div>
                     <div class="current-price">100.00 ₺</div>
                 </div>
@@ -247,7 +265,7 @@
             <!-- MEGAVIP -->
             <div class="product-card">
                 <div class="product-body">
-                    <div class="vip-img-box" style="background: #86efac; color: #166534;">MEGAVIP</div>
+                    <div class="vip-img-box" style="background: linear-gradient(135deg, #86efac, #22c55e); color: #14532d;">MEGAVIP</div>
                     <div class="vip-title">MEGAVIP - 30 GÜN</div>
                     <div class="current-price">200.00 ₺</div>
                 </div>
@@ -259,7 +277,7 @@
             <!-- ULTRAVIP -->
             <div class="product-card">
                 <div class="product-body">
-                    <div class="vip-img-box" style="background: #d8b4fe; color: #6b21a8;">ULTRAVIP</div>
+                    <div class="vip-img-box" style="background: linear-gradient(135deg, #d8b4fe, #a855f7); color: #581c87;">ULTRAVIP</div>
                     <div class="vip-title">ULTRAVIP - 30 GÜN</div>
                     <div class="current-price">350.00 ₺</div>
                 </div>
@@ -271,7 +289,7 @@
             <!-- KUNEFEVIP -->
             <div class="product-card">
                 <div class="product-body">
-                    <div class="vip-img-box" style="background: #a5f3fc; color: #155e75;">KUNEFEVIP</div>
+                    <div class="vip-img-box" style="background: linear-gradient(135deg, #fef08a, #eab308); color: #713f12; border: 2px solid #facc15;">KUNEFEVIP</div>
                     <div class="vip-title">KUNEFEVIP - 30 GÜN</div>
                     <div class="current-price">550.00 ₺</div>
                 </div>
@@ -283,7 +301,7 @@
             <!-- SPONSOR -->
             <div class="product-card">
                 <div class="product-body">
-                    <div class="vip-img-box" style="background: #f472b6; color: #831843;">SPONSOR</div>
+                    <div class="vip-img-box" style="background: linear-gradient(135deg, #f472b6, #ec4899); color: #831843;">SPONSOR</div>
                     <div class="vip-title">SPONSOR - 45 GÜN</div>
                     <div class="current-price">2,500.00 ₺</div>
                 </div>
