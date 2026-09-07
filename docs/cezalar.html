@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KünefeSMP | Cezalar</title>
+    <!-- FontAwesome İkon Kütüphanesi -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -82,6 +83,7 @@
             display: flex;
             gap: 15px;
             list-style: none;
+            align-items: center;
         }
 
         nav ul li a {
@@ -97,12 +99,22 @@
             gap: 8px;
         }
 
+        /* İKON BİÇİMLENDİRMESİ */
+        nav ul li a i {
+            font-size: 16px;
+            color: #ffffff;
+            transition: color 0.2s ease;
+        }
+
         nav ul li a.active, nav ul li a:hover {
             background: #facc15;
             color: #422006;
         }
 
-        nav ul li a.active svg, nav ul li a:hover svg { fill: #422006; }
+        /* Aktif veya üzerine gelinen linklerde ikon rengi siyahımsı olur */
+        nav ul li a.active i, nav ul li a:hover i {
+            color: #422006;
+        }
 
         .user-btn {
             width: 50px;
@@ -115,15 +127,16 @@
             color: #facc15;
             text-decoration: none;
             transition: all 0.2s ease;
+            font-size: 18px;
         }
 
         .user-btn:hover { background: rgba(202, 138, 4, 0.2); }
 
 
-        /* CEZA KART KUTUSU - EKRAA YAYILAN GENİŞLİK */
+        /* CEZA KART KUTUSU */
         .penalty-card {
             width: 92%;
-            max-width: 1600px; /* Kutuyu da header ile aynı genişliğe çıkardık */
+            max-width: 1600px;
             background: rgba(28, 10, 3, 0.9);
             border: 2px solid #ca8a04;
             border-radius: 20px;
@@ -234,7 +247,6 @@
             font-size: 15px;
         }
 
-        /* BOŞ SPAN/ROZETLERİN ÇİZGİ ŞEKLİNDE GÖRÜNMESİNİ ENGELLER */
         span:empty {
             display: none !important;
         }
@@ -245,7 +257,7 @@
     <!-- ÜST MENÜ -->
     <header>
         <a href="index.html" class="logo-box">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>
+            <i class="fa-solid fa-crown" style="font-size: 22px;"></i>
         </a>
 
         <nav>
@@ -259,7 +271,7 @@
         </nav>
 
         <a href="giris.html" class="user-btn">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            <i class="fa-solid fa-user"></i>
         </a>
     </header>
 
@@ -289,17 +301,15 @@
     </div>
 
     <script>
-        // CEZA VERİLERİ (Gelecekte Firebase'den veya API'den çekebilirsin)
-        // Eğer dizi boşsa [] tablo temiz görünecektir.
+        // CEZA VERİLERİ
         const penalties = [
             {
                 player: "xWemmbux",
-                type: "BAN", // BAN, MUTE veya KICK
+                type: "BAN",
                 reason: "Yetkiliye Saygısızlık",
                 staff: "UnplugMC",
                 duration: "Süresiz"
             }
-            /* Yeni cezalar geldikçe buraya eklenir. Veri eklenmediği sürece boş satır görünmez. */
         ];
 
         function renderPenalties() {
@@ -318,7 +328,6 @@
             penalties.forEach(item => {
                 const tr = document.createElement('tr');
 
-                // Ceza Türü Rozet Rengi
                 let badgeClass = 'badge-ban';
                 if (item.type.toUpperCase() === 'MUTE') badgeClass = 'badge-mute';
                 if (item.type.toUpperCase() === 'KICK') badgeClass = 'badge-kick';
@@ -335,7 +344,6 @@
             });
         }
 
-        // Sayfa yüklendiğinde çalıştır
         renderPenalties();
     </script>
 </body>
