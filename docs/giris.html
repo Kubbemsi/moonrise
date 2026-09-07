@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap / Kayıt Ol - KünefeSMP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #120a05;
+            background-image: radial-gradient(circle, #231108 0%, #0d0603 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 0 20px 40px 20px;
+        }
+
+        /* HOTBAR */
+        header {
+            width: 100%;
+            max-width: 1300px;
+            margin: 40px auto 30px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(35, 17, 8, 0.85);
+            border: 2px solid #ca8a04;
+            border-radius: 18px;
+            padding: 15px 25px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-box {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+            color: #422006;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background: #facc15;
+            color: #422006;
+        }
+
+        /* FORM KUTUSU */
+        .auth-container {
+            max-width: 450px;
+            margin: 40px auto;
+            background: rgba(35, 17, 8, 0.7);
+            border: 2px solid #ca8a04;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: rgba(202, 138, 4, 0.1);
+            border: 1px solid #ca8a04;
+            color: #fff;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: #facc15;
+            color: #422006;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #facc15;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(202, 138, 4, 0.4);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: #facc15;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+            color: #422006;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(250, 204, 21, 0.3);
+        }
+
+        .msg-box {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+        }
+
+        .msg-error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #fca5a5;
+        }
+
+        .msg-success {
+            background: rgba(34, 197, 94, 0.2);
+            border: 1px solid #22c55e;
+            color: #86efac;
+        }
+
+        .user-profile {
+            text-align: center;
+        }
+
+        .user-profile img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #facc15;
+            margin-bottom: 15px;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-box">
+            <i class="fa-solid fa-crown"></i>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> ANASAYFA</a></li>
+                <li><a href="magaza.html"><i class="fa-solid fa-cart-shopping"></i> MAĞAZA</a></li>
+                <li><a href="yardim.html"><i class="fa-solid fa-circle-question"></i> YARDIM</a></li>
+                <li><a href="destek.html"><i class="fa-solid fa-headset"></i> DESTEK</a></li>
+                <li><a href="cezalar.html"><i class="fa-solid fa-ban"></i> CEZALAR</a></li>
+            </ul>
+        </nav>
+        <a href="giris.html" class="logo-box" style="width:45px; height:45px; font-size:18px;">
+            <i class="fa-solid fa-user"></i>
+        </a>
+    </header>
+
+    <div class="auth-container">
+        
+        <!-- OTURUM AÇIK DEĞİLSE GÖRÜNECEK FORMLAR -->
+        <div id="auth-forms">
+            <div class="tab-buttons">
+                <button class="tab-btn active" id="tab-login" onclick="switchTab('login')">Giriş Yap</button>
+                <button class="tab-btn" id="tab-register" onclick="switchTab('register')">Kayıt Ol</button>
+            </div>
+
+            <div id="msg" class="msg-box"></div>
+
+            <!-- GİRİŞ FORMU -->
+            <form id="login-form">
+                <div class="form-group">
+                    <label>E-posta Adresi</label>
+                    <input type="email" id="login-email" placeholder="ornek@kunefesmp.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Şifre</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="submit-btn">Giriş Yap</button>
+            </form>
+
+            <!-- KAYIT FORMU -->
+            <form id="register-form" class="hidden">
+                <div class="form-group">
+                    <label>Minecraft Kullanıcı Adın</label>
+                    <input type="text" id="reg-username" placeholder="OyuncuAdi" required>
+                </div>
+                <div class="form-group">
+                    <label>E-posta Adresi</label>
+                    <input type="email" id="reg-email" placeholder="ornek@kunefesmp.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Şifre</label>
+                    <input type="password" id="reg-password" placeholder="En az 6 karakter" required>
+                </div>
+                <div class="form-group">
+                    <label>Şifre Tekrarı</label>
+                    <input type="password" id="reg-password-confirm" placeholder="Şifrenizi tekrar girin" required>
+                </div>
+                <button type="submit" class="submit-btn">Kayıt Ol</button>
+            </form>
+        </div>
+
+        <!-- OTURUM AÇIKSA GÖRÜNECEK PROFİL EKRANI -->
+        <div id="user-profile" class="user-profile hidden">
+            <img id="user-avatar" src="https://crafthead.net/avatar/Steve" alt="Avatar">
+            <h2 id="user-name" style="color: #facc15; margin-bottom: 5px;">Oyuncu</h2>
+            <p id="user-email-txt" style="color: #aaa; font-size: 14px;"></p>
+            <button class="submit-btn logout-btn" onclick="logout()">Çıkış Yap</button>
+        </div>
+
+    </div>
+
+    <!-- FIREBASE SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { 
+            getAuth, 
+            createUserWithEmailAndPassword, 
+            signInWithEmailAndPassword, 
+            updateProfile,
+            onAuthStateChanged,
+            signOut 
+        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        // GÖRSELDEN ALINAN KİŞİSEL FIREBASE BİLGİLERİN
+        const firebaseConfig = {
+            apiKey: "AIzaSyCDI7kmxLLRKpcRLp9J-HNYyq4wFBIia1w",
+            authDomain: "kunefesmp.firebaseapp.com",
+            projectId: "kunefesmp",
+            storageBucket: "kunefesmp.firebasestorage.app",
+            messagingSenderId: "394720158469",
+            appId: "1:394720158469:web:f933b340d23c3846f5cd6c"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // SEKME DEĞİŞTİRME
+        window.switchTab = function(tab) {
+            const loginForm = document.getElementById('login-form');
+            const regForm = document.getElementById('register-form');
+            const tabLogin = document.getElementById('tab-login');
+            const tabReg = document.getElementById('tab-register');
+            hideMsg();
+
+            if (tab === 'login') {
+                loginForm.classList.remove('hidden');
+                regForm.classList.add('hidden');
+                tabLogin.classList.add('active');
+                tabReg.classList.remove('active');
+            } else {
+                loginForm.classList.add('hidden');
+                regForm.classList.remove('hidden');
+                tabLogin.classList.remove('active');
+                tabReg.classList.add('active');
+            }
+        };
+
+        // MESAJ GÖSTERME
+        function showMsg(text, isSuccess = false) {
+            const msg = document.getElementById('msg');
+            msg.innerText = text;
+            msg.className = 'msg-box ' + (isSuccess ? 'msg-success' : 'msg-error');
+            msg.style.display = 'block';
+        }
+
+        function hideMsg() {
+            document.getElementById('msg').style.display = 'none';
+        }
+
+        // KAYIT OLMA
+        document.getElementById('register-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('reg-username').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const password = document.getElementById('reg-password').value;
+            const confirm = document.getElementById('reg-password-confirm').value;
+
+            if (password !== confirm) {
+                showMsg("Şifreler birbiriyle eşleşmiyor!");
+                return;
+            }
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                await updateProfile(userCredential.user, { displayName: username });
+                showMsg("Kayıt başarılı! Yönlendiriliyorsunuz...", true);
+            } catch (error) {
+                if (error.code === 'auth/email-already-in-use') {
+                    showMsg("Bu e-posta adresi zaten kullanımda.");
+                } else if (error.code === 'auth/weak-password') {
+                    showMsg("Şifre en az 6 karakter olmalıdır.");
+                } else {
+                    showMsg("Kayıt hatası: " + error.message);
+                }
+            }
+        });
+
+        // GİRİŞ YAPMA
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                showMsg("Giriş başarılı!", true);
+            } catch (error) {
+                showMsg("E-posta veya şifre hatalı!");
+            }
+        });
+
+        // ÇIKIŞ YAPMA
+        window.logout = function() {
+            signOut(auth);
+        };
+
+        // OTURUM DURUMU KONTROLÜ
+        onAuthStateChanged(auth, (user) => {
+            const authForms = document.getElementById('auth-forms');
+            const userProfile = document.getElementById('user-profile');
+
+            if (user) {
+                authForms.classList.add('hidden');
+                userProfile.classList.remove('hidden');
+
+                const name = user.displayName || "Oyuncu";
+                document.getElementById('user-name').innerText = name;
+                document.getElementById('user-email-txt').innerText = user.email;
+                document.getElementById('user-avatar').src = `https://crafthead.net/avatar/${name}`;
+            } else {
+                authForms.classList.remove('hidden');
+                userProfile.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
