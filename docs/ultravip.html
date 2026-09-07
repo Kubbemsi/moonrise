@@ -33,7 +33,7 @@
             max-width: 1050px;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
         }
 
         /* --- ÜST BAR --- */
@@ -90,39 +90,43 @@
         .content-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
+            gap: 20px;
+            align-items: stretch; /* Her iki kartın yüksekliği eşitlenir */
         }
 
         @media (max-width: 850px) {
             .content-grid { grid-template-columns: 1fr; }
         }
 
-        /* --- SOL PAKET KARTI --- */
-        .package-card {
+        /* --- ORTAK KART DÜZENİ --- */
+        .package-card, .checkout-card {
             background: rgba(20, 8, 2, 0.85);
             border: 1px solid #523202;
             border-radius: 16px;
             padding: 25px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+        }
+
+        /* --- SOL PAKET KARTI --- */
+        .package-card {
+            gap: 16px;
         }
 
         .vip-banner {
             width: 100%;
-            height: 140px;
+            height: 130px;
             border-radius: 14px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 0 25px rgba(234, 179, 8, 0.2);
             transition: all 0.3s ease;
         }
 
         .vip-banner .banner-title {
-            font-size: 38px;
+            font-size: 36px;
             font-weight: 900;
             color: #ffffff;
             text-shadow: 0 4px 10px rgba(0,0,0,0.5);
@@ -140,7 +144,7 @@
         }
 
         .features-header {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 900;
             color: #facc15;
             letter-spacing: 0.5px;
@@ -150,15 +154,15 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
         .feature-item {
             background: rgba(10, 4, 1, 0.6);
             border: 1px solid rgba(202, 138, 4, 0.15);
             border-radius: 8px;
-            padding: 12px 15px;
-            font-size: 13px;
+            padding: 10px 14px;
+            font-size: 12px;
             font-weight: 700;
             color: #d1d5db;
             display: flex;
@@ -169,34 +173,29 @@
         .feature-item .check {
             color: #ffffff;
             font-weight: 900;
-            font-size: 14px;
+            font-size: 13px;
         }
 
-        /* --- SAĞ SATIN ALMA FORMU --- */
+        /* --- SAĞ SATIN ALMA KUTUSU --- */
         .checkout-card {
-            background: rgba(20, 8, 2, 0.85);
-            border: 1px solid #523202;
-            border-radius: 16px;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            gap: 18px; /* Öğeler arasındaki boşluk sıklaştırıldı */
         }
 
         .product-title {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
             color: #ffffff;
         }
 
         .price-text {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             color: #9ca3af;
+            margin-top: 4px;
         }
 
         .price-text span {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 900;
             color: #22c55e;
             margin-left: 5px;
@@ -207,7 +206,7 @@
             font-weight: 800;
             color: #facc15;
             letter-spacing: 0.5px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         /* Otomatik Çekilen Kullanıcı Kutusu */
@@ -215,19 +214,19 @@
             background: rgba(10, 4, 1, 0.8);
             border: 1px solid #422502;
             border-radius: 8px;
-            padding: 12px 15px;
+            padding: 10px 14px;
             display: flex;
             align-items: center;
             gap: 12px;
             color: #ffffff;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 800;
         }
 
         .user-box svg {
             fill: #a855f7;
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
         }
 
         /* Adet Sayacı */
@@ -241,10 +240,10 @@
             background: rgba(10, 4, 1, 0.8);
             border: 1px solid #ca8a04;
             color: #facc15;
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             border-radius: 8px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 900;
             cursor: pointer;
             display: flex;
@@ -259,9 +258,9 @@
         }
 
         .qty-input {
-            width: 45px;
+            width: 40px;
             text-align: center;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 900;
             color: #ffffff;
             background: transparent;
@@ -274,16 +273,16 @@
             background: linear-gradient(135deg, #eab308, #ca8a04);
             color: #1a0a00;
             border: none;
-            padding: 16px;
+            padding: 14px;
             border-radius: 10px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 900;
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 10px;
-            margin-top: auto;
+            margin-top: 10px; /* Fazla alt boşluğu engellemek için sabitledik */
             box-shadow: 0 4px 15px rgba(202, 138, 4, 0.3);
             transition: transform 0.2s, filter 0.2s;
         }
@@ -312,7 +311,7 @@
             <!-- SOL PAKET KARTI -->
             <div class="package-card">
                 <div class="vip-banner" id="vip-banner">
-                    <div class="banner-title" id="banner-title">VIP</div>
+                    <div class="banner-title" id="banner-title">ULTRAVIP</div>
                     <div class="banner-tag" id="banner-tag">30 GÜNLÜK ÜYELİK</div>
                 </div>
 
@@ -326,15 +325,15 @@
             <!-- SAĞ SATIN ALMA KUTUSU -->
             <div class="checkout-card">
                 <div>
-                    <div class="product-title" id="product-title">VIP Paket</div>
-                    <div class="price-text">Toplam Tutar: <span id="total-price">25.00 ₺</span></div>
+                    <div class="product-title" id="product-title">UltraVIP Paket</div>
+                    <div class="price-text">Toplam Tutar: <span id="total-price">100.00 ₺</span></div>
                 </div>
 
                 <div>
                     <div class="form-label">GİRİŞ YAPILAN HESAP</div>
                     <div class="user-box">
                         <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                        <span id="logged-username">Giriş Yapılmadı</span>
+                        <span id="logged-username">asd</span>
                     </div>
                 </div>
 
@@ -356,21 +355,7 @@
     </div>
 
     <script>
-        // PAKET BİLGİLERİ MİMARİSİ
         const vipData = {
-            MINIVIP: {
-                name: "MiniVIP Paket",
-                bannerTitle: "MiniVIP",
-                bannerBg: "linear-gradient(135deg, #eab308 0%, #a16207 100%)",
-                bannerGlow: "0 0 25px rgba(234, 179, 8, 0.3)",
-                unitPrice: 25,
-                features: [
-                    "<b>[MiniVIP]</b> Sohbet Başlığı & Renk",
-                    "Özel MiniVIP Kiti Başlangıç Eşyaları",
-                    "<b>/sethome</b> Ekstra Ev Hakkı (+2)",
-                    "Dolu Sunucuya Öncelikli Giriş"
-                ]
-            },
             VIP: {
                 name: "VIP Paket",
                 bannerTitle: "VIP",
@@ -387,7 +372,7 @@
             ULTRAVIP: {
                 name: "UltraVIP Paket",
                 bannerTitle: "ULTRAVIP",
-                bannerBg: "linear-gradient(135deg, #a855f7 0%, #6b21a8 100%)", // Resimdeki gibi Mor Ton
+                bannerBg: "linear-gradient(135deg, #a855f7 0%, #6b21a8 100%)",
                 bannerGlow: "0 0 25px rgba(168, 85, 247, 0.4)",
                 unitPrice: 100,
                 features: [
@@ -400,23 +385,17 @@
             }
         };
 
-        // SHIFT EDİLEBİLİR SEÇİLİ VIP (Buraya 'MINIVIP', 'VIP' veya 'ULTRAVIP' yazabilirsin)
         let currentVipKey = 'ULTRAVIP'; 
         let quantity = 1;
 
-        // Sayfa Açıldığında Çalışır
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Giriş Yapmış Kullanıcıyı localStorage'dan Al
             const savedUser = localStorage.getItem('kunefeUser');
             const userDisplay = document.getElementById('logged-username');
             
             if (savedUser && savedUser.trim() !== '') {
                 userDisplay.innerText = savedUser;
-            } else {
-                userDisplay.innerText = 'asd'; // Giriş yoksa varsayılan
             }
 
-            // 2. Sayfayı Seçili VIP Verileriyle Doldur
             renderVipPage(currentVipKey);
         });
 
@@ -429,7 +408,6 @@
             document.getElementById('vip-banner').style.boxShadow = data.bannerGlow;
             document.getElementById('product-title').innerText = data.name;
 
-            // Özellikler listesini oluştur
             const listContainer = document.getElementById('features-list');
             listContainer.innerHTML = data.features.map(item => `
                 <div class="feature-item">
@@ -441,7 +419,6 @@
             calculatePrice();
         }
 
-        // Adet Arttır / Azalt
         function updateQuantity(change) {
             quantity += change;
             if (quantity < 1) quantity = 1;
