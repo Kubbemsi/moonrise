@@ -3,338 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KünefeSMP | MEGAVIP Paket</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-    
+    <title>KünefeSMP | MegaVIP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-            user-select: none;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; user-select: none; }
         body {
-            background-color: #0d0401;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            overflow-x: hidden;
-            position: relative;
+            background: #06040a;
+            background-image: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.2) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%);
+            color: #ffffff; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px;
         }
+        .container { width: 100%; max-width: 1000px; display: flex; flex-direction: column; gap: 20px; }
+        .navbar { background: rgba(18, 12, 28, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-btn { color: #a78bfa; text-decoration: none; font-weight: 700; font-size: 14px; }
+        .nav-title { font-weight: 900; letter-spacing: 1.5px; font-size: 16px; background: linear-gradient(90deg, #2563eb, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .cart-link { background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.4); color: #c084fc; padding: 8px 16px; border-radius: 10px; font-weight: 800; font-size: 13px; cursor: pointer; }
+        
+        .rank-nav { display: flex; gap: 8px; overflow-x: auto; }
+        .rank-nav a { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: #9ca3af; padding: 8px 14px; border-radius: 10px; text-decoration: none; font-weight: 800; font-size: 12px; }
+        .rank-nav a.active { background: #2563eb; color: #fff; border-color: #2563eb; }
 
-        /* MEGAVIP MOR PARLAK ARKA PLAN EFEKTİ */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 700px; height: 700px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(126, 34, 206, 0.05) 50%, transparent 70%);
-            z-index: -2;
-            filter: blur(60px);
-        }
-
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .top-nav {
-            width: 100%;
-            max-width: 1000px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(18, 10, 25, 0.85);
-            border: 2px solid rgba(168, 85, 247, 0.4);
-            backdrop-filter: blur(10px);
-            border-radius: 18px;
-            padding: 15px 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-        }
-
-        .btn-back, .btn-cart {
-            color: #c084fc;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .btn-cart {
-            background: rgba(168, 85, 247, 0.15);
-            padding: 8px 16px;
-            border-radius: 10px;
-            border: 1px solid #a855f7;
-        }
-
-        .btn-cart:hover { background: #a855f7; color: #120501; }
-        .nav-title { color: #f3e8ff; font-size: 15px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
-
-        .main-wrapper {
-            width: 100%;
-            max-width: 1000px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            align-items: stretch;
-            margin-top: 10px;
-        }
-
-        .preview-box, .checkout-box {
-            background: rgba(18, 10, 25, 0.85);
-            border: 2px solid rgba(168, 85, 247, 0.3);
-            border-radius: 20px;
-            backdrop-filter: blur(12px);
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-        }
-
-        .vip-head-banner {
-            width: 100%;
-            height: 180px;
-            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
-            border-radius: 16px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.3);
-            margin-bottom: 25px;
-        }
-
-        .vip-badge { font-size: 42px; font-weight: 900; color: #ffffff; letter-spacing: 2px; }
-        .vip-subtext {
-            font-size: 12px; font-weight: 800; color: #f3e8ff;
-            background: rgba(255, 255, 255, 0.2); padding: 4px 12px; border-radius: 20px; margin-top: 5px;
-        }
-
-        .feature-title { font-size: 14px; font-weight: 900; color: #c084fc; margin-bottom: 15px; }
-        .feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-        .feature-item {
-            font-size: 13px; color: #e5e7eb; display: flex; align-items: center; gap: 10px;
-            background: rgba(255, 255, 255, 0.03); padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .form-header h3 { font-size: 20px; font-weight: 900; color: #ffffff; }
-        .form-header span { color: #22c55e; font-weight: 900; font-size: 22px; }
-
-        .field-group { margin: 20px 0; }
-        .field-group label {
-            display: block; font-size: 11px; font-weight: 800; color: #c084fc; margin-bottom: 8px; text-transform: uppercase;
-        }
-
-        .logged-user-box {
-            background: rgba(168, 85, 247, 0.1);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            padding: 10px 16px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 800;
-            color: #f3e8ff;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .user-head-img {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            image-rendering: pixelated;
-        }
-
-        .quantity-control {
-            display: flex; align-items: center; gap: 12px;
-            background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(168, 85, 247, 0.3);
-            padding: 8px 12px; border-radius: 10px; width: fit-content;
-        }
-
-        .qty-btn {
-            background: rgba(168, 85, 247, 0.2); border: 1px solid #a855f7; color: #c084fc;
-            width: 32px; height: 32px; border-radius: 6px; font-weight: 900; font-size: 16px;
-            cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;
-        }
-
-        .qty-btn:hover { background: #a855f7; color: #fff; }
-        .qty-number { font-size: 16px; font-weight: 900; color: #fff; min-width: 24px; text-align: center; }
-
-        .btn-add-cart {
-            width: 100%; background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
-            color: #ffffff; border: none; padding: 16px; border-radius: 12px;
-            font-size: 16px; font-weight: 900; cursor: pointer;
-            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.3); transition: all 0.2s ease; margin-top: 15px;
-        }
-
-        .btn-add-cart:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(168, 85, 247, 0.5); }
-
-        @media (max-width: 800px) { .main-wrapper { grid-template-columns: 1fr; } }
+        .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 768px) { .card-grid { grid-template-columns: 1fr; } }
+        .glass-card { background: rgba(15, 10, 24, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 20px; }
+        .banner { background: linear-gradient(135deg, #2563eb, #1e3a8a); box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3); border-radius: 14px; padding: 30px 20px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.15); }
+        .banner h1 { font-size: 32px; font-weight: 900; }
+        .feature-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .feature-item { background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.05); padding: 12px 16px; border-radius: 10px; font-size: 13px; font-weight: 600; }
+        .price-badge { font-size: 30px; font-weight: 900; color: #22c55e; }
+        .input-group { display: flex; flex-direction: column; gap: 8px; }
+        .input-group label { font-size: 11px; font-weight: 800; color: #a78bfa; }
+        .user-field { background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); padding: 12px 16px; border-radius: 10px; font-weight: 800; color: #60a5fa; }
+        .counter { display: flex; align-items: center; gap: 12px; }
+        .btn-cnt { width: 36px; height: 36px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.05); color: #fff; font-weight: 900; cursor: pointer; }
+        .add-btn { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; border: none; padding: 16px; border-radius: 12px; font-weight: 900; font-size: 15px; cursor: pointer; box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3); margin-top: auto; }
     </style>
 </head>
 <body>
-
-    <div class="top-nav">
-        <a href="magaza.html" class="btn-back">← Mağazaya Dön</a>
-        <div class="nav-title">MEGAVIP Üyelik</div>
-        <a href="sepet.html" class="btn-cart">🛒 Sepetim</a>
-    </div>
-
-    <div class="main-wrapper">
-        <div class="preview-box">
-            <div>
-                <div class="vip-head-banner">
-                    <div class="vip-badge">MEGAVIP</div>
-                    <div class="vip-subtext">30 GÜNLÜK ÜYELİK</div>
-                </div>
-
-                <div class="feature-title">PAKET AYRICALIKLARI</div>
-                <ul class="feature-list">
-                    <li class="feature-item">✔ <strong>[MEGAVIP]</strong> Mor Sohbet Başlığı & Rengi</li>
-                    <li class="feature-item">✔ Özel MEGAVIP Kiti & Elmas Set Eşyalar</li>
-                    <li class="feature-item">✔ <strong>/fly</strong> Uçma Komutu</li>
-                    <li class="feature-item">✔ Genişletilmiş Sanal Sandık ( <strong>/enderchest</strong> )</li>
-                    <li class="feature-item">✔ <strong>/heal</strong> ve <strong>/feed</strong> Sağlık Komutları</li>
-                </ul>
-            </div>
+    <div class="container">
+        <div class="navbar">
+            <a href="magaza.html" class="nav-btn">← Mağaza</a>
+            <div class="nav-title">MEGAVIP PAKETİ</div>
+            <button class="cart-link" onclick="goToCart()">Sepetim</button>
         </div>
 
-        <div class="checkout-box">
-            <div>
-                <div class="form-header">
-                    <h3>MEGAVIP Paket</h3>
-                    <div style="margin-top: 8px;">Toplam Tutar: <span id="totalPrice">100.00 ₺</span></div>
-                </div>
+        <div class="rank-nav">
+            <a href="vip.html">VIP</a>
+            <a href="megavip.html" class="active">MegaVIP</a>
+            <a href="ultravip.html">UltraVIP</a>
+            <a href="kunefevip.html">KünefeVIP</a>
+            <a href="sponsor.html">Sponsor</a>
+        </div>
 
-                <!-- AKTİF OYUNCU BİLGİSİ -->
-                <div class="field-group">
-                    <label>Teslim Edilecek Oyuncu Hesabı</label>
-                    <div class="logged-user-box">
-                        <img id="userAvatar" class="user-head-img" src="https://mc-heads.net/avatar/MCDev/32" alt="Head">
-                        <span id="activeUsername">Kullanıcı aranıyor...</span>
-                    </div>
+        <div class="card-grid">
+            <div class="glass-card">
+                <div class="banner">
+                    <h1>MEGAVIP</h1>
+                    <span style="font-size: 11px; font-weight: 800; opacity: 0.8;">30 GÜNLÜK ÜYELİK</span>
                 </div>
-
-                <!-- ADET SEÇİMİ -->
-                <div class="field-group">
-                    <label>Paket Adedi</label>
-                    <div class="quantity-control">
-                        <button class="qty-btn" id="btn-minus">-</button>
-                        <span class="qty-number" id="qtyVal">1</span>
-                        <button class="qty-btn" id="btn-plus">+</button>
-                    </div>
+                <div class="feature-list">
+                    <div class="feature-item">✓ [MegaVIP] Mavi Sohbet Rengi</div>
+                    <div class="feature-item">✓ MegaVIP Özel Kit</div>
+                    <div class="feature-item">✓ Tüm Dünyalarda /fly</div>
+                    <div class="feature-item">✓ Sanal Çalışma Masası (/craft)</div>
                 </div>
             </div>
 
-            <button class="btn-add-cart" id="addToCartBtn">
-                🛒 SEPETE EKLE
-            </button>
+            <div class="glass-card">
+                <div>
+                    <span style="font-size: 12px; font-weight: 700; color: #9ca3af;">PAKET FİYATI</span>
+                    <div class="price-badge" id="display-price">100.00 ₺</div>
+                </div>
+                <div class="input-group">
+                    <label>HESAP ADI</label>
+                    <div class="user-field" id="user-display">Giriş Yapılmadı</div>
+                </div>
+                <div class="input-group">
+                    <label>ADET</label>
+                    <div class="counter">
+                        <button class="btn-cnt" onclick="updateQty(-1)">-</button>
+                        <span id="qty-val" style="font-weight: 900; font-size: 16px;">1</span>
+                        <button class="btn-cnt" onclick="updateQty(1)">+</button>
+                    </div>
+                </div>
+                <button class="add-btn" onclick="addToCart()">SEPETE EKLE</button>
+            </div>
         </div>
     </div>
 
-    <!-- FIREBASE INTEGRATION -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    <script>
+        const UNIT_PRICE = 100;
+        let qty = 1;
 
-        // giris.html ile aynı Firebase Yapılandırması
-        const firebaseConfig = {
-            apiKey: "AIzaSyCDI7kmxlLRKpcRLp9J-HNYyq4wFBIia1w",
-            authDomain: "kunefesmp.firebaseapp.com",
-            projectId: "kunefesmp",
-            storageBucket: "kunefesmp.firebasestorage.app",
-            messagingSenderId: "394720158469",
-            appId: "1:394720158469:web:f933b340d23c3846f5cd6c"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        const unitPrice = 100.00;
-        let currentQty = 1;
-        let activePlayerName = "";
-
-        // OTURUM KONTROLÜ
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                let username = user.displayName;
-
-                try {
-                    const userDoc = await getDoc(doc(db, "users", user.uid));
-                    if (userDoc.exists()) {
-                        username = userDoc.data().username || username;
-                    }
-                } catch (e) {
-                    console.error("Kullanıcı verisi çekilemedi:", e);
-                }
-
-                activePlayerName = username || 'Oyuncu';
-                document.getElementById('activeUsername').innerText = activePlayerName;
-                document.getElementById('userAvatar').src = `https://mc-heads.net/avatar/${activePlayerName}/32`;
-
-            } else {
-                // Oturum yoksa direkt giris.html sayfasına gönder
-                alert("Ürün satın alabilmek için önce giriş yapmalısınız!");
-                window.location.href = "giris.html";
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = localStorage.getItem('kunefeUser');
+            document.getElementById('user-display').innerText = (user && user.trim() !== '') ? user : "Giris Yapilmadi";
         });
 
-        // Adet Değiştirme Fonksiyonları
-        document.getElementById('btn-minus').addEventListener('click', () => updateQty(-1));
-        document.getElementById('btn-plus').addEventListener('click', () => updateQty(1));
-
-        function updateQty(amount) {
-            currentQty += amount;
-            if (currentQty < 1) currentQty = 1;
-            
-            document.getElementById('qtyVal').innerText = currentQty;
-            const total = unitPrice * currentQty;
-            document.getElementById('totalPrice').innerText = total.toFixed(2) + " ₺";
+        function updateQty(c) {
+            qty = Math.max(1, qty + c);
+            document.getElementById('qty-val').innerText = qty;
+            document.getElementById('display-price').innerText = (UNIT_PRICE * qty).toFixed(2) + ' ₺';
         }
 
-        // Sepete Ekleme Fonksiyonu
-        document.getElementById('addToCartBtn').addEventListener('click', () => {
-            if (!activePlayerName) {
-                alert("Giriş yapmanız gerekiyor!");
-                window.location.href = "giris.html";
+        function addToCart() {
+            const savedUser = localStorage.getItem('kunefeUser');
+            if (!savedUser || savedUser.trim() === '') {
+                alert("Sepete urun eklemek icin once giris yapmalisiniz!");
+                window.location.href = "login.html";
                 return;
             }
-
-            const newItem = {
-                id: Date.now(),
-                name: "MEGAVIP Üyelik (30 Gün)",
-                unitPrice: unitPrice,
-                quantity: currentQty,
-                totalPrice: unitPrice * currentQty,
-                username: activePlayerName
-            };
-
-            let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-            cart.push(newItem);
+            let cart = JSON.parse(localStorage.getItem('kunefeCart') || "[]");
+            const idx = cart.findIndex(i => i.id === 'megavip');
+            if (idx > -1) cart[idx].quantity += qty;
+            else cart.push({ id: 'megavip', title: 'MegaVIP Paket', price: UNIT_PRICE, quantity: qty, username: savedUser });
             localStorage.setItem('kunefeCart', JSON.stringify(cart));
-
             window.location.href = 'sepet.html';
-        });
+        }
+
+        function goToCart() {
+            const savedUser = localStorage.getItem('kunefeUser');
+            if (!savedUser || savedUser.trim() === '') {
+                alert("Sepeti goruntulemek icin once giris yapmalisiniz!");
+                window.location.href = "login.html";
+                return;
+            }
+            window.location.href = "sepet.html";
+        }
     </script>
 </body>
 </html>

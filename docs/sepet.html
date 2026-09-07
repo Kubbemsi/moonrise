@@ -6,166 +6,33 @@
     <title>KünefeSMP | Sepet</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            user-select: none;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; user-select: none; }
         body {
-            background: #09070f;
-            background-image: 
-                radial-gradient(at 10% 10%, rgba(168, 85, 247, 0.12) 0px, transparent 50%),
-                radial-gradient(at 90% 90%, rgba(245, 158, 11, 0.12) 0px, transparent 50%);
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            background: #06040a;
+            background-image: radial-gradient(at 0% 0%, rgba(245, 158, 11, 0.15) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%);
+            color: #ffffff; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px;
         }
-
-        .container {
-            width: 100%;
-            max-width: 950px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        /* --- ÜST BAR --- */
-        .navbar {
-            background: rgba(22, 18, 36, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 14px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-btn {
-            color: #a78bfa;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 14px;
-        }
-
-        .nav-title {
-            font-weight: 900;
-            letter-spacing: 1px;
-            font-size: 16px;
-            color: #fff;
-        }
-
-        /* --- İÇERİK --- */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 320px;
-            gap: 20px;
-        }
-
+        .container { width: 100%; max-width: 950px; display: flex; flex-direction: column; gap: 20px; }
+        .navbar { background: rgba(18, 12, 28, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-btn { color: #a78bfa; text-decoration: none; font-weight: 700; font-size: 14px; }
+        .nav-title { font-weight: 900; letter-spacing: 1px; font-size: 16px; color: #fff; }
+        
+        .grid { display: grid; grid-template-columns: 1fr 320px; gap: 20px; }
         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
 
-        .glass-card {
-            background: rgba(18, 14, 29, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .item-row {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
-            padding: 16px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
+        .glass-card { background: rgba(15, 10, 24, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+        .item-row { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 14px; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
         .item-name { font-weight: 800; font-size: 16px; }
         .item-sub { font-size: 13px; color: #22c55e; font-weight: 700; margin-top: 4px; }
-
-        .controls {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .btn-sm {
-            width: 30px;
-            height: 30px;
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            font-weight: 800;
-            cursor: pointer;
-        }
-
-        .btn-sm:hover { background: #f59e0b; color: #000; }
-
-        .del-btn {
-            background: rgba(239, 68, 68, 0.15);
-            border: 1px solid #ef4444;
-            color: #ef4444;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-weight: 800;
-            font-size: 12px;
-            cursor: pointer;
-        }
-
-        .del-btn:hover { background: #ef4444; color: #fff; }
-
-        .summary-title {
-            font-size: 14px;
-            font-weight: 800;
-            color: #a78bfa;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding-bottom: 10px;
-        }
-
-        .sum-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            font-weight: 700;
-            color: #9ca3af;
-        }
-
-        .sum-total {
-            font-size: 22px;
-            font-weight: 900;
-            color: #22c55e;
-        }
-
-        .pay-btn {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: #fff;
-            border: none;
-            padding: 16px;
-            border-radius: 12px;
-            font-weight: 900;
-            font-size: 15px;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
-            transition: 0.2s;
-        }
-
-        .pay-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        .controls { display: flex; align-items: center; gap: 10px; }
+        .btn-sm { width: 28px; height: 28px; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.05); color: #fff; font-weight: 800; cursor: pointer; }
+        .del-btn { background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #ef4444; padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 12px; cursor: pointer; }
+        .user-box { background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.08); padding: 10px 14px; border-radius: 10px; font-weight: 800; color: #f59e0b; font-size: 13px; }
+        .sum-total { font-size: 24px; font-weight: 900; color: #22c55e; }
+        .pay-btn { background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; border: none; padding: 16px; border-radius: 12px; font-weight: 900; font-size: 15px; cursor: pointer; box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3); }
     </style>
 </head>
 <body>
-
     <div class="container">
         <div class="navbar">
             <a href="vip.html" class="nav-btn">← Mağazaya Dön</a>
@@ -174,24 +41,23 @@
         </div>
 
         <div class="grid">
-            <div class="glass-card" id="cart-list">
-                <!-- JS dolduracak -->
-            </div>
+            <div class="glass-card" id="cart-list"></div>
 
             <div class="glass-card" style="height: fit-content;">
-                <div class="summary-title">ÖDENECEK TUTAR</div>
-                
-                <div class="sum-row">
+                <div style="font-size: 14px; font-weight: 800; color: #a78bfa; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">SIPARIŞ ÖZETI</div>
+                <div>
+                    <div style="font-size: 11px; font-weight: 800; color: #a78bfa; margin-bottom: 6px;">ALICI HESAP</div>
+                    <div class="user-box" id="user-display">Kullanıcı</div>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:14px; font-weight:700; color:#9ca3af;">
                     <span>Toplam Adet:</span>
                     <span id="tot-count" style="color: #fff;">0</span>
                 </div>
-
-                <div class="sum-row" style="align-items: center; margin-top: 10px;">
-                    <span>Toplam:</span>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-size:14px; font-weight:700; color:#9ca3af;">Toplam:</span>
                     <span class="sum-total" id="tot-price">0.00 ₺</span>
                 </div>
-
-                <button class="pay-btn" onclick="checkout()">ÖDEMEYİ TAMAMLA</button>
+                <button class="pay-btn" onclick="checkout()">ÖDEMEYI TAMAMLA</button>
             </div>
         </div>
     </div>
@@ -200,64 +66,42 @@
         let cart = [];
 
         document.addEventListener('DOMContentLoaded', () => {
-    // 1. Giriş kontrolü
-    const savedUser = localStorage.getItem('kunefeUser');
-
-    if (!savedUser || savedUser.trim() === '') {
-        alert("Sepeti görüntülemek için önce giriş yapmalısınız!");
-        window.location.href = "login.html"; // Giriş sayfanın adı neyse onu yaz (örn: giris.html)
-        return;
-    }
-
-    // 2. Giriş yapılmışsa sepeti yükle
-    render();
-});
-        document.addEventListener('DOMContentLoaded', () => {
-    // 1. Giriş kontrolü
-    const savedUser = localStorage.getItem('kunefeUser');
-
-    if (!savedUser || savedUser.trim() === '') {
-        alert("Sepeti görüntülemek için önce giriş yapmalısınız!");
-        window.location.href = "login.html"; // Giriş sayfanın adı neyse onu yaz (örn: giris.html)
-        return;
-    }
-
+            const savedUser = localStorage.getItem('kunefeUser');
+            if (!savedUser || savedUser.trim() === '') {
+                alert("Sepeti goruntulemek icin once giris yapmalisiniz!");
+                window.location.href = "login.html";
+                return;
+            }
+            document.getElementById('user-display').innerText = savedUser;
+            render();
+        });
 
         function render() {
-            try {
-                cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-            } catch(e) { cart = []; }
-
+            cart = JSON.parse(localStorage.getItem('kunefeCart') || "[]");
             const listEl = document.getElementById('cart-list');
 
             if (cart.length === 0) {
-                listEl.innerHTML = '<div style="text-align: center; color: #9ca3af; padding: 40px; font-weight: 700;">Sepetiniz boş.</div>';
+                listEl.innerHTML = '<div style="text-align: center; color: #9ca3af; padding: 40px; font-weight: 700;">Sepetiniz şu anda boş.</div>';
                 document.getElementById('tot-count').innerText = "0";
                 document.getElementById('tot-price').innerText = "0.00 ₺";
                 return;
             }
 
-            let html = '';
-            let grandTotal = 0;
-            let grandCount = 0;
-
+            let html = '', grandTotal = 0, grandCount = 0;
             cart.forEach((item, idx) => {
-                const itemPrice = Number(item.price) || 0;
-                const itemQty = Number(item.quantity) || 1;
-                const total = itemPrice * itemQty;
-
+                const total = item.price * item.quantity;
                 grandTotal += total;
-                grandCount += itemQty;
+                grandCount += item.quantity;
 
                 html += `
                     <div class="item-row">
                         <div>
-                            <div class="item-name">${item.title || 'Ürün'}</div>
-                            <div class="item-sub">${total.toFixed(2)} ₺ (${itemPrice.toFixed(2)} ₺ / adet)</div>
+                            <div class="item-name">${item.title}</div>
+                            <div class="item-sub">${total.toFixed(2)} ₺ (${item.price.toFixed(2)} ₺ / adet)</div>
                         </div>
                         <div class="controls">
                             <button class="btn-sm" onclick="modQty(${idx}, -1)">-</button>
-                            <span style="font-weight: 800;">${itemQty}</span>
+                            <span style="font-weight: 800;">${item.quantity}</span>
                             <button class="btn-sm" onclick="modQty(${idx}, 1)">+</button>
                             <button class="del-btn" onclick="delItem(${idx})">Sil</button>
                         </div>
@@ -271,8 +115,7 @@
         }
 
         function modQty(idx, change) {
-            cart[idx].quantity = (Number(cart[idx].quantity) || 1) + change;
-            if (cart[idx].quantity < 1) cart[idx].quantity = 1;
+            cart[idx].quantity = Math.max(1, cart[idx].quantity + change);
             save();
         }
 
@@ -287,8 +130,8 @@
         }
 
         function checkout() {
-            if(cart.length === 0) return alert("Sepetiniz boş!");
-            alert("Sipariş alındı! Ödeme sayfasına yönlendiriliyorsunuz.");
+            if (cart.length === 0) return alert("Sepetiniz boş!");
+            alert("Sipariş başarıyla oluşturuldu!");
         }
     </script>
 </body>
