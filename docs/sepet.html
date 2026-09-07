@@ -292,7 +292,7 @@
         <div id="content-card" class="payment-info" style="display: none;">
             <div style="text-align:center; padding: 10px;">
                 <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
-                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+                <a href="https://www.shopier.com/kunefesmp" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
             </div>
         </div>
     </div>
@@ -2063,6 +2063,24 @@
 </div>
 
     <script>
+        // Shopier Ürün Linki Eşleşmeleri
+const shopierLinks = {
+    "VIP Paket": "https://www.shopier.com/50635994",
+    "MEGAVIP Paket": "https://www.shopier.com/50636037",
+    "ULTRAVIP Paket": "https://www.shopier.com/50636051",
+    "KUNEFEVIP Paket": "https://www.shopier.com/50636066",
+    "SPONSOR Rütbesi": "https://www.shopier.com/50636078"
+};
+
+function goToShopier() {
+    if (cart.length === 0) return alert("Sepetiniz boş!");
+    
+    // Sepetteki ilk rütbenin adını alıp ilgili Shopier sayfasına yönlendirir
+    const itemTitle = cart[0].title;
+    const targetLink = shopierLinks[itemTitle] || "https://www.shopier.com/50635994";
+    
+    window.open(targetLink, '_blank');
+}
         let cart = [];
 
         document.addEventListener('DOMContentLoaded', () => {
