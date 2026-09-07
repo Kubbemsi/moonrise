@@ -1,20 +1,3 @@
-<?php
-// Veritabanı Bağlantı Bilgileri
-$host     = "localhost";
-$dbname   = "kunefesmp_db";
-$username = "admin";
-$password = "abd2233_09"; // Buraya kendi MySQL şifreni yaz
-
-try {
-    $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-} catch (PDOException $e) {
-    die("Veritabanı bağlantı hatası: " . $e->getMessage());
-}
-
-// AdvancedBan verilerini çek
-$query = $db->query("SELECT * FROM Punishments ORDER BY id DESC LIMIT 20");
-$punishments = $query ? $query->fetchAll(PDO::FETCH_ASSOC) : [];
-?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -193,7 +176,7 @@ $punishments = $query ? $query->fetchAll(PDO::FETCH_ASSOC) : [];
                 <li><a href="magaza.html"><i class="fa-solid fa-cart-shopping"></i> MAĞAZA</a></li>
                 <li><a href="yardim.html"><i class="fa-solid fa-circle-question"></i> YARDIM</a></li>
                 <li><a href="destek.html"><i class="fa-solid fa-headset"></i> DESTEK</a></li>
-                <li><a href="cezalar.php" class="active"><i class="fa-solid fa-ban"></i> CEZALAR</a></li>
+                <li><a href="cezalar.html" class="active"><i class="fa-solid fa-ban"></i> CEZALAR</a></li>
             </ul>
         </nav>
 
@@ -216,39 +199,50 @@ $punishments = $query ? $query->fetchAll(PDO::FETCH_ASSOC) : [];
                     <th>Süre</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php if (!empty($punishments)): ?>
-                    <?php foreach ($punishments as $row): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($row['name']) ?></td>
-                            <td>
-                                <?php if (strpos(strtoupper($row['punishmentType']), 'BAN') !== false): ?>
-                                    <span class="badge-ban">BAN</span>
-                                <?php else: ?>
-                                    <span class="badge-mute">MUTE</span>
-                                <?php endif; ?>
-                            </td>
-                            <td><?= htmlspecialchars($row['reason']) ?></td>
-                            <td><?= htmlspecialchars($row['operator']) ?></td>
-                            <td>
-                                <?php 
-                                    if ($row['end'] == -1 || $row['end'] == 0) {
-                                        echo "Süresiz";
-                                    } else {
-                                        echo date('d.m.Y H:i', $row['end'] / 1000);
-                                    }
-                                ?>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="5" style="text-align: center;">Henüz kayıtlı bir ceza bulunmuyor.</td>
-                    </tr>
-                <?php endif; ?>
+            <tbody id="ceza-listesi">
+                <tr>
+                    <td colspan="5" style="text-align: center;">Cezalar yükleniyor...</td>
+                </tr>
             </tbody>
         </table>
     </div>
+
+    <script>
+        // Verileri JSON veya API üzerinden çekme
+        async function cezalaGetir() {
+            try {
+                // Eğer sunucundan bir ceza API'si veya JSON dosyası yayınlarsan adresini buraya yazacaksın
+                const response = await fetch('cezalar.json'); 
+                const cezalar = await response.json();
+                
+                const tbody = document.getElementById('ceza-listesi');
+                tbody.innerHTML = '';
+
+                if (cezalar.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Henüz kayıtlı bir ceza bulunmuyor.</td></tr>';
+                    return;
+                }
+
+                cezalar.forEach(item => {
+                    const tr = document.createElement('tr');
+                    const badgeClass = item.tur === 'BAN' ? 'badge-ban' : 'badge-mute';
+                    
+                    tr.innerHTML = `
+                        <td>${item.oyuncu}</td>
+                        <td><span class="${badgeClass}">${item.tur}</span></td>
+                        <td>${item.sebep}</td>
+                        <td>${item.yetkili}</td>
+                        <td>${item.sure}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (error) {
+                document.getElementById('ceza-listesi').innerHTML = '<tr><td colspan="5" style="text-align: center;">Henüz kayıtlı bir ceza bulunmuyor.</td></tr>';
+            }
+        }
+
+        cezalaGetir();
+    </script>
 
 </body>
 </html>
