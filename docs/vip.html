@@ -3,292 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KünefeSMP | VIP Paket</title>
-    
+    <title>KünefeSMP | VIP Market</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             user-select: none;
         }
 
         body {
-            background-color: #0a0402;
+            background: #09070f;
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(168, 85, 247, 0.12) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, rgba(245, 158, 11, 0.12) 0px, transparent 50%);
             color: #ffffff;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 700px; height: 700px;
-            background: radial-gradient(circle, rgba(234, 179, 8, 0.2) 0%, rgba(202, 138, 4, 0.05) 50%, transparent 70%);
-            z-index: -2;
-            filter: blur(60px);
-        }
-
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(rgba(234, 179, 8, 0.03) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(234, 179, 8, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .top-nav {
-            width: 100%;
-            max-width: 1000px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(18, 10, 5, 0.85);
-            border: 1px solid rgba(234, 179, 8, 0.3);
-            backdrop-filter: blur(10px);
-            border-radius: 14px;
-            padding: 12px 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-        }
-
-        .btn-back, .btn-cart {
-            color: #eab308;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
-
-        .btn-cart {
-            background: rgba(234, 179, 8, 0.15);
-            padding: 8px 16px;
-            border-radius: 10px;
-            border: 1px solid #eab308;
-        }
-
-        .btn-cart:hover { background: #eab308; color: #120501; }
-        .nav-title { color: #fef08a; font-size: 15px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
-
-        .main-wrapper {
-            width: 100%;
-            max-width: 1000px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            align-items: stretch;
-            margin-top: 10px;
-        }
-
-        .preview-box, .checkout-box {
-            background: rgba(18, 10, 5, 0.85);
-            border: 1px solid rgba(234, 179, 8, 0.3);
-            border-radius: 20px;
-            backdrop-filter: blur(12px);
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-        }
-
-        .vip-head-banner {
-            width: 100%;
-            height: 180px;
-            background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
-            border-radius: 16px;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 10px 25px rgba(234, 179, 8, 0.3);
-            margin-bottom: 25px;
+            padding: 20px;
         }
 
-        .vip-badge { font-size: 42px; font-weight: 900; color: #1a0c02; letter-spacing: 2px; }
-        .vip-subtext {
-            font-size: 12px; font-weight: 800; color: #422006;
-            background: rgba(255, 255, 255, 0.3); padding: 4px 12px; border-radius: 20px; margin-top: 5px;
+        .container {
+            width: 100%;
+            max-width: 950px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .feature-title { font-size: 14px; font-weight: 900; color: #eab308; margin-bottom: 15px; }
-        .feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        /* --- ÜST BAR --- */
+        .navbar {
+            background: rgba(22, 18, 36, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-btn {
+            color: #a78bfa;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .nav-btn:hover { color: #ffffff; }
+
+        .nav-title {
+            font-weight: 900;
+            letter-spacing: 1px;
+            font-size: 16px;
+            background: linear-gradient(90deg, #f59e0b, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cart-link {
+            background: rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            color: #c084fc;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .cart-link:hover {
+            background: #a855f7;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+        }
+
+        /* --- İÇERİK --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) { .card-grid { grid-template-columns: 1fr; } }
+
+        .glass-card {
+            background: rgba(18, 14, 29, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .banner {
+            background: linear-gradient(135deg, #7e22ce, #3b0764);
+            border-radius: 14px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(126, 34, 206, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .banner h1 { font-size: 32px; font-weight: 900; letter-spacing: 2px; }
+        .banner span { font-size: 12px; font-weight: 700; opacity: 0.8; letter-spacing: 1px; }
+
+        .feature-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
         .feature-item {
-            font-size: 13px; color: #e5e7eb; display: flex; align-items: center; gap: 10px;
-            background: rgba(255, 255, 255, 0.03); padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .form-header h3 { font-size: 20px; font-weight: 900; color: #ffffff; }
-        .form-header span { color: #22c55e; font-weight: 900; font-size: 22px; }
-
-        .field-group { margin: 20px 0; }
-        .field-group label {
-            display: block; font-size: 11px; font-weight: 800; color: #eab308; margin-bottom: 8px; text-transform: uppercase;
-        }
-
-        .logged-user-box {
-            background: rgba(234, 179, 8, 0.1);
-            border: 1px solid rgba(234, 179, 8, 0.3);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 12px 16px;
             border-radius: 10px;
-            font-size: 14px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #d1d5db;
+        }
+
+        .price-badge {
+            font-size: 26px;
+            font-weight: 900;
+            color: #22c55e;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-size: 11px;
             font-weight: 800;
-            color: #fef08a;
+            color: #a78bfa;
+            letter-spacing: 0.5px;
+        }
+
+        .user-field {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-weight: 800;
+            color: #f59e0b;
+        }
+
+        .counter {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .quantity-control {
-            display: flex; align-items: center; gap: 12px;
-            background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(234, 179, 8, 0.3);
-            padding: 8px 12px; border-radius: 10px; width: fit-content;
+        .btn-cnt {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-weight: 900;
+            cursor: pointer;
+            transition: 0.2s;
         }
 
-        .qty-btn {
-            background: rgba(234, 179, 8, 0.2); border: 1px solid #eab308; color: #eab308;
-            width: 32px; height: 32px; border-radius: 6px; font-weight: 900; font-size: 16px;
-            cursor: pointer; display: flex; align-items: center; justify-content: center;
+        .btn-cnt:hover { background: #f59e0b; color: #000; }
+
+        .add-btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #000;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+            margin-top: auto;
         }
 
-        .qty-btn:hover { background: #eab308; color: #000; }
-        .qty-number { font-size: 16px; font-weight: 900; color: #fff; min-width: 24px; text-align: center; }
-
-        .btn-add-cart {
-            width: 100%; background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
-            color: #120501; border: none; padding: 16px; border-radius: 12px;
-            font-size: 16px; font-weight: 900; cursor: pointer;
-            box-shadow: 0 6px 20px rgba(234, 179, 8, 0.3); transition: all 0.2s; margin-top: 15px;
+        .add-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5);
         }
-
-        .btn-add-cart:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(234, 179, 8, 0.5); }
-
-        @media (max-width: 800px) { .main-wrapper { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <div class="top-nav">
-        <a href="magaza.html" class="btn-back">← Mağazaya Dön</a>
-        <div class="nav-title">VIP Üyelik</div>
-        <a href="sepet.html" class="btn-cart">🛒 Sepetim</a>
-    </div>
-
-    <div class="main-wrapper">
-        <div class="preview-box">
-            <div>
-                <div class="vip-head-banner">
-                    <div class="vip-badge">VIP</div>
-                    <div class="vip-subtext">30 GÜNLÜK ÜYELİK</div>
-                </div>
-
-                <div class="feature-title">PAKET AYRICALIKLARI</div>
-                <ul class="feature-list">
-                    <li class="feature-item">✔ <strong>[VIP]</strong> Sohbet Başlığı & Renk</li>
-                    <li class="feature-item">✔ Özel VIP Kiti Başlangıç Eşyaları</li>
-                    <li class="feature-item">✔ <strong>/fly</strong> Uçma Komutu</li>
-                    <li class="feature-item">✔ Sanal Sandık ( <strong>/enderchest</strong> )</li>
-                </ul>
-            </div>
+    <div class="container">
+        <div class="navbar">
+            <a href="magaza.html" class="nav-btn">← Mağaza</a>
+            <div class="nav-title">ULTRAVIP PAKETİ</div>
+            <button class="cart-link" onclick="location.href='sepet.html'">Sepetim</button>
         </div>
 
-        <div class="checkout-box">
-            <div>
-                <div class="form-header">
-                    <h3>VIP Paket</h3>
-                    <div>Toplam Tutar: <span id="totalPrice">25.00 ₺</span></div>
+        <div class="card-grid">
+            <div class="glass-card">
+                <div class="banner">
+                    <h1>ULTRAVIP</h1>
+                    <span>30 GÜNLÜK AVANTAJ PAKETİ</span>
                 </div>
-
-                <!-- AKTİF OYUNCU BİLGİSİ -->
-                <div class="field-group">
-                    <label>Giriş Yapılan Hesap</label>
-                    <div class="logged-user-box">
-                        👤 <span id="activeUsername">Yükleniyor...</span>
-                    </div>
-                </div>
-
-                <!-- ADET SEÇİMİ -->
-                <div class="field-group">
-                    <label>Paket Adedi</label>
-                    <div class="quantity-control">
-                        <button class="qty-btn" onclick="changeQty(-1)">-</button>
-                        <span class="qty-number" id="qtyVal">1</span>
-                        <button class="qty-btn" onclick="changeQty(1)">+</button>
-                    </div>
+                <div class="feature-list">
+                    <div class="feature-item">✓ [UltraVIP] Özel Mor Sohbet Başlığı</div>
+                    <div class="feature-item">✓ Full Donanımlı UltraVIP Kiti</div>
+                    <div class="feature-item">✓ Tüm Dünyalarda /fly Uçuş Hakkı</div>
+                    <div class="feature-item">✓ Sanal Tamir (/repair) Komutu</div>
                 </div>
             </div>
 
-            <button class="btn-add-cart" onclick="addToCartAndGo()">
-                🛒 SEPETE EKLE
-            </button>
+            <div class="glass-card">
+                <div>
+                    <span style="font-size: 12px; font-weight: 700; color: #9ca3af;">PAKET FİYATI</span>
+                    <div class="price-badge" id="display-price">200.00 ₺</div>
+                </div>
+
+                <div class="input-group">
+                    <label>HESAP ADI</label>
+                    <div class="user-field" id="user-display">asd</div>
+                </div>
+
+                <div class="input-group">
+                    <label>ADET</label>
+                    <div class="counter">
+                        <button class="btn-cnt" onclick="updateQty(-1)">-</button>
+                        <span id="qty-val" style="font-weight: 900; font-size: 16px;">1</span>
+                        <button class="btn-cnt" onclick="updateQty(1)">+</button>
+                    </div>
+                </div>
+
+                <button class="add-btn" onclick="addToCart()">SEPETE EKLE</button>
+            </div>
         </div>
     </div>
 
     <script>
-        const unitPrice = 25.00;
+        const itemData = {
+            id: 'ultravip',
+            title: 'UltraVIP Paket',
+            unitPrice: 200
+        };
+
         let currentQty = 1;
-        let currentUser = null;
 
-        // GİRİŞ KONTROLÜ (giris.html yönlendirmeli)
-        function checkAuth() {
-            const user = localStorage.getItem('kunefeUser');
-            
-            if (!user) {
-                alert("Ürün satın alabilmek için önce giriş yapmalısınız!");
-                window.location.href = 'giris.html'; // Doğrudan giris.html sayfasına aktarır
-                return;
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = localStorage.getItem('kunefeUser') || 'asd';
+            document.getElementById('user-display').innerText = user;
+            updatePrice();
+        });
 
-            currentUser = user;
-            document.getElementById('activeUsername').innerText = currentUser;
-        }
-
-        function changeQty(amount) {
-            currentQty += amount;
+        function updateQty(change) {
+            currentQty += change;
             if (currentQty < 1) currentQty = 1;
-            
-            document.getElementById('qtyVal').innerText = currentQty;
-            const total = unitPrice * currentQty;
-            document.getElementById('totalPrice').innerText = total.toFixed(2) + " ₺";
+            document.getElementById('qty-val').innerText = currentQty;
+            updatePrice();
         }
 
-        function addToCartAndGo() {
-            if (!currentUser) {
-                window.location.href = 'giris.html';
-                return;
-            }
+        function updatePrice() {
+            const total = itemData.unitPrice * currentQty;
+            document.getElementById('display-price').innerText = total.toFixed(2) + ' ₺';
+        }
+
+        function addToCart() {
+            const user = document.getElementById('user-display').innerText;
 
             const newItem = {
-                id: Date.now(),
-                name: "VIP Üyelik (30 Gün)",
-                unitPrice: unitPrice,
+                id: itemData.id,
+                title: itemData.title,
+                price: itemData.unitPrice,
                 quantity: currentQty,
-                totalPrice: unitPrice * currentQty,
-                username: currentUser
+                username: user
             };
 
-            let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-            cart.push(newItem);
-            localStorage.setItem('kunefeCart', JSON.stringify(cart));
+            let cart = [];
+            try {
+                cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+            } catch(e) { cart = []; }
 
+            const existIndex = cart.findIndex(i => i.id === newItem.id);
+            if (existIndex > -1) {
+                cart[existIndex].quantity += currentQty;
+            } else {
+                cart.push(newItem);
+            }
+
+            localStorage.setItem('kunefeCart', JSON.stringify(cart));
             window.location.href = 'sepet.html';
         }
-
-        checkAuth();
     </script>
 </body>
 </html>
