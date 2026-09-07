@@ -91,7 +91,7 @@
     </div>
 
     <script>
-        const UNIT_PRICE = 50;
+        const UNIT_PRICE = 25;
         let qty = 1;
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -109,7 +109,7 @@
             const savedUser = localStorage.getItem('kunefeUser');
             if (!savedUser || savedUser.trim() === '') {
                 alert("Sepete urun eklemek icin once giris yapmalisiniz!");
-                window.location.href = "giris.html";
+                window.location.href = "login.html";
                 return;
             }
             let cart = JSON.parse(localStorage.getItem('kunefeCart') || "[]");
@@ -124,7 +124,7 @@
             const savedUser = localStorage.getItem('kunefeUser');
             if (!savedUser || savedUser.trim() === '') {
                 alert("Sepeti goruntulemek icin once giris yapmalisiniz!");
-                window.location.href = "giris.html";
+                window.location.href = "login.html";
                 return;
             }
             window.location.href = "sepet.html";
