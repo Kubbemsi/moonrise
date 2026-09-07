@@ -3,209 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Rütbe Menüsü - KünefeSMP</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>KünefeSMP | VIP Paket Detayı</title>
+    
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            user-select: none;
         }
 
         body {
-            background-color: #120a05;
-            background-image: radial-gradient(circle, #231108 0%, #0d0603 100%);
-            color: #fff;
+            background-color: #0d0401;
+            color: #ffffff;
             min-height: 100vh;
-            padding: 0 20px 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
         }
 
-        header {
+        /* ARKA PLAN DOKUSU */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, #2a1106 0%, #120501 60%, #0d0401 100%);
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(rgba(202, 138, 4, 0.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(202, 138, 4, 0.04) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* --- ÜST BİLGİ MENÜSÜ --- */
+        .top-bar {
             width: 100%;
-            max-width: 1100px;
-            margin: 30px auto;
+            max-width: 950px;
+            background: rgba(22, 9, 3, 0.95);
+            border: 2px solid #ca8a04;
+            border-radius: 14px;
+            padding: 12px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(35, 17, 8, 0.85);
-            border: 2px solid #ca8a04;
-            border-radius: 18px;
-            padding: 15px 25px;
-            backdrop-filter: blur(8px);
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
         }
 
         .back-btn {
             color: #facc15;
             text-decoration: none;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.2s;
+            font-weight: 800;
+            font-size: 14px;
+            transition: opacity 0.2s;
         }
 
-        .back-btn:hover { color: #fff; }
+        .back-btn:hover { opacity: 0.8; }
 
+        .bar-title {
+            color: #facc15;
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- ANA İÇERİK DÜZENİ --- */
         .container {
-            max-width: 1100px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: 950px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 25px;
         }
 
-        @media (max-width: 850px) {
-            .container { grid-template-columns: 1fr; }
-        }
-
-        /* SOL PANEL: VIP Özellikleri */
-        .vip-details-card {
-            background: rgba(20, 10, 5, 0.8);
-            border: 2px solid #facc15;
+        /* SOL PANEL - AYRICALIKLAR */
+        .details-card {
+            background: rgba(22, 9, 3, 0.95);
+            border: 2px solid #ca8a04;
             border-radius: 18px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 30px 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
         }
 
-        .vip-header {
+        .card-header {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(202, 138, 4, 0.2);
             margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(250, 204, 21, 0.2);
         }
 
-        .vip-badge {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #facc15, #eab308);
-            color: #422006;
+        .vip-icon {
+            width: 65px;
+            height: 65px;
+            background: #facc15;
+            color: #120501;
             font-weight: 900;
-            font-size: 22px;
+            font-size: 20px;
             border-radius: 16px;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(250, 204, 21, 0.4);
+            box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
+            flex-shrink: 0;
         }
 
-        .vip-title-box h1 {
-            color: #facc15;
-            font-size: 26px;
-        }
-
-        .vip-title-box span {
-            color: #22c55e;
-            font-weight: bold;
+        .vip-info h2 {
             font-size: 20px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .vip-price {
+            font-size: 15px;
+            font-weight: 900;
+            color: #22c55e;
         }
 
         .features-list {
             list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
         }
 
         .features-list li {
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 1px dashed rgba(255,255,255,0.1);
-            font-size: 15px;
+            font-size: 13px;
+            color: #d1d5db;
+            line-height: 1.5;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed rgba(202, 138, 4, 0.15);
         }
 
-        .features-list li i {
-            color: #22c55e;
+        .features-list li:last-child {
+            border-bottom: none;
         }
 
-        /* SAĞ PANEL: Satın Alma / Ödeme Formu */
-        .checkout-card {
-            background: rgba(35, 17, 8, 0.9);
+        .features-list strong {
+            color: #ffffff;
+            font-weight: 800;
+        }
+
+        .cmd {
+            color: #ffffff;
+            font-weight: 800;
+            background: rgba(202, 138, 4, 0.15);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* SAĞ PANEL - SATIN ALMA FORMU */
+        .buy-card {
+            background: rgba(22, 9, 3, 0.95);
             border: 2px solid #ca8a04;
             border-radius: 18px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 30px 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-title {
+            font-size: 20px;
+            font-weight: 900;
+            color: #facc15;
+            margin-bottom: 25px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: 800;
             color: #facc15;
-            font-weight: bold;
-            font-size: 14px;
+            margin-bottom: 8px;
         }
 
         .form-group input, .form-group select {
             width: 100%;
-            padding: 12px;
-            background: rgba(0,0,0,0.6);
-            border: 1px solid #ca8a04;
-            border-radius: 10px;
-            color: #fff;
+            padding: 12px 14px;
+            background: #0d0401;
+            border: 1px solid rgba(202, 138, 4, 0.4);
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
             outline: none;
-            font-size: 15px;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #facc15;
+        }
+
+        .form-group input::placeholder {
+            color: #6b7280;
+        }
+
+        /* PAPARA ÖZEL ALANI */
+        .papara-info-box {
+            display: none;
+            background: #2a0f04;
+            border: 1px dashed #facc15;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .papara-no {
+            font-size: 16px;
+            font-weight: 900;
+            color: #facc15;
+            margin-top: 4px;
+            letter-spacing: 1px;
         }
 
         .pay-btn {
+            margin-top: auto;
             width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: #fff;
+            background: #22c55e;
+            color: #ffffff;
             border: none;
+            padding: 14px;
             border-radius: 10px;
-            font-weight: bold;
-            font-size: 18px;
+            font-size: 15px;
+            font-weight: 900;
             cursor: pointer;
-            transition: 0.2s;
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            transition: background 0.2s;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
         }
 
         .pay-btn:hover {
-            transform: scale(1.02);
-            background: linear-gradient(135deg, #4ade80, #16a34a);
+            background: #16a34a;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="magaza.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Mağazaya Dön</a>
-        <h2 style="color: #facc15;">Özel Rütbe Menüsü</h2>
-    </header>
+    <!-- ÜST BAR -->
+    <div class="top-bar">
+        <a href="magaza.html" class="back-btn">Mağazaya Dön</a>
+        <div class="bar-title">Özel Rütbe Menüsü</div>
+    </div>
 
+    <!-- İÇERİK -->
     <div class="container">
         
-        <!-- Rütbe Detayları ve Özellikleri -->
-        <div class="vip-details-card">
-            <div class="vip-header">
-                <div class="vip-badge">VIP</div>
-                <div class="vip-title-box">
-                    <h1>VIP Paket Ayrıcalıkları</h1>
-                    <span>25.00 ₺ / 30 Gün</span>
+        <!-- SOL PANEL - AYRICALIKLAR -->
+        <div class="details-card">
+            <div class="card-header">
+                <div class="vip-icon">VIP</div>
+                <div class="vip-info">
+                    <h2>VIP Paket Ayrıcalıkları</h2>
+                    <div class="vip-price">25.00 ₺ / 30 Gün</div>
                 </div>
             </div>
 
             <ul class="features-list">
-                <li><i class="fa-solid fa-circle-check"></i> <b>[VIP]</b> Özel sohbet başlığı ve rengi</li>
-                <li><i class="fa-solid fa-circle-check"></i> <b>VIP Kiti</b>ile özel başlangıç eşyaları</li>
-                <li><i class="fa-solid fa-circle-check"></i> <b>/fly</b> komutu ile lobi ve özel alanlarda uçma</li>
-                <li><i class="fa-solid fa-circle-check"></i> Sanal Ender Sandığı (<b>/enderchest</b>) erişimi</li>
+                <li><strong>[VIP]</strong> Özel sohbet başlığı ve rengi</li>
+                <li><strong>VIP Kiti</strong> ile özel başlangıç eşyaları</li>
+                <li><span class="cmd">/fly</span> komutu ile lobi ve özel alanlarda uçma</li>
+                <li>Sanal Ender Sandığı ( <span class="cmd">/enderchest</span> ) erişimi</li>
             </ul>
         </div>
 
-        <!-- Satın Alma Alanı -->
-        <div class="checkout-card">
-            <h2 style="color:#facc15; margin-bottom: 20px;"><i class="fa-solid fa-cart-shopping"></i> Satın Alma İşlemi</h2>
-            <form onsubmit="processOrder(event)">
+        <!-- SAĞ PANEL - FORM -->
+        <div class="buy-card">
+            <div class="form-title">Satın Alma İşlemi</div>
+
+            <form onsubmit="handlePay(event)">
                 <div class="form-group">
                     <label>Minecraft Kullanıcı Adınız</label>
                     <input type="text" id="username" placeholder="Oyundaki adınızı eksiksiz girin" required>
@@ -213,68 +300,51 @@
 
                 <div class="form-group">
                     <label>Ödeme Yöntemi</label>
-                    <select id="paymentMethod" required>
-                        <option value="kart">Kredi / Banka Kartı (Shopier/PayTR)</option>
-                        <option value="papara">Papara / Ininal</option>
-                        <option value="havale">EFT / Havale</option>
+                    <select id="paymentMethod" onchange="togglePapara(this.value)">
+                        <option value="card">Kredi / Banka Kartı (Shopier/PayTR)</option>
+                        <option value="papara">Papara (Manuel Ödeme)</option>
                     </select>
+                </div>
+
+                <!-- Papara Seçilirse Görünecek Alan -->
+                <div class="papara-info-box" id="paparaBox">
+                    <div style="font-size: 11px; color: #a1a1aa; font-weight: 700;">PAPARA HESAP NUMARAMIZ</div>
+                    <div class="papara-no">1234567890</div>
+                    <div style="font-size: 10px; color: #d1d5db; margin-top: 4px;">Açıklamaya Minecraft adınızı yazınız.</div>
                 </div>
 
                 <div class="form-group">
                     <label>E-posta Adresiniz (Fiş için)</label>
-                    <input type="email" placeholder="ornek@kunefesmp.com" required>
+                    <input type="email" id="email" placeholder="ornek@kunefesmp.com" required>
                 </div>
 
-                <button type="submit" class="pay-btn"><i class="fa-solid fa-lock"></i> 25.00 ₺ Öde ve Rütbeyi Al</button>
+                <button type="submit" class="pay-btn">25.00 ₺ Öde ve Rütbeyi Al</button>
             </form>
         </div>
 
     </div>
 
     <script>
-    // Discord Webhook Linkini Buraya Yapıştır
-    const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1546471821107265576/MCvXsl0t3OTschGIUkdpYC5S1bUsDVe0errjXzdxEfGdXi3KVTclBjXNYa9dpr5Yb9Ix";
+        function togglePapara(val) {
+            const paparaBox = document.getElementById('paparaBox');
+            if(val === 'papara') {
+                paparaBox.style.display = 'block';
+            } else {
+                paparaBox.style.display = 'none';
+            }
+        }
 
-    function processOrder(e) {
-        e.preventDefault();
-        
-        const username = document.getElementById('username').value;
-        const paymentMethod = document.getElementById('paymentMethod').value;
-        const email = document.querySelector('input[type="email"]').value;
-        const pageTitle = document.title.split(' - ')[0]; // Rütbe Adı
-
-        // Discord'a Gönderilecek Mesaj Formatı
-        const payload = {
-            username: "KünefeSMP Mağaza",
-            avatar_url: "https://i.imgur.com/8N4X40c.png", // Varsayılan Bot Logosu
-            embeds: [{
-                title: "🛒 Yeni VIP Siparişi Alındı!",
-                color: 16429320, // Altın Sarısı Renk
-                fields: [
-                    { name: "👤 Oyuncu Adı", value: `\`${username}\``, inline: true },
-                    { name: "💎 Alınan Rütbe", value: pageTitle, inline: true },
-                    { name: "💳 Ödeme Yöntemi", value: paymentMethod.toUpperCase(), inline: true },
-                    { name: "📧 E-Posta", value: email, inline: false }
-                ],
-                footer: { text: "KünefeSMP Sipariş Takip Sistemi" },
-                timestamp: new Date().toISOString()
-            }]
-        };
-
-        // Webhook İsteği Gönderimi
-        fetch(DISCORD_WEBHOOK_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        })
-        .then(response => {
-            alert(`Tebrikler ${username}! Siparişiniz yöneticiye iletildi. Lütfen belirttiğiniz ödeme yöntemine göre transferi yapıp Discord sunucumuzdan bildirin.`);
-        })
-        .catch(error => {
-            console.error('Hata:', error);
-            alert('Sipariş iletilirken bir sorun oluştu, lütfen Discord üzerinden iletişime geçin.');
-        });
-    }
-</script>
+        function handlePay(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const method = document.getElementById('paymentMethod').value;
+            
+            if(method === 'papara') {
+                alert("Ödeme talebiniz alındı, " + user + "! Papara ödemeniz kontrol edildikten sonra VIP aktif edilecektir.");
+            } else {
+                alert("Ödeme sayfasına yönlendiriliyorsunuz...");
+            }
+        }
+    </script>
 </body>
 </html>
