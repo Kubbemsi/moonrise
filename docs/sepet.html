@@ -200,8 +200,28 @@
         let cart = [];
 
         document.addEventListener('DOMContentLoaded', () => {
-            render();
-        });
+    // 1. Giriş kontrolü
+    const savedUser = localStorage.getItem('kunefeUser');
+
+    if (!savedUser || savedUser.trim() === '') {
+        alert("Sepeti görüntülemek için önce giriş yapmalısınız!");
+        window.location.href = "login.html"; // Giriş sayfanın adı neyse onu yaz (örn: giris.html)
+        return;
+    }
+
+    // 2. Giriş yapılmışsa sepeti yükle
+    render();
+});
+        document.addEventListener('DOMContentLoaded', () => {
+    // 1. Giriş kontrolü
+    const savedUser = localStorage.getItem('kunefeUser');
+
+    if (!savedUser || savedUser.trim() === '') {
+        alert("Sepeti görüntülemek için önce giriş yapmalısınız!");
+        window.location.href = "login.html"; // Giriş sayfanın adı neyse onu yaz (örn: giris.html)
+        return;
+    }
+
 
         function render() {
             try {

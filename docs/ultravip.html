@@ -58,13 +58,14 @@
         .nav-btn:hover { color: #ffffff; }
 
         .nav-title {
-            font-weight: 900;
-            letter-spacing: 1px;
-            font-size: 16px;
-            background: linear-gradient(90deg, #f59e0b, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-size: 16px;
+  background: linear-gradient(90deg, #f59e0b, #a855f7);
+  background-clip: text; /* Standart özellik */
+  -webkit-background-clip: text; /* Safari ve eski Chrome sürümleri için */
+  -webkit-text-fill-color: transparent;
+}
 
         .cart-link {
             background: rgba(168, 85, 247, 0.15);
@@ -271,6 +272,16 @@
         }
 
         function addToCart() {
+    const savedUser = localStorage.getItem('kunefeUser');
+    
+    if (!savedUser || savedUser.trim() === '' || savedUser === 'asd') {
+        alert("Sepete ürün ekleyebilmek için lütfen önce giriş yapın!");
+        window.location.href = "login.html"; // Giriş sayfanız
+        return;
+    }
+
+    // ... geri kalan ekleme kodları aynı kalacak
+}
             const user = document.getElementById('user-display').innerText;
 
             const newItem = {
@@ -295,7 +306,7 @@
 
             localStorage.setItem('kunefeCart', JSON.stringify(cart));
             window.location.href = 'sepet.html';
-        }
+        
     </script>
 </body>
 </html>
