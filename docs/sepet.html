@@ -78,54 +78,1989 @@
     </div>
 
     <!-- ÖDEME PENCERESİ (MODAL) -->
-    <div class="modal-overlay" id="pay-modal">
-        <div class="modal-box">
-            <div class="modal-title">
-                <span>Ödeme Yöntemi Seçin</span>
-                <button class="close-btn" onclick="closePaymentModal()">✕</button>
-            </div>
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
 
-            <div class="method-tabs">
-                <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
-                <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
-            </div>
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
 
-            <!-- PAPARA / IBAN İÇERİĞİ -->
-            <div id="content-papara" class="payment-info">
-                <div class="info-row">
-                    <span style="color:#aaa;">Papara / IBAN Alıcı:</span>
-                    <strong style="color:#22c55e;">Senin Adın Soyadın</strong>
-                </div>
-                <div class="info-row">
-                    <span style="color:#aaa;">Papara No:</span>
-                    <div>
-                        <strong id="papara-num">1234567890</strong>
-                        <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
-                    </div>
-                </div>
-                <div class="info-row">
-                    <span style="color:#aaa;">IBAN No:</span>
-                    <div>
-                        <strong id="iban-num">TR000000000000000000000000</strong>
-                        <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
-                    </div>
-                </div>
-                <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
-                    ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
                 </div>
             </div>
-
-            <!-- KREDİ KARTI İÇERİĞİ -->
-            <div id="content-card" class="payment-info" style="display: none;">
-                <div style="text-align:center; padding: 10px;">
-                    <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile komisyonsuz ve güvenli ödeme yapmak için Shopier magazamıza yönlendirileceksiniz.</p>
-                    <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px;">Shopier ile Kartla Öde →</a>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
                 </div>
             </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
 
-            <button class="confirm-btn" onclick="submitOrder()">ÖDEMEYİ YAPTIM / SİPARİŞİ OLUŞTUR</button>
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
         </div>
     </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+<div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+        <div class="modal-title">
+            <span>Ödeme Yöntemi Seçin</span>
+            <button class="close-btn" onclick="closePaymentModal()">✕</button>
+        </div>
+
+        <div class="method-tabs">
+            <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+            <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+        </div>
+
+        <!-- PAPARA / IBAN İÇERİĞİ -->
+        <div id="content-papara" class="payment-info">
+            <div class="info-row">
+                <span style="color:#aaa;">Papara No:</span>
+                <div>
+                    <strong id="papara-num">1588226875</strong>
+                    <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                </div>
+            </div>
+            <div class="info-row">
+                <span style="color:#aaa;">IBAN No:</span>
+                <div>
+                    <strong id="iban-num">TR950082900009491588226875</strong>
+                    <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                </div>
+            </div>
+            <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+            </div>
+            <button class="confirm-btn" onclick="submitOrder()">SİPARİŞİ ONAYLA</button>
+        </div>
+
+        <!-- KREDİ KARTI / SHOPIER İÇERİĞİ -->
+        <div id="content-card" class="payment-info" style="display: none;">
+            <div style="text-align:center; padding: 10px;">
+                <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile 3D Secure güvencesiyle ödeme yapmak için Shopier mağazamıza yönlendirileceksiniz.</p>
+                <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">Shopier ile Öde →</a>
+            </div>
+        </div>
+    </div>
+</div>
 
     <script>
         let cart = [];
