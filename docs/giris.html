@@ -402,16 +402,15 @@
         } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // Firebase Console'dan alacağın yapılandırma bilgileri
+        // Firebase Yapılandırması
         const firebaseConfig = {
-  apiKey: "AIzaSyCDI7kmxlLRKpcRLp9J-HNYyq4wFBIia1w",
-  authDomain: "kunefesmp.firebaseapp.com",
-  projectId: "kunefesmp",
-  storageBucket: "kunefesmp.firebasestorage.app",
-  messagingSenderId: "394720158469",
-  appId: "1:394720158469:web:f933b340d23c3846f5cd6c"
-};
-
+            apiKey: "AIzaSyCDI7kmxlLRKpcRLp9J-HNYyq4wFBIia1w",
+            authDomain: "kunefesmp.firebaseapp.com",
+            projectId: "kunefesmp",
+            storageBucket: "kunefesmp.firebasestorage.app",
+            messagingSenderId: "394720158469",
+            appId: "1:394720158469:web:f933b340d23c3846f5cd6c"
+        };
 
         // Firebase Başlat
         const app = initializeApp(firebaseConfig);
@@ -486,6 +485,9 @@
                     createdAt: new Date().toISOString()
                 });
 
+                // Oturum verisini hafızaya yaz
+                localStorage.setItem('kunefeUser', username);
+
             } catch (error) {
                 if (error.code === 'auth/email-already-in-use') {
                     showError('Bu e-posta adresi zaten kullanımda.');
@@ -507,6 +509,7 @@
 
             try {
                 await signInWithEmailAndPassword(auth, email, password);
+                // Giriş başarılı olduğunda onAuthStateChanged çalışacak ve hafızaya yazacak
             } catch (error) {
                 if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
                     showError('E-posta veya şifre hatalı!');
@@ -519,6 +522,8 @@
         // --- ÇIKIŞ YAP ---
         logoutBtn.addEventListener('click', async () => {
             await signOut(auth);
+            // Oturum kapandığında hafızadaki oyuncu verisini temizle
+            localStorage.removeItem('kunefeUser');
         });
 
         // --- OTURUM DURUMU DİNLEYİCİ ---
@@ -541,6 +546,10 @@
                 }
 
                 const displayName = username || 'Oyuncu';
+
+                // --- ISTEDIGIN OTURUMU HAFIZAYA KAYDETME SATIRI ---
+                localStorage.setItem('kunefeUser', displayName);
+
                 document.getElementById('user-name').innerText = displayName;
                 document.getElementById('user-email-text').innerText = user.email;
                 document.getElementById('user-avatar').src = `https://mc-heads.net/avatar/${displayName}/100`;
@@ -549,6 +558,9 @@
                 // Oturum Kapalı
                 authFormsWrapper.classList.remove('hidden');
                 profileWrapper.classList.add('hidden');
+                
+                // Oturum kapandığında hafızadaki oyuncu verisini temizle
+                localStorage.removeItem('kunefeUser');
             }
         });
     </script>

@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KünefeSMP | MEGAVIP Paket</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             user-select: none;
         }
 
         body {
-            background-color: #08030b;
+            background-color: #0d0401;
             color: #ffffff;
             min-height: 100vh;
             display: flex;
@@ -56,10 +58,10 @@
             justify-content: space-between;
             align-items: center;
             background: rgba(18, 10, 25, 0.85);
-            border: 1px solid rgba(168, 85, 247, 0.3);
+            border: 2px solid rgba(168, 85, 247, 0.4);
             backdrop-filter: blur(10px);
-            border-radius: 14px;
-            padding: 12px 25px;
+            border-radius: 18px;
+            padding: 15px 25px;
             margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
         }
@@ -72,7 +74,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
 
         .btn-cart {
@@ -82,18 +84,8 @@
             border: 1px solid #a855f7;
         }
 
-        .btn-cart:hover {
-            background: #a855f7;
-            color: #120501;
-        }
-
-        .nav-title {
-            color: #f3e8ff;
-            font-size: 15px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+        .btn-cart:hover { background: #a855f7; color: #120501; }
+        .nav-title { color: #f3e8ff; font-size: 15px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
 
         .main-wrapper {
             width: 100%;
@@ -105,9 +97,9 @@
             margin-top: 10px;
         }
 
-        .preview-box {
-            background: rgba(18, 10, 25, 0.75);
-            border: 1px solid rgba(168, 85, 247, 0.25);
+        .preview-box, .checkout-box {
+            background: rgba(18, 10, 25, 0.85);
+            border: 2px solid rgba(168, 85, 247, 0.3);
             border-radius: 20px;
             backdrop-filter: blur(12px);
             padding: 30px;
@@ -130,146 +122,70 @@
             margin-bottom: 25px;
         }
 
-        .vip-badge {
-            font-size: 38px;
-            font-weight: 900;
-            color: #ffffff;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
+        .vip-badge { font-size: 42px; font-weight: 900; color: #ffffff; letter-spacing: 2px; }
         .vip-subtext {
-            font-size: 12px;
-            font-weight: 800;
-            color: #f3e8ff;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 4px 12px;
-            border-radius: 20px;
-            margin-top: 5px;
+            font-size: 12px; font-weight: 800; color: #f3e8ff;
+            background: rgba(255, 255, 255, 0.2); padding: 4px 12px; border-radius: 20px; margin-top: 5px;
         }
 
-        .feature-title {
-            font-size: 14px;
-            font-weight: 900;
-            color: #c084fc;
-            margin-bottom: 15px;
-        }
-
-        .feature-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
+        .feature-title { font-size: 14px; font-weight: 900; color: #c084fc; margin-bottom: 15px; }
+        .feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
         .feature-item {
-            font-size: 13px;
-            color: #e5e7eb;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 10px 14px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .checkout-box {
-            background: rgba(18, 10, 25, 0.85);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 20px;
-            backdrop-filter: blur(12px);
-            padding: 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            font-size: 13px; color: #e5e7eb; display: flex; align-items: center; gap: 10px;
+            background: rgba(255, 255, 255, 0.03); padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .form-header h3 { font-size: 20px; font-weight: 900; color: #ffffff; }
         .form-header span { color: #22c55e; font-weight: 900; font-size: 22px; }
 
-        .field-group { margin: 15px 0; }
+        .field-group { margin: 20px 0; }
         .field-group label {
-            display: block;
-            font-size: 11px;
-            font-weight: 800;
-            color: #c084fc;
-            margin-bottom: 8px;
-            text-transform: uppercase;
+            display: block; font-size: 11px; font-weight: 800; color: #c084fc; margin-bottom: 8px; text-transform: uppercase;
         }
 
-        .field-group input {
-            width: 100%;
-            padding: 14px;
-            background: rgba(0, 0, 0, 0.6);
+        .logged-user-box {
+            background: rgba(168, 85, 247, 0.1);
             border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 10px;
-            color: #fff;
+            padding: 10px 16px;
+            border-radius: 12px;
             font-size: 14px;
-            font-weight: 600;
-            outline: none;
-        }
-
-        .field-group input:focus { border-color: #a855f7; }
-
-        /* ADET SAYAÇ ALANI */
-        .quantity-control {
+            font-weight: 800;
+            color: #f3e8ff;
             display: flex;
             align-items: center;
             gap: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            padding: 8px 12px;
-            border-radius: 10px;
-            width: fit-content;
         }
 
-        .qty-btn {
-            background: rgba(168, 85, 247, 0.2);
-            border: 1px solid #a855f7;
-            color: #c084fc;
+        .user-head-img {
             width: 32px;
             height: 32px;
             border-radius: 6px;
-            font-weight: 900;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
+            image-rendering: pixelated;
+        }
+
+        .quantity-control {
+            display: flex; align-items: center; gap: 12px;
+            background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(168, 85, 247, 0.3);
+            padding: 8px 12px; border-radius: 10px; width: fit-content;
+        }
+
+        .qty-btn {
+            background: rgba(168, 85, 247, 0.2); border: 1px solid #a855f7; color: #c084fc;
+            width: 32px; height: 32px; border-radius: 6px; font-weight: 900; font-size: 16px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;
         }
 
         .qty-btn:hover { background: #a855f7; color: #fff; }
-
-        .qty-number {
-            font-size: 16px;
-            font-weight: 900;
-            color: #fff;
-            min-width: 24px;
-            text-align: center;
-        }
+        .qty-number { font-size: 16px; font-weight: 900; color: #fff; min-width: 24px; text-align: center; }
 
         .btn-add-cart {
-            width: 100%;
-            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
-            color: #ffffff;
-            border: none;
-            padding: 16px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 900;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.3);
-            transition: all 0.2s;
-            margin-top: 15px;
+            width: 100%; background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+            color: #ffffff; border: none; padding: 16px; border-radius: 12px;
+            font-size: 16px; font-weight: 900; cursor: pointer;
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.3); transition: all 0.2s ease; margin-top: 15px;
         }
 
-        .btn-add-cart:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.5);
-        }
+        .btn-add-cart:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(168, 85, 247, 0.5); }
 
         @media (max-width: 800px) { .main-wrapper { grid-template-columns: 1fr; } }
     </style>
@@ -305,36 +221,89 @@
             <div>
                 <div class="form-header">
                     <h3>MEGAVIP Paket</h3>
-                    <div>Toplam Tutar: <span id="totalPrice">100.00 ₺</span></div>
+                    <div style="margin-top: 8px;">Toplam Tutar: <span id="totalPrice">100.00 ₺</span></div>
                 </div>
 
+                <!-- AKTİF OYUNCU BİLGİSİ -->
                 <div class="field-group">
-                    <label>Minecraft Oyuncu Adın (Nick)</label>
-                    <input type="text" id="mcUser" placeholder="Örn: BayMine" required>
+                    <label>Teslim Edilecek Oyuncu Hesabı</label>
+                    <div class="logged-user-box">
+                        <img id="userAvatar" class="user-head-img" src="https://mc-heads.net/avatar/MCDev/32" alt="Head">
+                        <span id="activeUsername">Kullanıcı aranıyor...</span>
+                    </div>
                 </div>
 
                 <!-- ADET SEÇİMİ -->
                 <div class="field-group">
                     <label>Paket Adedi</label>
                     <div class="quantity-control">
-                        <button class="qty-btn" onclick="changeQty(-1)">-</button>
+                        <button class="qty-btn" id="btn-minus">-</button>
                         <span class="qty-number" id="qtyVal">1</span>
-                        <button class="qty-btn" onclick="changeQty(1)">+</button>
+                        <button class="qty-btn" id="btn-plus">+</button>
                     </div>
                 </div>
             </div>
 
-            <button class="btn-add-cart" onclick="addToCartAndGo()">
+            <button class="btn-add-cart" id="addToCartBtn">
                 🛒 SEPETE EKLE
             </button>
         </div>
     </div>
 
-    <script>
+    <!-- FIREBASE INTEGRATION -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // giris.html ile aynı Firebase Yapılandırması
+        const firebaseConfig = {
+            apiKey: "AIzaSyCDI7kmxlLRKpcRLp9J-HNYyq4wFBIia1w",
+            authDomain: "kunefesmp.firebaseapp.com",
+            projectId: "kunefesmp",
+            storageBucket: "kunefesmp.firebasestorage.app",
+            messagingSenderId: "394720158469",
+            appId: "1:394720158469:web:f933b340d23c3846f5cd6c"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
         const unitPrice = 100.00;
         let currentQty = 1;
+        let activePlayerName = "";
 
-        function changeQty(amount) {
+        // OTURUM KONTROLÜ
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                let username = user.displayName;
+
+                try {
+                    const userDoc = await getDoc(doc(db, "users", user.uid));
+                    if (userDoc.exists()) {
+                        username = userDoc.data().username || username;
+                    }
+                } catch (e) {
+                    console.error("Kullanıcı verisi çekilemedi:", e);
+                }
+
+                activePlayerName = username || 'Oyuncu';
+                document.getElementById('activeUsername').innerText = activePlayerName;
+                document.getElementById('userAvatar').src = `https://mc-heads.net/avatar/${activePlayerName}/32`;
+
+            } else {
+                // Oturum yoksa direkt giris.html sayfasına gönder
+                alert("Ürün satın alabilmek için önce giriş yapmalısınız!");
+                window.location.href = "giris.html";
+            }
+        });
+
+        // Adet Değiştirme Fonksiyonları
+        document.getElementById('btn-minus').addEventListener('click', () => updateQty(-1));
+        document.getElementById('btn-plus').addEventListener('click', () => updateQty(1));
+
+        function updateQty(amount) {
             currentQty += amount;
             if (currentQty < 1) currentQty = 1;
             
@@ -343,129 +312,29 @@
             document.getElementById('totalPrice').innerText = total.toFixed(2) + " ₺";
         }
 
-         
-            function addToCartAndGo() {
-    const user = document.getElementById('mcUser').value.trim();
-    if (!user) {
-        alert("Lütfen önce Minecraft adınızı giriniz!");
-        return;
-    }
+        // Sepete Ekleme Fonksiyonu
+        document.getElementById('addToCartBtn').addEventListener('click', () => {
+            if (!activePlayerName) {
+                alert("Giriş yapmanız gerekiyor!");
+                window.location.href = "giris.html";
+                return;
+            }
 
-    const newItem = {
-        id: Date.now(),
-        name: "MEGAVIP Üyelik (30 Gün)",
-        unitPrice: unitPrice,
-        quantity: currentQty,
-        totalPrice: unitPrice * currentQty,
-        username: user
-    };
-
-    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-    cart.push(newItem);
-    localStorage.setItem('kunefeCart', JSON.stringify(cart));
-
-    window.location.href = 'sepet.html';
-}
-            function addToCartAndGo() {
-    const user = document.getElementById('mcUser').value.trim();
-    if (!user) {
-        alert("Lütfen önce Minecraft adınızı giriniz!");
-        return;
-    }
-
-    const newItem = {
-        id: Date.now(),
-        name: "MEGAVIP Üyelik (30 Gün)",
-        unitPrice: unitPrice,
-        quantity: currentQty,
-        totalPrice: unitPrice * currentQty,
-        username: user
-    };
-
-    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-    cart.push(newItem);
-    localStorage.setItem('kunefeCart', JSON.stringify(cart));
-
-    window.location.href = 'sepet.html';
-}
-            function addToCartAndGo() {
-    const user = document.getElementById('mcUser').value.trim();
-    if (!user) {
-        alert("Lütfen önce Minecraft adınızı giriniz!");
-        return;
-    }
-
-    const newItem = {
-        id: Date.now(),
-        name: "MEGAVIP Üyelik (30 Gün)",
-        unitPrice: unitPrice,
-        quantity: currentQty,
-        totalPrice: unitPrice * currentQty,
-        username: user
-    };
-
-    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-    cart.push(newItem);
-    localStorage.setItem('kunefeCart', JSON.stringify(cart));
-
-    window.location.href = 'sepet.html';
-}
-            function addToCartAndGo() {
-    const user = document.getElementById('mcUser').value.trim();
-    if (!user) {
-        alert("Lütfen önce Minecraft adınızı giriniz!");
-        return;
-    }
-
-    const newItem = {
-        id: Date.now(),
-        name: "MEGAVIP Üyelik (30 Gün)",
-        unitPrice: unitPrice,
-        quantity: currentQty,
-        totalPrice: unitPrice * currentQty,
-        username: user
-    };
-
-    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-    cart.push(newItem);
-    localStorage.setItem('kunefeCart', JSON.stringify(cart));
-
-    window.location.href = 'sepet.html';
-}
-            function addToCartAndGo() {
-    const user = document.getElementById('mcUser').value.trim();
-    if (!user) {
-        alert("Lütfen önce Minecraft adınızı giriniz!");
-        return;
-    }
-
-    const newItem = {
-        id: Date.now(),
-        name: "MEGAVIP Üyelik (30 Gün)",
-        unitPrice: unitPrice,
-        quantity: currentQty,
-        totalPrice: unitPrice * currentQty,
-        username: user
-    };
-
-    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-    cart.push(newItem);
-    localStorage.setItem('kunefeCart', JSON.stringify(cart));
-
-    window.location.href = 'sepet.html';
-}
-
-            const item = {
+            const newItem = {
+                id: Date.now(),
                 name: "MEGAVIP Üyelik (30 Gün)",
                 unitPrice: unitPrice,
                 quantity: currentQty,
                 totalPrice: unitPrice * currentQty,
-                username: user
+                username: activePlayerName
             };
 
-            localStorage.setItem('kunefeCart', JSON.stringify(item));
+            let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+            cart.push(newItem);
+            localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
             window.location.href = 'sepet.html';
-        
+        });
     </script>
 </body>
 </html>

@@ -81,18 +81,8 @@
             border: 1px solid #eab308;
         }
 
-        .btn-cart:hover {
-            background: #eab308;
-            color: #120501;
-        }
-
-        .nav-title {
-            color: #fef08a;
-            font-size: 15px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+        .btn-cart:hover { background: #eab308; color: #120501; }
+        .nav-title { color: #fef08a; font-size: 15px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
 
         .main-wrapper {
             width: 100%;
@@ -104,9 +94,9 @@
             margin-top: 10px;
         }
 
-        .preview-box {
-            background: rgba(18, 10, 5, 0.75);
-            border: 1px solid rgba(234, 179, 8, 0.25);
+        .preview-box, .checkout-box {
+            background: rgba(18, 10, 5, 0.85);
+            border: 1px solid rgba(234, 179, 8, 0.3);
             border-radius: 20px;
             backdrop-filter: blur(12px);
             padding: 30px;
@@ -129,145 +119,63 @@
             margin-bottom: 25px;
         }
 
-        .vip-badge {
-            font-size: 42px;
-            font-weight: 900;
-            color: #1a0c02;
-            letter-spacing: 2px;
-        }
-
+        .vip-badge { font-size: 42px; font-weight: 900; color: #1a0c02; letter-spacing: 2px; }
         .vip-subtext {
-            font-size: 12px;
-            font-weight: 800;
-            color: #422006;
-            background: rgba(255, 255, 255, 0.3);
-            padding: 4px 12px;
-            border-radius: 20px;
-            margin-top: 5px;
+            font-size: 12px; font-weight: 800; color: #422006;
+            background: rgba(255, 255, 255, 0.3); padding: 4px 12px; border-radius: 20px; margin-top: 5px;
         }
 
-        .feature-title {
-            font-size: 14px;
-            font-weight: 900;
-            color: #eab308;
-            margin-bottom: 15px;
-        }
-
-        .feature-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
+        .feature-title { font-size: 14px; font-weight: 900; color: #eab308; margin-bottom: 15px; }
+        .feature-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
         .feature-item {
-            font-size: 13px;
-            color: #e5e7eb;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 10px 14px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .checkout-box {
-            background: rgba(18, 10, 5, 0.85);
-            border: 1px solid rgba(234, 179, 8, 0.3);
-            border-radius: 20px;
-            backdrop-filter: blur(12px);
-            padding: 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            font-size: 13px; color: #e5e7eb; display: flex; align-items: center; gap: 10px;
+            background: rgba(255, 255, 255, 0.03); padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .form-header h3 { font-size: 20px; font-weight: 900; color: #ffffff; }
         .form-header span { color: #22c55e; font-weight: 900; font-size: 22px; }
 
-        .field-group { margin: 15px 0; }
+        .field-group { margin: 20px 0; }
         .field-group label {
-            display: block;
-            font-size: 11px;
-            font-weight: 800;
-            color: #eab308;
-            margin-bottom: 8px;
-            text-transform: uppercase;
+            display: block; font-size: 11px; font-weight: 800; color: #eab308; margin-bottom: 8px; text-transform: uppercase;
         }
 
-        .field-group input {
-            width: 100%;
-            padding: 14px;
-            background: rgba(0, 0, 0, 0.6);
+        .logged-user-box {
+            background: rgba(234, 179, 8, 0.1);
             border: 1px solid rgba(234, 179, 8, 0.3);
+            padding: 12px 16px;
             border-radius: 10px;
-            color: #fff;
             font-size: 14px;
-            font-weight: 600;
-            outline: none;
-        }
-
-        .field-group input:focus { border-color: #eab308; }
-
-        /* ADET SAYAÇ ALANI */
-        .quantity-control {
+            font-weight: 800;
+            color: #fef08a;
             display: flex;
             align-items: center;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(234, 179, 8, 0.3);
-            padding: 8px 12px;
-            border-radius: 10px;
-            width: fit-content;
+            gap: 10px;
+        }
+
+        .quantity-control {
+            display: flex; align-items: center; gap: 12px;
+            background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(234, 179, 8, 0.3);
+            padding: 8px 12px; border-radius: 10px; width: fit-content;
         }
 
         .qty-btn {
-            background: rgba(234, 179, 8, 0.2);
-            border: 1px solid #eab308;
-            color: #eab308;
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            font-weight: 900;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
+            background: rgba(234, 179, 8, 0.2); border: 1px solid #eab308; color: #eab308;
+            width: 32px; height: 32px; border-radius: 6px; font-weight: 900; font-size: 16px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
         }
 
         .qty-btn:hover { background: #eab308; color: #000; }
-
-        .qty-number {
-            font-size: 16px;
-            font-weight: 900;
-            color: #fff;
-            min-width: 24px;
-            text-align: center;
-        }
+        .qty-number { font-size: 16px; font-weight: 900; color: #fff; min-width: 24px; text-align: center; }
 
         .btn-add-cart {
-            width: 100%;
-            background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
-            color: #120501;
-            border: none;
-            padding: 16px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 900;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(234, 179, 8, 0.3);
-            transition: all 0.2s;
-            margin-top: 15px;
+            width: 100%; background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+            color: #120501; border: none; padding: 16px; border-radius: 12px;
+            font-size: 16px; font-weight: 900; cursor: pointer;
+            box-shadow: 0 6px 20px rgba(234, 179, 8, 0.3); transition: all 0.2s; margin-top: 15px;
         }
 
-        .btn-add-cart:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(234, 179, 8, 0.5);
-        }
+        .btn-add-cart:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(234, 179, 8, 0.5); }
 
         @media (max-width: 800px) { .main-wrapper { grid-template-columns: 1fr; } }
     </style>
@@ -305,9 +213,12 @@
                     <div>Toplam Tutar: <span id="totalPrice">25.00 ₺</span></div>
                 </div>
 
+                <!-- AKTİF OYUNCU BİLGİSİ -->
                 <div class="field-group">
-                    <label>Minecraft Oyuncu Adın (Nick)</label>
-                    <input type="text" id="mcUser" placeholder="Örn: BayMine" required>
+                    <label>Giriş Yapılan Hesap</label>
+                    <div class="logged-user-box">
+                        👤 <span id="activeUsername">Yükleniyor...</span>
+                    </div>
                 </div>
 
                 <!-- ADET SEÇİMİ -->
@@ -330,6 +241,21 @@
     <script>
         const unitPrice = 25.00;
         let currentQty = 1;
+        let currentUser = null;
+
+        // GİRİŞ KONTROLÜ (giris.html yönlendirmeli)
+        function checkAuth() {
+            const user = localStorage.getItem('kunefeUser');
+            
+            if (!user) {
+                alert("Ürün satın alabilmek için önce giriş yapmalısınız!");
+                window.location.href = 'giris.html'; // Doğrudan giris.html sayfasına aktarır
+                return;
+            }
+
+            currentUser = user;
+            document.getElementById('activeUsername').innerText = currentUser;
+        }
 
         function changeQty(amount) {
             currentQty += amount;
@@ -341,167 +267,28 @@
         }
 
         function addToCartAndGo() {
-    const user = document.getElementById('mcUser').value.trim();
-    if (!user) {
-        alert("Lütfen önce Minecraft adınızı giriniz!");
-        return;
-    }
+            if (!currentUser) {
+                window.location.href = 'giris.html';
+                return;
+            }
 
-    const newItem = {
-        id: Date.now(), // Her ürüne özel id
-        name: "VIP Üyelik (30 Gün)",
-        unitPrice: unitPrice,
-        quantity: currentQty,
-        totalPrice: unitPrice * currentQty,
-        username: user
-    };
-
-    // Mevcut sepeti al, yoksa boş liste oluştur
-    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-    
-    // Yeni ürünü ekle ve kaydet
-    cart.push(newItem);
-    localStorage.setItem('kunefeCart', JSON.stringify(cart));
-
-    window.location.href = 'sepet.html';
-}
-        function addToCartAndGo() {
-    const user = document.getElementById('mcUser').value.trim();
-    if (!user) {
-        alert("Lütfen önce Minecraft adınızı giriniz!");
-        return;
-    }
-
-    const newItem = {
-        id: Date.now(), // Her ürüne özel id
-        name: "VIP Üyelik (30 Gün)",
-        unitPrice: unitPrice,
-        quantity: currentQty,
-        totalPrice: unitPrice * currentQty,
-        username: user
-    };
-
-    // Mevcut sepeti al, yoksa boş liste oluştur
-    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-    
-    // Yeni ürünü ekle ve kaydet
-    cart.push(newItem);
-    localStorage.setItem('kunefeCart', JSON.stringify(cart));
-
-    window.location.href = 'sepet.html';
-}
-        function addToCartAndGo() {
-    const user = document.getElementById('mcUser').value.trim();
-    if (!user) {
-        alert("Lütfen önce Minecraft adınızı giriniz!");
-        return;
-    }
-
-    const newItem = {
-        id: Date.now(), // Her ürüne özel id
-        name: "VIP Üyelik (30 Gün)",
-        unitPrice: unitPrice,
-        quantity: currentQty,
-        totalPrice: unitPrice * currentQty,
-        username: user
-    };
-
-    // Mevcut sepeti al, yoksa boş liste oluştur
-    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-    
-    // Yeni ürünü ekle ve kaydet
-    cart.push(newItem);
-    localStorage.setItem('kunefeCart', JSON.stringify(cart));
-
-    window.location.href = 'sepet.html';
-}
-        function addToCartAndGo() {
-    const user = document.getElementById('mcUser').value.trim();
-    if (!user) {
-        alert("Lütfen önce Minecraft adınızı giriniz!");
-        return;
-    }
-
-    const newItem = {
-        id: Date.now(), // Her ürüne özel id
-        name: "VIP Üyelik (30 Gün)",
-        unitPrice: unitPrice,
-        quantity: currentQty,
-        totalPrice: unitPrice * currentQty,
-        username: user
-    };
-
-    // Mevcut sepeti al, yoksa boş liste oluştur
-    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-    
-    // Yeni ürünü ekle ve kaydet
-    cart.push(newItem);
-    localStorage.setItem('kunefeCart', JSON.stringify(cart));
-
-    window.location.href = 'sepet.html';
-}
-        function addToCartAndGo() {
-    const user = document.getElementById('mcUser').value.trim();
-    if (!user) {
-        alert("Lütfen önce Minecraft adınızı giriniz!");
-        return;
-    }
-
-    const newItem = {
-        id: Date.now(), // Her ürüne özel id
-        name: "VIP Üyelik (30 Gün)",
-        unitPrice: unitPrice,
-        quantity: currentQty,
-        totalPrice: unitPrice * currentQty,
-        username: user
-    };
-
-    // Mevcut sepeti al, yoksa boş liste oluştur
-    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-    
-    // Yeni ürünü ekle ve kaydet
-    cart.push(newItem);
-    localStorage.setItem('kunefeCart', JSON.stringify(cart));
-
-    window.location.href = 'sepet.html';
-}
-        function addToCartAndGo() {
-    const user = document.getElementById('mcUser').value.trim();
-    if (!user) {
-        alert("Lütfen önce Minecraft adınızı giriniz!");
-        return;
-    }
-
-    const newItem = {
-        id: Date.now(), // Her ürüne özel id
-        name: "VIP Üyelik (30 Gün)",
-        unitPrice: unitPrice,
-        quantity: currentQty,
-        totalPrice: unitPrice * currentQty,
-        username: user
-    };
-
-    // Mevcut sepeti al, yoksa boş liste oluştur
-    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-    
-    // Yeni ürünü ekle ve kaydet
-    cart.push(newItem);
-    localStorage.setItem('kunefeCart', JSON.stringify(cart));
-
-    window.location.href = 'sepet.html';
-}
-
-            const item = {
+            const newItem = {
+                id: Date.now(),
                 name: "VIP Üyelik (30 Gün)",
                 unitPrice: unitPrice,
                 quantity: currentQty,
                 totalPrice: unitPrice * currentQty,
-                username: user
+                username: currentUser
             };
 
-            localStorage.setItem('kunefeCart', JSON.stringify(item));
+            let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+            cart.push(newItem);
+            localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
             window.location.href = 'sepet.html';
-        
+        }
+
+        checkAuth();
     </script>
 </body>
 </html>
