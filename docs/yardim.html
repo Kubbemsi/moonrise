@@ -3,47 +3,416 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KünefeSMP | Yardım</title>
+    <title>KünefeSMP | Yardım ve Rehber</title>
+    <!-- FontAwesome İkonları -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; user-select: none; }
-        body { background-color: #0d0401; color: #ffffff; min-height: 100vh; }
-        .hero-section { position: relative; width: 100%; min-height: 100vh; background: radial-gradient(circle at center, #3d1708 0%, #1c0a03 60%, #0d0401 100%); display: flex; flex-direction: column; align-items: center; padding: 0 20px 40px 20px; }
-        .hero-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(rgba(202, 138, 4, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(202, 138, 4, 0.05) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
-        
-        header { width: 100%; max-width: 1300px; margin: 40px auto 30px auto; display: flex; justify-content: space-between; align-items: center; background: rgba(35, 17, 8, 0.85); border: 2px solid #ca8a04; border-radius: 18px; padding: 15px 25px; backdrop-filter: blur(8px); z-index: 10; }
-        .logo-box { width: 50px; height: 50px; background: linear-gradient(135deg, #fef08a 0%, #facc15 100%); color: #422006; border-radius: 12px; display: flex; justify-content: center; align-items: center; text-decoration: none; }
-        nav ul { display: flex; gap: 15px; list-style: none; }
-        nav ul li a { color: #ffffff; text-decoration: none; font-weight: 800; font-size: 14px; padding: 10px 20px; border-radius: 10px; display: flex; align-items: center; gap: 8px; }
-        nav ul li a.active, nav ul li a:hover { background: #facc15; color: #422006; }
-        nav ul li a.active svg, nav ul li a:hover svg { fill: #422006; }
-        .user-btn { width: 50px; height: 50px; border: 2px solid #ca8a04; border-radius: 12px; display: flex; justify-content: center; align-items: center; color: #facc15; text-decoration: none; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            user-select: none;
+        }
 
-        .content-box { width: 100%; max-width: 900px; background: rgba(35, 17, 8, 0.85); border: 2px solid #ca8a04; border-radius: 18px; padding: 30px; z-index: 10; margin-top: 20px; }
-        .content-box h2 { color: #facc15; font-size: 24px; margin-bottom: 15px; }
-        .content-box p { font-size: 14px; line-height: 1.6; color: #e2e8f0; }
+        body {
+            background-color: #0d0401;
+            color: #ffffff;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #3d1708 0%, #1c0a03 60%, #0d0401 100%);
+            background-attachment: fixed;
+            padding-bottom: 60px;
+        }
+
+        /* --- ÜST MENÜ (NAVBAR) --- */
+        header {
+    width: 100%;
+    max-width: 1300px;
+    margin: 40px auto 30px auto; /* En baştaki 40px üstten boşluk bırakır */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(35, 17, 8, 0.85);
+    border: 2px solid #ca8a04;
+    border-radius: 18px;
+    padding: 15px 25px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.logo-box {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+    color: #422006;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    transition: all 0.2s;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    background: #facc15;
+    color: #422006;
+}
+
+.user-btn {
+    width: 45px;
+    height: 45px;
+    border: 2px solid #ca8a04;
+    border-radius: 12px;
+    color: #facc15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.2s;
+}
+
+.user-btn:hover {
+    background: #ca8a04;
+    color: #fff;
+}
+
+        /* --- SAYFA BAŞLIĞI --- */
+        .page-header {
+            text-align: center;
+            margin: 30px 0 40px;
+        }
+
+        .page-title {
+            font-size: 36px;
+            font-weight: 900;
+            color: #facc15;
+            text-shadow: 0 4px 15px rgba(250, 204, 21, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .page-desc {
+            color: #fde047;
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        /* --- İÇERİK KONTEYNERİ --- */
+        .help-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 900;
+            color: #fef08a;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(202, 138, 4, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .section-title i {
+            color: #22c55e;
+        }
+
+        /* --- 1. KOMUTLAR --- */
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 15px;
+        }
+
+        .command-card {
+            background: rgba(35, 17, 8, 0.85);
+            border: 2px solid #ca8a04;
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .cmd-code {
+            background: #1c0a03;
+            color: #facc15;
+            border: 1px solid #b45309;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .cmd-desc {
+            color: #e2e8f0;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        /* --- 2. SUNUCU KURALLARI --- */
+        .rules-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .rule-card {
+            background: rgba(35, 17, 8, 0.85);
+            border: 2px solid #ca8a04;
+            border-left: 6px solid #ef4444;
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .rule-num {
+            background: #ef4444;
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 900;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .rule-text h4 {
+            color: #fef08a;
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .rule-text p {
+            color: #cbd5e1;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* --- 3. CANLI DESTEK --- */
+        .support-banner {
+            background: linear-gradient(135deg, rgba(22, 101, 52, 0.9) 0%, rgba(20, 83, 45, 0.9) 100%);
+            border: 3px solid #4ade80;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .support-info h3 {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .support-info p {
+            color: #dcfce7;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .support-btn {
+            background: #22c55e;
+            color: #ffffff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 900;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 0 #14532d;
+            transition: all 0.1s ease;
+        }
+
+        .support-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 0 #14532d;
+        }
+
+        .support-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 3px 0 #14532d;
+        }
     </style>
 </head>
 <body>
-    <div class="hero-section">
-        <header>
-            <a href="index.html" class="logo-box"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg></a>
-            <nav>
-                <ul>
-                    <li><a href="index.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> ANASAYFA</a></li>
-                    <li><a href="magaza.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg> MAĞAZA</a></li>
-                    <li><a href="yardim.html" class="active"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm1.07-7.75l-.9.92C12.45 11.9 12 12.5 12 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg> YARDIM</a></li>
-                    <li><a href="destek.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/></svg> DESTEK</a></li>
-                    <li><a href="cezalar.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm5.31-3.1L6.1 5.69C7.45 4.63 9.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z"/></svg> CEZALAR</a></li>
-                </ul>
-            </nav>
-            <a href="giris.html" class="user-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></a>
-        </header>
 
-        <div class="content-box">
-            <h2>Sıkça Sorulan Sorular</h2>
-            <p>Sunucuya nasıl katılırım? Sunucu IP adresimiz olan <strong>oyna.kunefesmp.com.tr</strong> adresini kullanarak Minecraft içinden bağlanabilirsiniz.</p>
-        </div>
+    <!-- ÜST MENÜ -->
+    <header>
+    <a href="index.html" class="logo-box">
+        <i class="fa-solid fa-crown"></i>
+    </a>
+
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> ANASAYFA</a></li>
+            <li><a href="magaza.html"><i class="fa-solid fa-cart-shopping"></i> MAĞAZA</a></li>
+            <li><a href="yardim.html" class="active"><i class="fa-solid fa-circle-question"></i> YARDIM</a></li>
+            <li><a href="destek.html"><i class="fa-solid fa-headset"></i> DESTEK</a></li>
+            <li><a href="cezalar.html"><i class="fa-solid fa-ban"></i> CEZALAR</a></li>
+        </ul>
+    </nav>
+
+    <a href="giris.html" class="user-btn">
+        <i class="fa-solid fa-user"></i>
+    </a>
+</header>
+    <!-- BAŞLIK -->
+    <div class="page-header">
+        <h1 class="page-title">YARDIM VE REHBER</h1>
+        <p class="page-desc">Komutlar, sunucu kuralları ve canlı destek rehberi</p>
     </div>
+
+    <!-- İÇERİK -->
+    <div class="help-container">
+
+        <!-- 1. TEMEL KOMUTLAR -->
+        <section>
+            <div class="section-title">
+                <i class="fa-solid fa-terminal"></i>
+                <span>TEMEL SUNUCU KOMUTLARI</span>
+            </div>
+            <div class="commands-grid">
+                <div class="command-card">
+                    <span class="cmd-code">/spawn</span>
+                    <span class="cmd-desc">Ana doğma alanına ışınlanır.</span>
+                </div>
+                <div class="command-card">
+                    <span class="cmd-code">/home</span>
+                    <span class="cmd-desc">Ev menüsünü açar (ev kaydedebilir ve ışınlanabilirsin).</span>
+                </div>
+                <div class="command-card">
+                    <span class="cmd-code">/tpa [oyuncu]</span>
+                    <span class="cmd-desc">Oyuncuya ışınlanma isteği gönderir.</span>
+                </div>
+                <div class="command-card">
+                    <span class="cmd-code">/tpaccept</span>
+                    <span class="cmd-desc">Gelen ışınlanma isteğini kabul eder.</span>
+                </div>
+                <div class="command-card">
+                    <span class="cmd-code">/ah</span>
+                    <span class="cmd-desc">Oyuncu pazarını açar.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SUNUCU KURALLARI -->
+        <section>
+            <div class="section-title">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>SUNUCU KURALLARI</span>
+            </div>
+            <div class="rules-list">
+                <div class="rule-card">
+                    <div class="rule-num">1</div>
+                    <div class="rule-text">
+                        <h4>Saygılı Olun</h4>
+                        <p>Dini, milli veya kişisel değerlere hakaret etmek kesinlikle yasaktır.</p>
+                    </div>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-num">2</div>
+                    <div class="rule-text">
+                        <h4>Hile Yasaktır</h4>
+                        <p>Her türlü hile, X-ray, makro ve AutoClicker kullanımı yasaktır.</p>
+                    </div>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-num">3</div>
+                    <div class="rule-text">
+                        <h4>Sohbet Düzeni</h4>
+                        <p>Spam, büyük harf (CAPS), reklam ve küfürlü söylemler yasaktır.</p>
+                    </div>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-num">4</div>
+                    <div class="rule-text">
+                        <h4>Bug İstismarı</h4>
+                        <p>Sunucudaki hataları/bugları kendi yararına kullanmak ban sebebidir.</p>
+                    </div>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-num">5</div>
+                    <div class="rule-text">
+                        <h4>Hesap Güvenliği</h4>
+                        <p>Hesap güvenliği tamamen oyuncunun sorumluluğundadır.</p>
+                    </div>
+                </div>
+                <div class="rule-card">
+                    <div class="rule-num">6</div>
+                    <div class="rule-text">
+                        <h4>Ticaret Güvenliği</h4>
+                        <p>Gerçek para ile oyun içi eşya/hesap satışı yapılması yasaktır.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. CANLI DESTEK & İLETİŞİM -->
+        <section>
+            <div class="support-banner">
+                <div class="support-info">
+                    <h3><i class="fa-solid fa-headset"></i> CANLI DESTEK & TALEP</h3>
+                    <p>Sorunun çözülmedi mi? Discord sunucumuzdan 7/24 destek bileti açabilirsin.</p>
+                </div>
+                <a href="https://discord.gg/Mj6QMcNQ2" target="_blank" class="support-btn">
+                    <i class="fa-brands fa-discord"></i> DISCORD DESTEK BİLETİ AÇ
+                </a>
+            </div>
+        </section>
+
+    </div>
+
 </body>
 </html>
