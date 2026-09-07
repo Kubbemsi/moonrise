@@ -187,7 +187,7 @@
         .form-header h3 { font-size: 20px; font-weight: 900; color: #ffffff; }
         .form-header span { color: #22c55e; font-weight: 900; font-size: 22px; }
 
-        .field-group { margin: 25px 0; }
+        .field-group { margin: 15px 0; }
         .field-group label {
             display: block;
             font-size: 11px;
@@ -211,6 +211,44 @@
 
         .field-group input:focus { border-color: #eab308; }
 
+        /* ADET SAYAÇ ALANI */
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            padding: 8px 12px;
+            border-radius: 10px;
+            width: fit-content;
+        }
+
+        .qty-btn {
+            background: rgba(234, 179, 8, 0.2);
+            border: 1px solid #eab308;
+            color: #eab308;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            font-weight: 900;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .qty-btn:hover { background: #eab308; color: #000; }
+
+        .qty-number {
+            font-size: 16px;
+            font-weight: 900;
+            color: #fff;
+            min-width: 24px;
+            text-align: center;
+        }
+
         .btn-add-cart {
             width: 100%;
             background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
@@ -223,6 +261,7 @@
             cursor: pointer;
             box-shadow: 0 6px 20px rgba(234, 179, 8, 0.3);
             transition: all 0.2s;
+            margin-top: 15px;
         }
 
         .btn-add-cart:hover {
@@ -263,12 +302,22 @@
             <div>
                 <div class="form-header">
                     <h3>VIP Paket</h3>
-                    <div>Fiyat: <span>25.00 ₺</span></div>
+                    <div>Toplam Tutar: <span id="totalPrice">25.00 ₺</span></div>
                 </div>
 
                 <div class="field-group">
                     <label>Minecraft Oyuncu Adın (Nick)</label>
                     <input type="text" id="mcUser" placeholder="Örn: BayMine" required>
+                </div>
+
+                <!-- ADET SEÇİMİ -->
+                <div class="field-group">
+                    <label>Paket Adedi</label>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQty(-1)">-</button>
+                        <span class="qty-number" id="qtyVal">1</span>
+                        <button class="qty-btn" onclick="changeQty(1)">+</button>
+                    </div>
                 </div>
             </div>
 
@@ -279,6 +328,18 @@
     </div>
 
     <script>
+        const unitPrice = 25.00;
+        let currentQty = 1;
+
+        function changeQty(amount) {
+            currentQty += amount;
+            if (currentQty < 1) currentQty = 1;
+            
+            document.getElementById('qtyVal').innerText = currentQty;
+            const total = unitPrice * currentQty;
+            document.getElementById('totalPrice').innerText = total.toFixed(2) + " ₺";
+        }
+
         function addToCartAndGo() {
             const user = document.getElementById('mcUser').value.trim();
             if (!user) {
@@ -286,10 +347,11 @@
                 return;
             }
 
-            // Ürünü sepete ekleyip sepet.html'e yönlendirir
             const item = {
                 name: "VIP Üyelik (30 Gün)",
-                price: 25.00,
+                unitPrice: unitPrice,
+                quantity: currentQty,
+                totalPrice: unitPrice * currentQty,
                 username: user
             };
 
