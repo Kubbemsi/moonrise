@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KünefeSMP | Sunucu Ceza Listesi</title>
-    <!-- Google Fonts -->
+    <title>KünefeSMP | Cezalar</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     
     <style>
@@ -20,35 +19,36 @@
             background-color: #0d0401;
             color: #ffffff;
             min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* --- ARKA PLAN --- */
-        .hero-section {
-            position: relative;
-            width: 100%;
-            min-height: 100vh;
-            background: radial-gradient(circle at center, #3d1708 0%, #1c0a03 60%, #0d0401 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 0 20px 60px 20px;
         }
 
-        .hero-section::before {
+        /* ARKA PLAN DOKUSU */
+        body::before {
             content: '';
-            position: absolute;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, #3d1708 0%, #1c0a03 60%, #0d0401 100%);
+            z-index: -2;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(rgba(202, 138, 4, 0.05) 1px, transparent 1px),
                         linear-gradient(90deg, rgba(202, 138, 4, 0.05) 1px, transparent 1px);
             background-size: 40px 40px;
             pointer-events: none;
+            z-index: -1;
         }
 
-        /* --- ÜST MENÜ --- */
+        /* ÜST MENÜ */
         header {
             width: 100%;
-            max-width: 1300px;
+            max-width: 1200px;
             margin: 40px auto 30px auto;
             display: flex;
             justify-content: space-between;
@@ -59,7 +59,6 @@
             padding: 15px 25px;
             backdrop-filter: blur(8px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            z-index: 10;
         }
 
         .logo-box {
@@ -102,8 +101,6 @@
             color: #422006;
         }
 
-        nav ul li a.active svg, nav ul li a:hover svg { fill: #422006; }
-
         .user-btn {
             width: 50px;
             height: 50px;
@@ -113,44 +110,35 @@
             justify-content: center;
             align-items: center;
             color: #facc15;
+            background: rgba(202, 138, 4, 0.2);
             text-decoration: none;
-            transition: all 0.2s ease;
         }
 
-        .user-btn:hover { background: rgba(202, 138, 4, 0.2); }
-
-        /* --- İÇERİK KONTEYNERİ --- */
-        .container {
+        /* CEZA LİSTESİ KART KUTUSU */
+        .penalty-card {
             width: 100%;
-            max-width: 1100px;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin-top: 10px;
-        }
-
-        .page-card {
-            background: rgba(35, 17, 8, 0.85);
+            max-width: 1000px;
+            background: rgba(28, 10, 3, 0.9);
             border: 2px solid #ca8a04;
             border-radius: 20px;
             padding: 35px 30px;
             backdrop-filter: blur(8px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            margin-top: 10px;
         }
 
-        .page-title {
+        .title {
             text-align: center;
-            font-size: 32px;
+            font-size: 26px;
             font-weight: 900;
             color: #facc15;
-            text-shadow: 0 0 15px rgba(250, 204, 21, 0.3);
-            margin-bottom: 30px;
             letter-spacing: 1px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
         }
 
-        /* --- CEZA TABLOSU --- */
-        .table-wrapper {
+        /* TABLO YAPISI */
+        .table-container {
             width: 100%;
             overflow-x: auto;
         }
@@ -159,34 +147,42 @@
             width: 100%;
             border-collapse: separate;
             border-spacing: 0;
-            text-align: left;
+        }
+
+        thead tr {
+            background: rgba(61, 23, 8, 0.8);
         }
 
         th {
-            background: rgba(202, 138, 4, 0.2);
             color: #facc15;
-            font-weight: 900;
             font-size: 14px;
-            padding: 16px 20px;
+            font-weight: 800;
+            text-align: left;
+            padding: 14px 18px;
             border-bottom: 2px solid #ca8a04;
         }
 
         th:first-child { border-top-left-radius: 10px; }
         th:last-child { border-top-right-radius: 10px; }
 
+        tbody tr {
+            transition: background 0.2s ease;
+            border-bottom: 1px solid rgba(202, 138, 4, 0.15);
+        }
+
+        tbody tr:hover {
+            background: rgba(202, 138, 4, 0.08);
+        }
+
         td {
-            padding: 16px 20px;
+            padding: 16px 18px;
             font-size: 14px;
             font-weight: 700;
             color: #e5e7eb;
-            border-bottom: 1px solid rgba(202, 138, 4, 0.2);
+            border-bottom: 1px solid rgba(202, 138, 4, 0.15);
         }
 
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* --- CEZA ROLLERİ VE ROZETLERİ --- */
+        /* ROZET (CEZA TÜRÜ) STİLİ */
         .badge-ban {
             background: #ef4444;
             color: #ffffff;
@@ -195,7 +191,8 @@
             font-size: 12px;
             font-weight: 900;
             display: inline-block;
-            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
         }
 
         .badge-mute {
@@ -206,7 +203,8 @@
             font-size: 12px;
             font-weight: 900;
             display: inline-block;
-            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
         }
 
         .badge-kick {
@@ -217,140 +215,122 @@
             font-size: 12px;
             font-weight: 900;
             display: inline-block;
-            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
         }
 
-        .loading-text {
+        /* BOŞ KALAN / VERİ OLMAYAN DURUM */
+        .empty-state {
             text-align: center;
-            color: #fef08a;
-            padding: 20px;
-            font-weight: 800;
+            padding: 40px 20px;
+            color: #9ca3af;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        /* BOŞ SPAN/ROZETLERİN ÇİZGİ ŞEKLİNDE GÖRÜNMESİNİ ENGELLER */
+        span:empty {
+            display: none !important;
         }
     </style>
 </head>
 <body>
 
-    <div class="hero-section">
-        <!-- ÜST MENÜ -->
-        <header>
-            <a href="index.html" class="logo-box">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>
-            </a>
+    <!-- ÜST MENÜ -->
+    <header>
+        <a href="index.html" class="logo-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>
+        </a>
 
-            <nav>
-                <ul>
-                    <li><a href="index.html">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-                        ANASAYFA
-                    </a></li>
-                    <li><a href="magaza.html">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        MAĞAZA
-                    </a></li>
-                    <li><a href="yardim.html">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm1.07-7.75l-.9.92C12.45 11.9 12 12.5 12 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
-                        YARDIM
-                    </a></li>
-                    <li><a href="destek.html">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/></svg>
-                        DESTEK
-                    </a></li>
-                    <li><a href="cezalar.html" class="active">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm5.31-3.1L6.1 5.69C7.45 4.63 9.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z"/></svg>
-                        CEZALAR
-                    </a></li>
-                </ul>
-            </nav>
+        <nav>
+            <ul>
+                <li><a href="index.html">ANASAYFA</a></li>
+                <li><a href="magaza.html">MAĞAZA</a></li>
+                <li><a href="yardim.html">YARDIM</a></li>
+                <li><a href="destek.html">DESTEK</a></li>
+                <li><a href="cezalar.html" class="active">CEZALAR</a></li>
+            </ul>
+        </nav>
 
-            <a href="giris.html" class="user-btn">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-            </a>
-        </header>
+        <a href="giris.html" class="user-btn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </a>
+    </header>
 
-        <!-- İÇERİK ALANI -->
-        <div class="container">
-            <div class="page-card">
-                <h1 class="page-title">SUNUCU CEZA LİSTESİ</h1>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Oyuncu</th>
-                                <th>Ceza Türü</th>
-                                <th>Sebep</th>
-                                <th>Yetkili</th>
-                                <th>Süre</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ceza-listesi">
-                            <tr>
-                                <td colspan="5" class="loading-text">Ceza listesi yükleniyor...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+    <!-- CEZA KART KUTUSU -->
+    <div class="penalty-card">
+        <h1 class="title">Sunucu Ceza Listesi</h1>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Oyuncu</th>
+                        <th>Ceza Türü</th>
+                        <th>Sebep</th>
+                        <th>Yetkili</th>
+                        <th>Süre</th>
+                    </tr>
+                </thead>
+                <tbody id="penalty-list-body">
+                    <!-- Dinamik olarak JS ile dolacak -->
+                </tbody>
+            </table>
+            <div id="no-penalty-msg" class="empty-state" style="display: none;">
+                Henüz sistemde aktif bir ceza kaydı bulunmamaktadır.
             </div>
         </div>
     </div>
 
-    <!-- CEZALAR.JSON ENTEGRASYONU -->
     <script>
-        async function fetchCezalar() {
-            const tableBody = document.getElementById("ceza-listesi");
-            
-            try {
-                const response = await fetch("cezalar.json");
-                if (!response.ok) throw new Error("JSON yüklenemedi");
-                
-                const cezalar = await response.json();
-                renderTable(cezalar);
-            } catch (error) {
-                console.warn("cezalar.json okunamadı, varsayılan veri gösteriliyor:", error);
-                
-                // cezalar.json erişilemezse veya yerel dosyada çalışıyorsa gösterilecek yedek liste
-                const varsayilanCezalar = [
-                    {
-                        oyuncu: "xXemmbux",
-                        tur: "BAN",
-                        sebep: "Yetkiliye Saygısızlık",
-                        yetkili: "UnplugMC",
-                        sure: "Süresiz"
-                    }
-                ];
-                renderTable(varsayilanCezalar);
+        // CEZA VERİLERİ (Gelecekte Firebase'den veya API'den çekebilirsin)
+        // Eğer dizi boşsa [] tablo temiz görünecektir.
+        const penalties = [
+            {
+                player: "xWemmbux",
+                type: "BAN", // BAN, MUTE veya KICK
+                reason: "Yetkiliye Saygısızlık",
+                staff: "UnplugMC",
+                duration: "Süresiz"
             }
-        }
+            /* Yeni cezalar geldikçe buraya eklenir. Veri eklenmediği sürece boş satır görünmez. */
+        ];
 
-        function renderTable(data) {
-            const tableBody = document.getElementById("ceza-listesi");
-            tableBody.innerHTML = "";
+        function renderPenalties() {
+            const tbody = document.getElementById('penalty-list-body');
+            const noPenaltyMsg = document.getElementById('no-penalty-msg');
 
-            if (!data || data.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">Aktif ceza kaydı bulunamadı.</td></tr>`;
+            tbody.innerHTML = '';
+
+            if (penalties.length === 0) {
+                noPenaltyMsg.style.display = 'block';
                 return;
             }
 
-            data.forEach(item => {
-                let badgeClass = "badge-ban";
-                const turLower = (item.tur || "").toLowerCase();
-                
-                if (turLower.includes("mute")) badgeClass = "badge-mute";
-                else if (turLower.includes("kick")) badgeClass = "badge-kick";
+            noPenaltyMsg.style.display = 'none';
 
-                const tr = document.createElement("tr");
+            penalties.forEach(item => {
+                const tr = document.createElement('tr');
+
+                // Ceza Türü Rozet Rengi
+                let badgeClass = 'badge-ban';
+                if (item.type.toUpperCase() === 'MUTE') badgeClass = 'badge-mute';
+                if (item.type.toUpperCase() === 'KICK') badgeClass = 'badge-kick';
+
                 tr.innerHTML = `
-                    <td>${item.oyuncu}</td>
-                    <td><span class="${badgeClass}">${item.tur}</span></td>
-                    <td>${item.sebep}</td>
-                    <td>${item.yetkili}</td>
-                    <td>${item.sure}</td>
+                    <td>${item.player}</td>
+                    <td><span class="${badgeClass}">${item.type}</span></td>
+                    <td>${item.reason}</td>
+                    <td>${item.staff}</td>
+                    <td>${item.duration}</td>
                 `;
-                tableBody.appendChild(tr);
+
+                tbody.appendChild(tr);
             });
         }
 
-        // Sayfa açıldığında verileri yükle
-        fetchCezalar();
+        // Sayfa yüklendiğinde çalıştır
+        renderPenalties();
     </script>
 </body>
 </html>
