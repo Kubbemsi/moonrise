@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KünefeSMP | Giriş Yap & Kayıt Ol</title>
+    <title>KünefeSMP | Hesabım</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     
@@ -118,7 +118,7 @@
             transition: all 0.2s ease;
         }
 
-        /* --- AUTH BOX --- */
+        /* --- AUTH & PROFILE CONTAINER --- */
         .auth-container {
             width: 100%;
             max-width: 480px;
@@ -210,7 +210,7 @@
             font-size: 15px;
             font-weight: 900;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 5px;
             transition: transform 0.2s ease, filter 0.2s ease;
             box-shadow: 0 4px 15px rgba(250, 204, 21, 0.2);
         }
@@ -223,7 +223,56 @@
         .auth-form {
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 16px;
+        }
+
+        /* --- PROFİL SEKSİYONU --- */
+        .profile-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 18px;
+            border: 3px solid #facc15;
+            background: #1c0a03;
+            box-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
+            image-rendering: pixelated;
+        }
+
+        .profile-info h2 {
+            font-size: 24px;
+            font-weight: 900;
+            color: #facc15;
+        }
+
+        .profile-info p {
+            font-size: 13px;
+            color: #d1d5db;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #ffffff;
+            border: none;
+            padding: 12px 0;
+            width: 100%;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            transform: scale(1.02);
         }
 
         .hidden {
@@ -270,49 +319,67 @@
             </a>
         </header>
 
-        <!-- KULLANICI GİRİŞ / KAYIT KARTI -->
+        <!-- KULLANICI GİRİŞ / KAYIT / PROFİL KARTI -->
         <div class="auth-container">
             <div class="auth-card">
-                <!-- Üst Sekmeler -->
-                <div class="tab-buttons">
-                    <button class="tab-btn active" onclick="switchTab('login')">Giriş Yap</button>
-                    <button class="tab-btn" onclick="switchTab('register')">Kayıt Ol</button>
+                
+                <!-- GİRİŞ & KAYIT FORMLARI (OTURUM YOKSA GÖRÜNÜR) -->
+                <div id="auth-forms-wrapper">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" onclick="switchTab('login')">Giriş Yap</button>
+                        <button class="tab-btn" onclick="switchTab('register')">Kayıt Ol</button>
+                    </div>
+
+                    <!-- GİRİŞ YAP FORM -->
+                    <form id="login-form" class="auth-form" onsubmit="handleLogin(event)" style="margin-top: 20px;">
+                        <div class="form-group">
+                            <label for="login-username">Oyuncu Adı (IGN)</label>
+                            <input type="text" id="login-username" placeholder="Oyuncu adın" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Şifre</label>
+                            <input type="password" id="login-password" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Giriş Yap</button>
+                    </form>
+
+                    <!-- KAYIT OL FORM -->
+                    <form id="register-form" class="auth-form hidden" onsubmit="handleRegister(event)" style="margin-top: 20px;">
+                        <div class="form-group">
+                            <label for="reg-username">Oyuncu Adı (IGN)</label>
+                            <input type="text" id="reg-username" placeholder="Oyuncu adın" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-email">E-posta Adresi</label>
+                            <input type="email" id="reg-email" placeholder="ornek@kunefesmp.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-password">Şifre</label>
+                            <input type="password" id="reg-password" placeholder="••••••••" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-password-repeat">Tekrar Şifre</label>
+                            <input type="password" id="reg-password-repeat" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="submit-btn">Kayıt Ol</button>
+                    </form>
                 </div>
 
-                <!-- GİRİŞ YAP FORM -->
-                <form id="login-form" class="auth-form" onsubmit="event.preventDefault();">
-                    <div class="form-group">
-                        <label for="login-email">E-posta Adresi</label>
-                        <input type="email" id="login-email" placeholder="ornek@kunefesmp.com" required>
+                <!-- PROFİL EKRANI (GİRİŞ YAPILINCA GÖRÜNÜR) -->
+                <div id="profile-wrapper" class="profile-box hidden">
+                    <img id="user-avatar" class="profile-avatar" src="" alt="Avatar">
+                    <div class="profile-info">
+                        <h2 id="user-name">Oyuncu</h2>
+                        <p id="user-status">Hoş geldin! KünefeSMP Hesabın Aktif.</p>
                     </div>
-                    <div class="form-group">
-                        <label for="login-password">Şifre</label>
-                        <input type="password" id="login-password" placeholder="••••••••" required>
-                    </div>
-                    <button type="submit" class="submit-btn">Giriş Yap</button>
-                </form>
+                    <button onclick="handleLogout()" class="logout-btn">Çıkış Yap</button>
+                </div>
 
-                <!-- KAYIT OL FORM -->
-                <form id="register-form" class="auth-form hidden" onsubmit="event.preventDefault();">
-                    <div class="form-group">
-                        <label for="reg-username">Oyuncu Adı (IGN)</label>
-                        <input type="text" id="reg-username" placeholder="Oyuncu adın" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-email">E-posta Adresi</label>
-                        <input type="email" id="reg-email" placeholder="ornek@kunefesmp.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-password">Şifre</label>
-                        <input type="password" id="reg-password" placeholder="••••••••" required>
-                    </div>
-                    <button type="submit" class="submit-btn">Kayıt Ol</button>
-                </form>
             </div>
         </div>
     </div>
 
-    <!-- SEKMELER ARASI GEÇİŞ SCRIPT'İ -->
+    <!-- SCRIPT MANIKLARI -->
     <script>
         function switchTab(tab) {
             const loginForm = document.getElementById('login-form');
@@ -331,6 +398,57 @@
                 buttons[1].classList.add('active');
             }
         }
+
+        // Oturum Durumunu Kontrol Et
+        function checkAuth() {
+            const loggedInUser = localStorage.getItem('kunefe_user');
+            const authWrapper = document.getElementById('auth-forms-wrapper');
+            const profileWrapper = document.getElementById('profile-wrapper');
+
+            if (loggedInUser) {
+                authWrapper.classList.add('hidden');
+                profileWrapper.classList.remove('hidden');
+                document.getElementById('user-name').innerText = loggedInUser;
+                // Minecraft kafa skinini Visage API ile otomatik çeker
+                document.getElementById('user-avatar').src = `https://mc-heads.net/avatar/${loggedInUser}/100`;
+            } else {
+                authWrapper.classList.remove('hidden');
+                profileWrapper.classList.add('hidden');
+            }
+        }
+
+        // Giriş Yap İşlemi
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('login-username').value;
+            localStorage.setItem('kunefe_user', username);
+            checkAuth();
+        }
+
+        // Kayıt Ol İşlemi
+        function handleRegister(e) {
+            e.preventDefault();
+            const username = document.getElementById('reg-username').value;
+            const pass = document.getElementById('reg-password').value;
+            const passRepeat = document.getElementById('reg-password-repeat').value;
+
+            if (pass !== passRepeat) {
+                alert("Şifreler eşleşmiyor, lütfen kontrol et!");
+                return;
+            }
+
+            localStorage.setItem('kunefe_user', username);
+            checkAuth();
+        }
+
+        // Çıkış Yap İşlemi
+        function handleLogout() {
+            localStorage.removeItem('kunefe_user');
+            checkAuth();
+        }
+
+        // Sayfa yüklendiğinde oturumu kontrol et
+        checkAuth();
     </script>
 </body>
 </html>
