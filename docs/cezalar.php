@@ -1,10 +1,26 @@
+<?php
+// Veritabanı Bağlantı Bilgileri
+$host     = "localhost";
+$dbname   = "kunefesmp_db";
+$username = "admin";
+$password = "abd2233_09"; // Buraya kendi MySQL şifreni yaz
+
+try {
+    $db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+} catch (PDOException $e) {
+    die("Veritabanı bağlantı hatası: " . $e->getMessage());
+}
+
+// AdvancedBan verilerini çek
+$query = $db->query("SELECT * FROM Punishments ORDER BY id DESC LIMIT 20");
+$punishments = $query ? $query->fetchAll(PDO::FETCH_ASSOC) : [];
+?>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cezalar - KünefeSMP</title>
-    <!-- Font Awesome İkonları -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -22,7 +38,7 @@
             padding: 0 20px 40px 20px;
         }
 
-        /* HEADER / HOTBAR STİLLERİ */
+        /* HOTBAR STİLLERİ */
         header {
             width: 100%;
             max-width: 1300px;
@@ -97,7 +113,7 @@
             color: #fff;
         }
 
-        /* İÇERİK KUTUSU VE TABLO STİLLERİ */
+        /* İÇERİK KUTUSU VE TABLO */
         .container {
             max-width: 1300px;
             margin: 0 auto;
@@ -177,7 +193,7 @@
                 <li><a href="magaza.html"><i class="fa-solid fa-cart-shopping"></i> MAĞAZA</a></li>
                 <li><a href="yardim.html"><i class="fa-solid fa-circle-question"></i> YARDIM</a></li>
                 <li><a href="destek.html"><i class="fa-solid fa-headset"></i> DESTEK</a></li>
-                <li><a href="cezalar.html" class="active"><i class="fa-solid fa-ban"></i> CEZALAR</a></li>
+                <li><a href="cezalar.php" class="active"><i class="fa-solid fa-ban"></i> CEZALAR</a></li>
             </ul>
         </nav>
 
@@ -201,20 +217,35 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>AhmetPro123</td>
-                    <td><span class="badge-ban">BAN</span></td>
-                    <td>Hile Kullanımı (X-Ray)</td>
-                    <td>Console</td>
-                    <td>Süresiz</td>
-                </tr>
-                <tr>
-                    <td>Mehmet_TR</td>
-                    <td><span class="badge-mute">MUTE</span></td>
-                    <td>Sohbet / Küfür</td>
-                    <td>Rehber</td>
-                    <td>3 Saat</td>
-                </tr>
+                <?php if (!empty($punishments)): ?>
+                    <?php foreach ($punishments as $row): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($row['name']) ?></td>
+                            <td>
+                                <?php if (strpos(strtoupper($row['punishmentType']), 'BAN') !== false): ?>
+                                    <span class="badge-ban">BAN</span>
+                                <?php else: ?>
+                                    <span class="badge-mute">MUTE</span>
+                                <?php endif; ?>
+                            </td>
+                            <td><?= htmlspecialchars($row['reason']) ?></td>
+                            <td><?= htmlspecialchars($row['operator']) ?></td>
+                            <td>
+                                <?php 
+                                    if ($row['end'] == -1 || $row['end'] == 0) {
+                                        echo "Süresiz";
+                                    } else {
+                                        echo date('d.m.Y H:i', $row['end'] / 1000);
+                                    }
+                                ?>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="5" style="text-align: center;">Henüz kayıtlı bir ceza bulunmuyor.</td>
+                    </tr>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
