@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KünefeSMP | Sepet</title>
+    <title>KünefeSMP | Sepet & Ödeme</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; user-select: none; }
@@ -30,6 +30,21 @@
         .user-box { background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.08); padding: 10px 14px; border-radius: 10px; font-weight: 800; color: #f59e0b; font-size: 13px; }
         .sum-total { font-size: 24px; font-weight: 900; color: #22c55e; }
         .pay-btn { background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; border: none; padding: 16px; border-radius: 12px; font-weight: 900; font-size: 15px; cursor: pointer; box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3); }
+
+        /* ÖDEME MODAL STİLLERİ */
+        .modal-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); justify-content: center; align-items: center; z-index: 1000; padding: 20px; }
+        .modal-box { background: #120c1c; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; width: 100%; max-width: 500px; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+        .modal-title { font-size: 18px; font-weight: 900; color: #fff; display: flex; justify-content: space-between; align-items: center; }
+        .close-btn { background: none; border: none; color: #ef4444; font-size: 20px; font-weight: 900; cursor: pointer; }
+
+        .method-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .method-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #aaa; padding: 12px; border-radius: 10px; font-weight: 800; cursor: pointer; font-size: 13px; text-align: center; }
+        .method-btn.active { background: #a78bfa; color: #000; border-color: #a78bfa; }
+
+        .payment-info { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; }
+        .info-row { display: flex; justify-content: space-between; align-items: center; }
+        .copy-tag { background: rgba(167, 139, 250, 0.2); color: #c084fc; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 800; cursor: pointer; border: 1px solid rgba(167, 139, 250, 0.3); }
+        .confirm-btn { background: linear-gradient(135deg, #a78bfa, #7c3aed); color: #fff; border: none; padding: 14px; border-radius: 10px; font-weight: 900; font-size: 14px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -57,8 +72,58 @@
                     <span style="font-size:14px; font-weight:700; color:#9ca3af;">Toplam:</span>
                     <span class="sum-total" id="tot-price">0.00 ₺</span>
                 </div>
-                <button class="pay-btn" onclick="checkout()">ÖDEMEYI TAMAMLA</button>
+                <button class="pay-btn" onclick="openPaymentModal()">ÖDEMEYI TAMAMLA</button>
             </div>
+        </div>
+    </div>
+
+    <!-- ÖDEME PENCERESİ (MODAL) -->
+    <div class="modal-overlay" id="pay-modal">
+        <div class="modal-box">
+            <div class="modal-title">
+                <span>Ödeme Yöntemi Seçin</span>
+                <button class="close-btn" onclick="closePaymentModal()">✕</button>
+            </div>
+
+            <div class="method-tabs">
+                <button class="method-btn active" id="btn-papara" onclick="switchMethod('papara')">Papara / IBAN</button>
+                <button class="method-btn" id="btn-card" onclick="switchMethod('card')">Kredi / Banka Kartı</button>
+            </div>
+
+            <!-- PAPARA / IBAN İÇERİĞİ -->
+            <div id="content-papara" class="payment-info">
+                <div class="info-row">
+                    <span style="color:#aaa;">Papara / IBAN Alıcı:</span>
+                    <strong style="color:#22c55e;">Senin Adın Soyadın</strong>
+                </div>
+                <div class="info-row">
+                    <span style="color:#aaa;">Papara No:</span>
+                    <div>
+                        <strong id="papara-num">1234567890</strong>
+                        <span class="copy-tag" onclick="copyText('papara-num')">Kopyala</span>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <span style="color:#aaa;">IBAN No:</span>
+                    <div>
+                        <strong id="iban-num">TR000000000000000000000000</strong>
+                        <span class="copy-tag" onclick="copyText('iban-num')">Kopyala</span>
+                    </div>
+                </div>
+                <div style="background: rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); padding:10px; border-radius:8px; font-size:11px; color:#f59e0b;">
+                    ⚠️ <b>ÖNEMLİ:</b> Ödeme yaparken açıklama kısmına Minecraft kullanıcı adınızı (<b><span id="modal-user"></span></b>) yazmayı unutmayın!
+                </div>
+            </div>
+
+            <!-- KREDİ KARTI İÇERİĞİ -->
+            <div id="content-card" class="payment-info" style="display: none;">
+                <div style="text-align:center; padding: 10px;">
+                    <p style="font-size:12px; color:#aaa; margin-bottom:12px;">Kredi veya Banka Kartı ile komisyonsuz ve güvenli ödeme yapmak için Shopier magazamıza yönlendirileceksiniz.</p>
+                    <a href="https://www.shopier.com/SizinShopierLinkiniz" target="_blank" style="background:#22c55e; color:#000; text-decoration:none; display:block; padding:12px; border-radius:8px; font-weight:800; font-size:13px;">Shopier ile Kartla Öde →</a>
+                </div>
+            </div>
+
+            <button class="confirm-btn" onclick="submitOrder()">ÖDEMEYİ YAPTIM / SİPARİŞİ OLUŞTUR</button>
         </div>
     </div>
 
@@ -73,6 +138,7 @@
                 return;
             }
             document.getElementById('user-display').innerText = savedUser;
+            document.getElementById('modal-user').innerText = savedUser;
             render();
         });
 
@@ -129,9 +195,40 @@
             render();
         }
 
-        function checkout() {
+        function openPaymentModal() {
             if (cart.length === 0) return alert("Sepetiniz boş!");
-            alert("Sipariş başarıyla oluşturuldu!");
+            document.getElementById('pay-modal').style.display = 'flex';
+        }
+
+        function closePaymentModal() {
+            document.getElementById('pay-modal').style.display = 'none';
+        }
+
+        function switchMethod(type) {
+            if (type === 'papara') {
+                document.getElementById('btn-papara').classList.add('active');
+                document.getElementById('btn-card').classList.remove('active');
+                document.getElementById('content-papara').style.display = 'flex';
+                document.getElementById('content-card').style.display = 'none';
+            } else {
+                document.getElementById('btn-card').classList.add('active');
+                document.getElementById('btn-papara').classList.remove('active');
+                document.getElementById('content-card').style.display = 'flex';
+                document.getElementById('content-papara').style.display = 'none';
+            }
+        }
+
+        function copyText(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text);
+            alert("Kopyalandı: " + text);
+        }
+
+        function submitOrder() {
+            const user = localStorage.getItem('kunefeUser');
+            alert("Siparişiniz başarıyla alındı! Ödemeniz onaylandıktan sonra " + user + " hesabınıza VIP tanımlanacaktır.");
+            localStorage.removeItem('kunefeCart');
+            window.location.href = "magaza.html";
         }
     </script>
 </body>
