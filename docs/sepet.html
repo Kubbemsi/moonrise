@@ -89,6 +89,20 @@
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 1px solid rgba(234, 179, 8, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-clear-all {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #ef4444;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 8px;
+            border-radius: 6px;
+            cursor: pointer;
         }
 
         .cart-item {
@@ -107,19 +121,19 @@
         .item-info p span { color: #eab308; font-weight: 800; }
 
         .item-price {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 900;
             color: #22c55e;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .btn-remove {
             background: rgba(239, 68, 68, 0.2);
             border: 1px solid #ef4444;
             color: #ef4444;
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 8px;
             font-size: 11px;
             font-weight: 800;
@@ -177,7 +191,10 @@
 
     <div class="cart-container">
         <div class="cart-box">
-            <div class="box-title">SEPETTEKİ ÜRÜNLER</div>
+            <div class="box-title">
+                <span>SEPETTEKİ ÜRÜNLER</span>
+                <button class="btn-clear-all" onclick="clearCart()" id="clearAllBtn" style="display:none;">Sepeti Temizle</button>
+            </div>
             <div id="cartContent"></div>
         </div>
 
@@ -196,7 +213,7 @@
                 <div class="papara-info" id="paparaSection" style="display: none;">
                     <div>PAPARA HESAP NUMARAMIZ</div>
                     <h5>1588226875</h5>
-                    <p>*Açıklama kısmına <u>Oyuncu Adını</u> ve kaç adet aldığını yazabilirsin.</p>
+                    <p>*Ödemeyi yaparken açıklama kısmına <u>Oyuncu Adını</u> yazmayı unutma!</p>
                 </div>
             </div>
 
@@ -214,36 +231,59 @@
             const grandTotal = document.getElementById('grandTotal');
             const paparaSection = document.getElementById('paparaSection');
             const checkoutBtn = document.getElementById('checkoutBtn');
+            const clearAllBtn = document.getElementById('clearAllBtn');
 
-            if (!rawData) {
+            let cart = rawData ? JSON.parse(rawData) : [];
+
+            // Eğer eski sistemden kalma tek nesne varsa listeye çevir
+            if (cart && !Array.isArray(cart)) {
+                cart = [cart];
+                localStorage.setItem('kunefeCart', JSON.stringify(cart));
+            }
+
+            if (!cart || cart.length === 0) {
                 cartContent.innerHTML = `<div class="empty-cart-msg">Sepetinizde ürün bulunmuyor.</div>`;
                 subTotal.innerText = "0.00 ₺";
                 grandTotal.innerText = "0.00 ₺";
                 paparaSection.style.display = "none";
                 checkoutBtn.style.display = "none";
+                clearAllBtn.style.display = "none";
                 return;
             }
 
-            const item = JSON.parse(rawData);
+            let html = "";
+            let total = 0;
 
-            cartContent.innerHTML = `
-                <div class="cart-item">
-                    <div class="item-info">
-                        <h4>${item.quantity}x ${item.name}</h4>
-                        <p>Oyuncu Adı: <span>${item.username}</span></p>
-                        <p style="font-size:11px; color:#71717a;">Birim Fiyat: ${item.unitPrice.toFixed(2)} ₺</p>
+            cart.forEach((item, index) => {
+                total += item.totalPrice;
+                html += `
+                    <div class="cart-item">
+                        <div class="item-info">
+                            <h4>${item.quantity}x ${item.name}</h4>
+                            <p>Oyuncu Adı: <span>${item.username}</span></p>
+                            <p style="font-size:11px; color:#71717a;">Birim Fiyat: ${item.unitPrice.toFixed(2)} ₺</p>
+                        </div>
+                        <div class="item-price">
+                            ${item.totalPrice.toFixed(2)} ₺
+                            <button class="btn-remove" onclick="removeItem(${index})">X</button>
+                        </div>
                     </div>
-                    <div class="item-price">
-                        ${item.totalPrice.toFixed(2)} ₺
-                        <button class="btn-remove" onclick="clearCart()">Kaldır</button>
-                    </div>
-                </div>
-            `;
+                `;
+            });
 
-            subTotal.innerText = item.totalPrice.toFixed(2) + " ₺";
-            grandTotal.innerText = item.totalPrice.toFixed(2) + " ₺";
+            cartContent.innerHTML = html;
+            subTotal.innerText = total.toFixed(2) + " ₺";
+            grandTotal.innerText = total.toFixed(2) + " ₺";
             paparaSection.style.display = "block";
             checkoutBtn.style.display = "block";
+            clearAllBtn.style.display = "inline-block";
+        }
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('kunefeCart', JSON.stringify(cart));
+            loadCart();
         }
 
         function clearCart() {
@@ -252,11 +292,10 @@
         }
 
         function confirmOrder() {
-            const rawData = localStorage.getItem('kunefeCart');
-            if (!rawData) return;
+            let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+            if (cart.length === 0) return;
 
-            const item = JSON.parse(rawData);
-            alert("Tebrikler " + item.username + "! " + item.quantity + " adet " + item.name + " siparişiniz alındı. Ödeme kontrol edilip aktarılacaktır.");
+            alert("Tebrikler! Toplam " + cart.length + " kalem ürün siparişiniz alındı. Papara ödemeniz kontrol edilip aktarılacaktır.");
             clearCart();
         }
 

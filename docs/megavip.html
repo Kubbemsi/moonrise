@@ -343,12 +343,117 @@
             document.getElementById('totalPrice').innerText = total.toFixed(2) + " ₺";
         }
 
-        function addToCartAndGo() {
-            const user = document.getElementById('mcUser').value.trim();
-            if (!user) {
-                alert("Lütfen önce Minecraft adınızı giriniz!");
-                return;
-            }
+         
+            function addToCartAndGo() {
+    const user = document.getElementById('mcUser').value.trim();
+    if (!user) {
+        alert("Lütfen önce Minecraft adınızı giriniz!");
+        return;
+    }
+
+    const newItem = {
+        id: Date.now(),
+        name: "MEGAVIP Üyelik (30 Gün)",
+        unitPrice: unitPrice,
+        quantity: currentQty,
+        totalPrice: unitPrice * currentQty,
+        username: user
+    };
+
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+    cart.push(newItem);
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    window.location.href = 'sepet.html';
+}
+            function addToCartAndGo() {
+    const user = document.getElementById('mcUser').value.trim();
+    if (!user) {
+        alert("Lütfen önce Minecraft adınızı giriniz!");
+        return;
+    }
+
+    const newItem = {
+        id: Date.now(),
+        name: "MEGAVIP Üyelik (30 Gün)",
+        unitPrice: unitPrice,
+        quantity: currentQty,
+        totalPrice: unitPrice * currentQty,
+        username: user
+    };
+
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+    cart.push(newItem);
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    window.location.href = 'sepet.html';
+}
+            function addToCartAndGo() {
+    const user = document.getElementById('mcUser').value.trim();
+    if (!user) {
+        alert("Lütfen önce Minecraft adınızı giriniz!");
+        return;
+    }
+
+    const newItem = {
+        id: Date.now(),
+        name: "MEGAVIP Üyelik (30 Gün)",
+        unitPrice: unitPrice,
+        quantity: currentQty,
+        totalPrice: unitPrice * currentQty,
+        username: user
+    };
+
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+    cart.push(newItem);
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    window.location.href = 'sepet.html';
+}
+            function addToCartAndGo() {
+    const user = document.getElementById('mcUser').value.trim();
+    if (!user) {
+        alert("Lütfen önce Minecraft adınızı giriniz!");
+        return;
+    }
+
+    const newItem = {
+        id: Date.now(),
+        name: "MEGAVIP Üyelik (30 Gün)",
+        unitPrice: unitPrice,
+        quantity: currentQty,
+        totalPrice: unitPrice * currentQty,
+        username: user
+    };
+
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+    cart.push(newItem);
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    window.location.href = 'sepet.html';
+}
+            function addToCartAndGo() {
+    const user = document.getElementById('mcUser').value.trim();
+    if (!user) {
+        alert("Lütfen önce Minecraft adınızı giriniz!");
+        return;
+    }
+
+    const newItem = {
+        id: Date.now(),
+        name: "MEGAVIP Üyelik (30 Gün)",
+        unitPrice: unitPrice,
+        quantity: currentQty,
+        totalPrice: unitPrice * currentQty,
+        username: user
+    };
+
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+    cart.push(newItem);
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    window.location.href = 'sepet.html';
+}
 
             const item = {
                 name: "MEGAVIP Üyelik (30 Gün)",
@@ -360,7 +465,7 @@
 
             localStorage.setItem('kunefeCart', JSON.stringify(item));
             window.location.href = 'sepet.html';
-        }
+        
     </script>
 </body>
 </html>

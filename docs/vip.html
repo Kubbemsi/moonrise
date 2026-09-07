@@ -341,11 +341,155 @@
         }
 
         function addToCartAndGo() {
-            const user = document.getElementById('mcUser').value.trim();
-            if (!user) {
-                alert("Lütfen önce Minecraft adınızı giriniz!");
-                return;
-            }
+    const user = document.getElementById('mcUser').value.trim();
+    if (!user) {
+        alert("Lütfen önce Minecraft adınızı giriniz!");
+        return;
+    }
+
+    const newItem = {
+        id: Date.now(), // Her ürüne özel id
+        name: "VIP Üyelik (30 Gün)",
+        unitPrice: unitPrice,
+        quantity: currentQty,
+        totalPrice: unitPrice * currentQty,
+        username: user
+    };
+
+    // Mevcut sepeti al, yoksa boş liste oluştur
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+    
+    // Yeni ürünü ekle ve kaydet
+    cart.push(newItem);
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    window.location.href = 'sepet.html';
+}
+        function addToCartAndGo() {
+    const user = document.getElementById('mcUser').value.trim();
+    if (!user) {
+        alert("Lütfen önce Minecraft adınızı giriniz!");
+        return;
+    }
+
+    const newItem = {
+        id: Date.now(), // Her ürüne özel id
+        name: "VIP Üyelik (30 Gün)",
+        unitPrice: unitPrice,
+        quantity: currentQty,
+        totalPrice: unitPrice * currentQty,
+        username: user
+    };
+
+    // Mevcut sepeti al, yoksa boş liste oluştur
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+    
+    // Yeni ürünü ekle ve kaydet
+    cart.push(newItem);
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    window.location.href = 'sepet.html';
+}
+        function addToCartAndGo() {
+    const user = document.getElementById('mcUser').value.trim();
+    if (!user) {
+        alert("Lütfen önce Minecraft adınızı giriniz!");
+        return;
+    }
+
+    const newItem = {
+        id: Date.now(), // Her ürüne özel id
+        name: "VIP Üyelik (30 Gün)",
+        unitPrice: unitPrice,
+        quantity: currentQty,
+        totalPrice: unitPrice * currentQty,
+        username: user
+    };
+
+    // Mevcut sepeti al, yoksa boş liste oluştur
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+    
+    // Yeni ürünü ekle ve kaydet
+    cart.push(newItem);
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    window.location.href = 'sepet.html';
+}
+        function addToCartAndGo() {
+    const user = document.getElementById('mcUser').value.trim();
+    if (!user) {
+        alert("Lütfen önce Minecraft adınızı giriniz!");
+        return;
+    }
+
+    const newItem = {
+        id: Date.now(), // Her ürüne özel id
+        name: "VIP Üyelik (30 Gün)",
+        unitPrice: unitPrice,
+        quantity: currentQty,
+        totalPrice: unitPrice * currentQty,
+        username: user
+    };
+
+    // Mevcut sepeti al, yoksa boş liste oluştur
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+    
+    // Yeni ürünü ekle ve kaydet
+    cart.push(newItem);
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    window.location.href = 'sepet.html';
+}
+        function addToCartAndGo() {
+    const user = document.getElementById('mcUser').value.trim();
+    if (!user) {
+        alert("Lütfen önce Minecraft adınızı giriniz!");
+        return;
+    }
+
+    const newItem = {
+        id: Date.now(), // Her ürüne özel id
+        name: "VIP Üyelik (30 Gün)",
+        unitPrice: unitPrice,
+        quantity: currentQty,
+        totalPrice: unitPrice * currentQty,
+        username: user
+    };
+
+    // Mevcut sepeti al, yoksa boş liste oluştur
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+    
+    // Yeni ürünü ekle ve kaydet
+    cart.push(newItem);
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    window.location.href = 'sepet.html';
+}
+        function addToCartAndGo() {
+    const user = document.getElementById('mcUser').value.trim();
+    if (!user) {
+        alert("Lütfen önce Minecraft adınızı giriniz!");
+        return;
+    }
+
+    const newItem = {
+        id: Date.now(), // Her ürüne özel id
+        name: "VIP Üyelik (30 Gün)",
+        unitPrice: unitPrice,
+        quantity: currentQty,
+        totalPrice: unitPrice * currentQty,
+        username: user
+    };
+
+    // Mevcut sepeti al, yoksa boş liste oluştur
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+    
+    // Yeni ürünü ekle ve kaydet
+    cart.push(newItem);
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    window.location.href = 'sepet.html';
+}
 
             const item = {
                 name: "VIP Üyelik (30 Gün)",
@@ -357,7 +501,7 @@
 
             localStorage.setItem('kunefeCart', JSON.stringify(item));
             window.location.href = 'sepet.html';
-        }
+        
     </script>
 </body>
 </html>
