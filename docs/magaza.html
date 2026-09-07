@@ -3,402 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mağaza | KünefeSMP</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>KünefeSMP | Mağaza</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-    
     <style>
-        /* NAVBAR (ÜST MENÜ) STİLLERİ */
-header {
-    width: 100%;
-    max-width: 1300px;
-    margin: 0 auto 30px auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(35, 17, 8, 0.85);
-    border: 2px solid #ca8a04;
-    border-radius: 18px;
-    padding: 15px 25px;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; user-select: none; }
+        body { background-color: #0d0401; color: #ffffff; min-height: 100vh; overflow-x: hidden; }
+        .hero-section { position: relative; width: 100%; min-height: 100vh; background: radial-gradient(circle at center, #3d1708 0%, #1c0a03 60%, #0d0401 100%); display: flex; flex-direction: column; align-items: center; padding: 0 20px 40px 20px; }
+        .hero-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(rgba(202, 138, 4, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(202, 138, 4, 0.05) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; }
+        
+        header { width: 100%; max-width: 1300px; margin: 40px auto 30px auto; display: flex; justify-content: space-between; align-items: center; background: rgba(35, 17, 8, 0.85); border: 2px solid #ca8a04; border-radius: 18px; padding: 15px 25px; backdrop-filter: blur(8px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); z-index: 10; }
+        .logo-box { width: 50px; height: 50px; background: linear-gradient(135deg, #fef08a 0%, #facc15 100%); color: #422006; border-radius: 12px; display: flex; justify-content: center; align-items: center; text-decoration: none; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); transition: transform 0.2s ease; }
+        .logo-box:hover { transform: scale(1.05); }
+        nav ul { display: flex; gap: 15px; list-style: none; }
+        nav ul li a { color: #ffffff; text-decoration: none; font-weight: 800; font-size: 14px; padding: 10px 20px; border-radius: 10px; transition: all 0.2s ease; display: flex; align-items: center; gap: 8px; }
+        nav ul li a.active, nav ul li a:hover { background: #facc15; color: #422006; }
+        nav ul li a.active svg, nav ul li a:hover svg { fill: #422006; }
+        .user-btn { width: 50px; height: 50px; border: 2px solid #ca8a04; border-radius: 12px; display: flex; justify-content: center; align-items: center; color: #facc15; text-decoration: none; transition: all 0.2s ease; }
+        .user-btn:hover { background: rgba(202, 138, 4, 0.2); }
 
-.logo-box {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
-    color: #422006;
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    text-decoration: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
+        .store-container { width: 100%; max-width: 1300px; display: flex; gap: 20px; z-index: 10; margin-top: 20px; }
+        .sidebar { width: 250px; display: flex; flex-direction: column; gap: 20px; }
+        .sidebar-box { background: rgba(35, 17, 8, 0.85); border: 2px solid #ca8a04; border-radius: 18px; padding: 20px; }
+        .sidebar-title { font-size: 12px; color: #facc15; font-weight: 900; margin-bottom: 12px; text-transform: uppercase; }
+        .cat-btn { background: #15803d; color: #fff; padding: 12px; border-radius: 10px; font-weight: 800; text-align: center; cursor: pointer; border: 1px solid #22c55e; }
 
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-}
+        .products-grid { flex: 1; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+        .product-card { background: rgba(35, 17, 8, 0.85); border: 2px solid #ca8a04; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+        .badge { width: 100px; height: 100px; border-radius: 16px; display: flex; justify-content: center; align-items: center; font-weight: 900; font-size: 18px; color: #1c0a03; }
+        .vip { background: linear-gradient(135deg, #fef08a, #facc15); }
+        .megavip { background: linear-gradient(135deg, #86efac, #22c55e); }
+        .ultravip { background: linear-gradient(135deg, #d8b4fe, #a855f7); }
+        .kunefevip { background: linear-gradient(135deg, #fef08a, #eab308); }
+        .sponsor { background: linear-gradient(135deg, #f472b6, #ec4899); }
 
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 16px;
-    border-radius: 10px;
-    transition: all 0.2s;
-}
-
-nav ul li a:hover, nav ul li a.active {
-    background: #facc15;
-    color: #422006;
-}
-
-.user-btn {
-    width: 45px;
-    height: 45px;
-    border: 2px solid #ca8a04;
-    border-radius: 12px;
-    color: #facc15;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    font-size: 18px;
-    transition: all 0.2s;
-}
-
-.user-btn:hover {
-    background: #ca8a04;
-    color: #fff;
-}
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-            user-select: none;
-        }
-
-        body {
-            /* Sıcak Künefe Arka Planı */
-            background: radial-gradient(circle at top center, #2e1205 0%, #170802 60%, #0d0401 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            padding: 30px;
-        }
-
-        /* Üst Başlık */
-        .page-header {
-            max-width: 1300px;
-            margin: 0 auto 30px auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .page-title {
-            font-size: 28px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #facc15;
-            text-shadow: 0 2px 10px rgba(250, 204, 21, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .back-btn {
-            background: linear-gradient(135deg, #15803d 0%, #166534 100%);
-            color: #fff;
-            padding: 12px 22px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 0 #14532d, 0 5px 15px rgba(22, 101, 52, 0.4);
-            transition: all 0.2s;
-            border: 1px solid #22c55e;
-        }
-
-        .back-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 0 #14532d, 0 8px 20px rgba(22, 101, 52, 0.6);
-        }
-
-        /* Ana Düzen */
-        .shop-container {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 260px 1fr;
-            gap: 25px;
-        }
-
-        /* Sol Panel */
-        .sidebar-card {
-            background: rgba(35, 17, 8, 0.85);
-            border: 2px solid #ca8a04;
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        }
-
-        .sidebar-logo {
-            background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
-            color: #422006;
-            width: 70px;
-            height: 70px;
-            border-radius: 16px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 36px;
-            box-shadow: 0 5px 0 #b45309;
-        }
-
-        .category-title {
-            width: 100%;
-            font-size: 12px;
-            color: #fde047;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-transform: uppercase;
-            font-weight: 800;
-        }
-
-        .category-item {
-            width: 100%;
-            background: linear-gradient(135deg, #166534 0%, #14532d 100%);
-            padding: 14px 18px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 14px;
-            font-weight: 800;
-            color: #fff;
-            cursor: pointer;
-            border: 1.5px solid #22c55e;
-            box-shadow: 0 4px 0 #0f391b;
-        }
-
-        /* VIP Ürün Grid */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        /* Ürün Kartı */
-        .product-card {
-            background: linear-gradient(180deg, rgba(42, 20, 10, 0.9) 0%, rgba(25, 11, 5, 0.95) 100%);
-            border: 2px solid #ca8a04;
-            border-radius: 18px;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            text-align: center;
-            transition: all 0.2s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .product-card:hover {
-            transform: translateY(-6px);
-            border-color: #facc15;
-            box-shadow: 0 12px 25px rgba(250, 204, 21, 0.25);
-        }
-
-        .product-body {
-            padding: 25px 15px 15px 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* VIP İkon Kutuları */
-        .vip-img-box {
-            width: 110px;
-            height: 110px;
-            border-radius: 16px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            font-weight: 900;
-            margin-bottom: 18px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
-            border: 2px solid rgba(255,255,255,0.2);
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
-        }
-
-        .vip-title {
-            font-size: 16px;
-            font-weight: 900;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            color: #fef08a;
-            letter-spacing: 0.5px;
-        }
-
-        /* Fiyat Alanı */
-        .current-price {
-            font-size: 24px;
-            font-weight: 900;
-            color: #22c55e;
-            text-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
-            margin-bottom: 15px;
-        }
-
-        /* Satın Al Butonu (Kadayıf Sarısı) */
-        .buy-btn {
-            background: linear-gradient(180deg, #fef08a 0%, #facc15 100%);
-            color: #422006;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: 900;
-            font-size: 13px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 0 #b45309;
-            margin: 0 15px 18px 15px;
-            transition: all 0.1s;
-        }
-
-        .buy-btn:active {
-            transform: translateY(3px);
-            box-shadow: 0 1px 0 #b45309;
-        }
+        .p-title { font-size: 15px; font-weight: 900; }
+        .p-price { font-size: 20px; font-weight: 900; color: #22c55e; }
+        .buy-btn { background: linear-gradient(135deg, #fef08a, #facc15); color: #422006; border: none; padding: 10px 0; width: 100%; border-radius: 10px; font-weight: 900; cursor: pointer; text-decoration: none; }
     </style>
 </head>
-<header>
-    <a href="index.html" class="logo-box">
-        <i class="fa-solid fa-crown"></i>
-    </a>
+<body>
+    <div class="hero-section">
+        <header>
+            <a href="index.html" class="logo-box">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg> ANASAYFA</a></li>
+                    <li><a href="magaza.html" class="active"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg> MAĞAZA</a></li>
+                    <li><a href="yardim.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm1.07-7.75l-.9.92C12.45 11.9 12 12.5 12 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg> YARDIM</a></li>
+                    <li><a href="destek.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/></svg> DESTEK</a></li>
+                    <li><a href="cezalar.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm5.31-3.1L6.1 5.69C7.45 4.63 9.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z"/></svg> CEZALAR</a></li>
+                </ul>
+            </nav>
+            <a href="giris.html" class="user-btn">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            </a>
+        </header>
 
-    <nav>
-        <ul>
-            <li><a href="index.html"><i class="fa-solid fa-house"></i> ANASAYFA</a></li>
-            <li><a href="magaza.html" class="active"><i class="fa-solid fa-cart-shopping"></i> MAĞAZA</a></li>
-            <li><a href="yardim.html"><i class="fa-solid fa-circle-question"></i> YARDIM</a></li>
-            <li><a href="destek.html"><i class="fa-solid fa-headset"></i> DESTEK</a></li>
-            <li><a href="cezalar.html"><i class="fa-solid fa-ban"></i> CEZALAR</a></li>
-        </ul>
-    </nav>
-
-    <a href="giris.html" class="user-btn">
-        <i class="fa-solid fa-user"></i>
-    </a>
-</header>
-
-    <div class="shop-container">
-        <!-- SOL PANEL -->
-        <div>
-            <div class="sidebar-card">
-                <div class="sidebar-logo">
-                    <i class="fa-solid fa-crown"></i>
+        <div class="store-container">
+            <div class="sidebar">
+                <div class="sidebar-box logo-box" style="width: 100%; height: 80px;">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5z"/></svg>
+                </div>
+                <div class="sidebar-box">
+                    <div class="sidebar-title">Kategoriler</div>
+                    <div class="cat-btn">Survival</div>
                 </div>
             </div>
 
-            <div class="sidebar-card">
-                <div class="category-title"><i class="fa-solid fa-layer-group"></i> Kategoriler</div>
-                <div class="category-item">
-                    <i class="fa-solid fa-tree"></i> Survival
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="badge vip">VIP</div>
+                    <div class="p-title">VIP - 30 GÜN</div>
+                    <div class="p-price">25.00 ₺</div>
+                    <button class="buy-btn">SATIN AL</button>
+                </div>
+                <div class="product-card">
+                    <div class="badge megavip">MEGAVIP</div>
+                    <div class="p-title">MEGAVIP - 30 GÜN</div>
+                    <div class="p-price">100.00 ₺</div>
+                    <button class="buy-btn">SATIN AL</button>
+                </div>
+                <div class="product-card">
+                    <div class="badge ultravip">ULTRAVIP</div>
+                    <div class="p-title">ULTRAVIP - 30 GÜN</div>
+                    <div class="p-price">200.00 ₺</div>
+                    <button class="buy-btn">SATIN AL</button>
+                </div>
+                <div class="product-card">
+                    <div class="badge kunefevip">KÜNEFEVIP</div>
+                    <div class="p-title">KUNEFEVIP - 30 GÜN</div>
+                    <div class="p-price">300.00 ₺</div>
+                    <button class="buy-btn">SATIN AL</button>
+                </div>
+                <div class="product-card">
+                    <div class="badge sponsor">SPONSOR</div>
+                    <div class="p-title">SPONSOR - SÜRESİZ</div>
+                    <div class="p-price">2,000.00 ₺</div>
+                    <button class="buy-btn">SATIN AL</button>
                 </div>
             </div>
-        </div>
-
-        <!-- SAĞ VIP KARTLARI -->
-        <div class="products-grid">
-
-            <!-- VIP -->
-            <div class="product-card">
-                <div class="product-body">
-                    <div class="vip-img-box" style="background: linear-gradient(135deg, #fef08a, #facc15); color: #713f12;">VIP</div>
-                    <div class="vip-title">VIP - 30 GÜN</div>
-                    <div class="current-price">25.00 ₺</div>
-                </div>
-                <a href="vip.html" class="buy-btn">
-                    <i class="fa-solid fa-cart-shopping"></i> SATIN AL
-                </a>
-            </div>
-
-            <!-- MEGAVIP -->
-            <div class="product-card">
-                <div class="product-body">
-                    <div class="vip-img-box" style="background: linear-gradient(135deg, #86efac, #22c55e); color: #14532d;">MEGAVIP</div>
-                    <div class="vip-title">MEGAVIP - 30 GÜN</div>
-                    <div class="current-price">100.00 ₺</div>
-                </div>
-                <a href="megavip.html" class="buy-btn">
-                    <i class="fa-solid fa-cart-shopping"></i> SATIN AL
-                </a>
-            </div>
-
-            <!-- ULTRAVIP -->
-            <div class="product-card">
-                <div class="product-body">
-                    <div class="vip-img-box" style="background: linear-gradient(135deg, #d8b4fe, #a855f7); color: #581c87;">ULTRAVIP</div>
-                    <div class="vip-title">ULTRAVIP - 30 GÜN</div>
-                    <div class="current-price">200.00 ₺</div>
-                </div>
-                <a href="ultravip.html" class="buy-btn">
-                    <i class="fa-solid fa-cart-shopping"></i> SATIN AL
-                </a>
-            </div>
-
-            <!-- KUNEFEVIP -->
-            <div class="product-card">
-                <div class="product-body">
-                    <div class="vip-img-box" style="background: linear-gradient(135deg, #fef08a, #eab308); color: #713f12; border: 2px solid #facc15;">KUNEFEVIP</div>
-                    <div class="vip-title">KUNEFEVIP - 30 GÜN</div>
-                    <div class="current-price">300.00 ₺</div>
-                </div>
-                <a href="kunefevip.html" class="buy-btn">
-                    <i class="fa-solid fa-cart-shopping"></i> SATIN AL
-                </a>
-            </div>
-
-            <!-- SPONSOR -->
-            <div class="product-card">
-                <div class="product-body">
-                    <div class="vip-img-box" style="background: linear-gradient(135deg, #f472b6, #ec4899); color: #831843;">SPONSOR</div>
-                    <div class="vip-title">SPONSOR - SÜRESİZ</div>
-                    <div class="current-price">2,000.00 ₺</div>
-                </div>
-                <a href="sponsor.html" class="buy-btn">
-                    <i class="fa-solid fa-cart-shopping"></i> SATIN AL
-                </a>
-            </div>
-
         </div>
     </div>
-
 </body>
 </html>
