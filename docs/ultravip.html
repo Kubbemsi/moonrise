@@ -568,9 +568,141 @@
         }
 
         function addToCart() {
-            const user = document.getElementById('logged-username').innerText;
-            alert(`${user} hesabı için ${quantity} adet ${vipData[currentVipKey].name} sepete eklendi!`);
-        }
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek ürün nesnesi
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Tarayıcının hafızasındaki (localStorage) mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Aynı ürün daha önce eklenmiş mi kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        // Zaten varsa adetini ve toplam fiyatını güncelle
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        // Yoksa sepete yeni ürün olarak ekle
+        cart.push(cartItem);
+    }
+
+    // Güncellenmiş sepeti hafızaya kaydet
+    localStorage.getItem('kunefeCart') ? localStorage.setItem('kunefeCart', JSON.stringify(cart)) : localStorage.setItem('kunefeCart', JSON.stringify([cartItem]));
+
+    // Doğrudan Sepet Sayfasına Yönlendir
+    window.location.href = "sepet.html"; // Sepet sayfanızın adı neyse onu yazın (örn: sepetim.html)
+}
+        function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek ürün nesnesi
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Tarayıcının hafızasındaki (localStorage) mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Aynı ürün daha önce eklenmiş mi kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        // Zaten varsa adetini ve toplam fiyatını güncelle
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        // Yoksa sepete yeni ürün olarak ekle
+        cart.push(cartItem);
+    }
+
+    // Güncellenmiş sepeti hafızaya kaydet
+    localStorage.getItem('kunefeCart') ? localStorage.setItem('kunefeCart', JSON.stringify(cart)) : localStorage.setItem('kunefeCart', JSON.stringify([cartItem]));
+
+    // Doğrudan Sepet Sayfasına Yönlendir
+    window.location.href = "sepet.html"; // Sepet sayfanızın adı neyse onu yazın (örn: sepetim.html)
+}
+        function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek ürün nesnesi
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Tarayıcının hafızasındaki (localStorage) mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Aynı ürün daha önce eklenmiş mi kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        // Zaten varsa adetini ve toplam fiyatını güncelle
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        // Yoksa sepete yeni ürün olarak ekle
+        cart.push(cartItem);
+    }
+
+    // Güncellenmiş sepeti hafızaya kaydet
+    localStorage.getItem('kunefeCart') ? localStorage.setItem('kunefeCart', JSON.stringify(cart)) : localStorage.setItem('kunefeCart', JSON.stringify([cartItem]));
+
+    // Doğrudan Sepet Sayfasına Yönlendir
+    window.location.href = "sepet.html"; // Sepet sayfanızın adı neyse onu yazın (örn: sepetim.html)
+}
+        function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek ürün nesnesi
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Tarayıcının hafızasındaki (localStorage) mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Aynı ürün daha önce eklenmiş mi kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        // Zaten varsa adetini ve toplam fiyatını güncelle
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        // Yoksa sepete yeni ürün olarak ekle
+        cart.push(cartItem);
+    }
+
+    // Güncellenmiş sepeti hafızaya kaydet
+    localStorage.getItem('kunefeCart') ? localStorage.setItem('kunefeCart', JSON.stringify(cart)) : localStorage.setItem('kunefeCart', JSON.stringify([cartItem]));
+
+    // Doğrudan Sepet Sayfasına Yönlendir
+    window.location.href = "sepet.html"; // Sepet sayfanızın adı neyse onu yazın (örn: sepetim.html)
+}
     </script>
 </body>
 </html>
