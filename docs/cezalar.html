@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cezalar - KünefeSMP</title>
+    <!-- Font Awesome İkonları -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -207,23 +208,25 @@
         </table>
     </div>
 
+    <!-- SİZİN SORDUĞUNUZ SCRIPT KODU BURADA YER ALIYOR -->
     <script>
-        // Verileri JSON veya API üzerinden çekme
         async function cezalaGetir() {
             try {
-                // Eğer sunucundan bir ceza API'si veya JSON dosyası yayınlarsan adresini buraya yazacaksın
                 const response = await fetch('cezalar.json'); 
                 const cezalar = await response.json();
                 
                 const tbody = document.getElementById('ceza-listesi');
                 tbody.innerHTML = '';
 
-                if (cezalar.length === 0) {
+                // Sadece "oyuncu" kısmı dolu olan cezaları filtrele
+                const doluCezalar = cezalar.filter(item => item.oyuncu && item.oyuncu.trim() !== "");
+
+                if (doluCezalar.length === 0) {
                     tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Henüz kayıtlı bir ceza bulunmuyor.</td></tr>';
                     return;
                 }
 
-                cezalar.forEach(item => {
+                doluCezalar.forEach(item => {
                     const tr = document.createElement('tr');
                     const badgeClass = item.tur === 'BAN' ? 'badge-ban' : 'badge-mute';
                     
