@@ -3,279 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEGAVIP Rütbe Menüsü - KünefeSMP</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>KünefeSMP | MEGAVIP Paket</title>
+    
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            user-select: none;
         }
 
         body {
-            background-color: #120a05;
-            background-image: radial-gradient(circle, #231108 0%, #0d0603 100%);
-            color: #fff;
+            background-color: #08030b;
+            color: #ffffff;
             min-height: 100vh;
-            padding: 0 20px 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        header {
+        /* MEGAVIP MOR PARLAK ARKA PLAN EFEKTİ */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(126, 34, 206, 0.05) 50%, transparent 70%);
+            z-index: -2;
+            filter: blur(60px);
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .top-nav {
             width: 100%;
-            max-width: 1100px;
-            margin: 30px auto;
+            max-width: 1000px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(35, 17, 8, 0.85);
-            border: 2px solid #ca8a04;
-            border-radius: 18px;
-            padding: 15px 25px;
-            backdrop-filter: blur(8px);
+            background: rgba(18, 10, 25, 0.85);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 14px;
+            padding: 12px 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
         }
 
-        .back-btn {
-            color: #facc15;
+        .btn-back, .btn-cart {
+            color: #c084fc;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 800;
+            font-size: 13px;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: 0.2s;
+            transition: all 0.2s;
         }
 
-        .back-btn:hover { color: #fff; }
+        .btn-cart {
+            background: rgba(168, 85, 247, 0.15);
+            padding: 8px 16px;
+            border-radius: 10px;
+            border: 1px solid #a855f7;
+        }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
+        .btn-cart:hover {
+            background: #a855f7;
+            color: #120501;
+        }
+
+        .nav-title {
+            color: #f3e8ff;
+            font-size: 15px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .main-wrapper {
+            width: 100%;
+            max-width: 1000px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
+            align-items: stretch;
+            margin-top: 10px;
         }
 
-        @media (max-width: 850px) {
-            .container { grid-template-columns: 1fr; }
-        }
-
-        /* SOL PANEL: MEGAVIP Özellikleri */
-        .vip-details-card {
-            background: rgba(20, 10, 5, 0.8);
-            border: 2px solid #16a34a;
-            border-radius: 18px;
+        .preview-box {
+            background: rgba(18, 10, 25, 0.75);
+            border: 1px solid rgba(168, 85, 247, 0.25);
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(22, 163, 74, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
         }
 
-        .vip-header {
+        .vip-head-banner {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+            border-radius: 16px;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 20px;
+            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.3);
             margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(74, 222, 128, 0.2);
         }
 
         .vip-badge {
-            width: 100px;
-            height: 80px;
-            background: linear-gradient(135deg, #4ade80, #16a34a);
-            color: #052e16;
+            font-size: 38px;
             font-weight: 900;
-            font-size: 16px;
-            border-radius: 16px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 15px rgba(74, 222, 128, 0.4);
-            text-shadow: none;
+            color: #ffffff;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        .vip-title-box h1 {
-            color: #4ade80;
-            font-size: 26px;
+        .vip-subtext {
+            font-size: 12px;
+            font-weight: 800;
+            color: #f3e8ff;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-top: 5px;
         }
 
-        .vip-title-box span {
-            color: #22c55e;
-            font-weight: bold;
-            font-size: 20px;
+        .feature-title {
+            font-size: 14px;
+            font-weight: 900;
+            color: #c084fc;
+            margin-bottom: 15px;
         }
 
-        .features-list {
+        .feature-list {
             list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .features-list li {
-            padding: 10px 0;
+        .feature-item {
+            font-size: 13px;
+            color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .checkout-box {
+            background: rgba(18, 10, 25, 0.85);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .form-header h3 { font-size: 20px; font-weight: 900; color: #ffffff; }
+        .form-header span { color: #22c55e; font-weight: 900; font-size: 22px; }
+
+        .field-group { margin: 15px 0; }
+        .field-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 800;
+            color: #c084fc;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .field-group input {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            outline: none;
+        }
+
+        .field-group input:focus { border-color: #a855f7; }
+
+        /* ADET SAYAÇ ALANI */
+        .quantity-control {
             display: flex;
             align-items: center;
             gap: 12px;
-            border-bottom: 1px dashed rgba(255,255,255,0.1);
-            font-size: 15px;
-        }
-
-        .features-list li i {
-            color: #4ade80;
-        }
-
-        /* SAĞ PANEL: Satın Alma / Ödeme Formu */
-        .checkout-card {
-            background: rgba(35, 17, 8, 0.9);
-            border: 2px solid #ca8a04;
-            border-radius: 18px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #facc15;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px;
-            background: rgba(0,0,0,0.6);
-            border: 1px solid #ca8a04;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            padding: 8px 12px;
             border-radius: 10px;
-            color: #fff;
-            outline: none;
-            font-size: 15px;
+            width: fit-content;
         }
 
-        .pay-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 18px;
+        .qty-btn {
+            background: rgba(168, 85, 247, 0.2);
+            border: 1px solid #a855f7;
+            color: #c084fc;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            font-weight: 900;
+            font-size: 16px;
             cursor: pointer;
-            transition: 0.2s;
-            margin-top: 10px;
             display: flex;
-            justify-content: center;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            transition: all 0.2s;
         }
 
-        .pay-btn:hover {
-            transform: scale(1.02);
-            background: linear-gradient(135deg, #4ade80, #16a34a);
+        .qty-btn:hover { background: #a855f7; color: #fff; }
+
+        .qty-number {
+            font-size: 16px;
+            font-weight: 900;
+            color: #fff;
+            min-width: 24px;
+            text-align: center;
         }
+
+        .btn-add-cart {
+            width: 100%;
+            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+            color: #ffffff;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.3);
+            transition: all 0.2s;
+            margin-top: 15px;
+        }
+
+        .btn-add-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.5);
+        }
+
+        @media (max-width: 800px) { .main-wrapper { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="magaza.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Mağazaya Dön</a>
-        <h2 style="color: #4ade80;">MEGAVIP Özel Menüsü</h2>
-    </header>
+    <div class="top-nav">
+        <a href="magaza.html" class="btn-back">← Mağazaya Dön</a>
+        <div class="nav-title">MEGAVIP Üyelik</div>
+        <a href="sepet.html" class="btn-cart">🛒 Sepetim</a>
+    </div>
 
-    <div class="container">
-        
-        <!-- Rütbe Detayları ve Özellikleri -->
-        <div class="vip-details-card">
-            <div class="vip-header">
-                <div class="vip-badge">MEGAVIP</div>
-                <div class="vip-title-box">
-                    <h1>MEGAVIP Paket Ayrıcalıkları</h1>
-                    <span>100.00 ₺ / 30 Gün</span>
+    <div class="main-wrapper">
+        <div class="preview-box">
+            <div>
+                <div class="vip-head-banner">
+                    <div class="vip-badge">MEGAVIP</div>
+                    <div class="vip-subtext">30 GÜNLÜK ÜYELİK</div>
+                </div>
+
+                <div class="feature-title">PAKET AYRICALIKLARI</div>
+                <ul class="feature-list">
+                    <li class="feature-item">✔ <strong>[MEGAVIP]</strong> Mor Sohbet Başlığı & Rengi</li>
+                    <li class="feature-item">✔ Özel MEGAVIP Kiti & Elmas Set Eşyalar</li>
+                    <li class="feature-item">✔ <strong>/fly</strong> Uçma Komutu</li>
+                    <li class="feature-item">✔ Genişletilmiş Sanal Sandık ( <strong>/enderchest</strong> )</li>
+                    <li class="feature-item">✔ <strong>/heal</strong> ve <strong>/feed</strong> Sağlık Komutları</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="checkout-box">
+            <div>
+                <div class="form-header">
+                    <h3>MEGAVIP Paket</h3>
+                    <div>Toplam Tutar: <span id="totalPrice">100.00 ₺</span></div>
+                </div>
+
+                <div class="field-group">
+                    <label>Minecraft Oyuncu Adın (Nick)</label>
+                    <input type="text" id="mcUser" placeholder="Örn: BayMine" required>
+                </div>
+
+                <!-- ADET SEÇİMİ -->
+                <div class="field-group">
+                    <label>Paket Adedi</label>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQty(-1)">-</button>
+                        <span class="qty-number" id="qtyVal">1</span>
+                        <button class="qty-btn" onclick="changeQty(1)">+</button>
+                    </div>
                 </div>
             </div>
 
-            <ul class="features-list">
-                <li><i class="fa-solid fa-circle-check"></i> Tüm <b>VIP</b> yetkileri dahildir</li>
-                <li><i class="fa-solid fa-circle-check"></i> <b>[MEGAVIP]</b> Özel yeşil sohbet başlığı ve rengi</li>
-                <li><i class="fa-solid fa-circle-check"></i> <b>MegaVIP Kiti</b> ile özel set ve ekipmanlar</li>
-                <li><i class="fa-solid fa-circle-check"></i> Oyuncular arası ışınlanma bekleme süresinde **%50 indirim**</li>
-            </ul>
+            <button class="btn-add-cart" onclick="addToCartAndGo()">
+                🛒 SEPETE EKLE
+            </button>
         </div>
-
-        <!-- Satın Alma Alanı -->
-        <div class="checkout-card">
-            <h2 style="color:#facc15; margin-bottom: 20px;"><i class="fa-solid fa-cart-shopping"></i> Satın Alma İşlemi</h2>
-            <form onsubmit="processOrder(event)">
-                <div class="form-group">
-                    <label>Minecraft Kullanıcı Adınız</label>
-                    <input type="text" id="username" placeholder="Oyundaki adınızı eksiksiz girin" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Ödeme Yöntemi</label>
-                    <select id="paymentMethod" required>
-                        <option value="kart">Kredi / Banka Kartı (Shopier/PayTR)</option>
-                        <option value="papara">Papara / Ininal</option>
-                        <option value="havale">EFT / Havale</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>E-posta Adresiniz (Fiş için)</label>
-                    <input type="email" placeholder="ornek@kunefesmp.com" required>
-                </div>
-
-                <button type="submit" class="pay-btn"><i class="fa-solid fa-lock"></i> 100.00 ₺ Öde ve Rütbeyi Al</button>
-            </form>
-        </div>
-
     </div>
 
     <script>
-    // Discord Webhook Linkini Buraya Yapıştır
-    const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1546471821107265576/MCvXsl0t3OTschGIUkdpYC5S1bUsDVe0errjXzdxEfGdXi3KVTclBjXNYa9dpr5Yb9Ix";
+        const unitPrice = 100.00;
+        let currentQty = 1;
 
-    function processOrder(e) {
-        e.preventDefault();
-        
-        const username = document.getElementById('username').value;
-        const paymentMethod = document.getElementById('paymentMethod').value;
-        const email = document.querySelector('input[type="email"]').value;
-        const pageTitle = document.title.split(' - ')[0]; // Rütbe Adı
+        function changeQty(amount) {
+            currentQty += amount;
+            if (currentQty < 1) currentQty = 1;
+            
+            document.getElementById('qtyVal').innerText = currentQty;
+            const total = unitPrice * currentQty;
+            document.getElementById('totalPrice').innerText = total.toFixed(2) + " ₺";
+        }
 
-        // Discord'a Gönderilecek Mesaj Formatı
-        const payload = {
-            username: "KünefeSMP Mağaza",
-            avatar_url: "https://i.imgur.com/8N4X40c.png", // Varsayılan Bot Logosu
-            embeds: [{
-                title: "🛒 Yeni VIP Siparişi Alındı!",
-                color: 16429320, // Altın Sarısı Renk
-                fields: [
-                    { name: "👤 Oyuncu Adı", value: `\`${username}\``, inline: true },
-                    { name: "💎 Alınan Rütbe", value: pageTitle, inline: true },
-                    { name: "💳 Ödeme Yöntemi", value: paymentMethod.toUpperCase(), inline: true },
-                    { name: "📧 E-Posta", value: email, inline: false }
-                ],
-                footer: { text: "KünefeSMP Sipariş Takip Sistemi" },
-                timestamp: new Date().toISOString()
-            }]
-        };
+        function addToCartAndGo() {
+            const user = document.getElementById('mcUser').value.trim();
+            if (!user) {
+                alert("Lütfen önce Minecraft adınızı giriniz!");
+                return;
+            }
 
-        // Webhook İsteği Gönderimi
-        fetch(DISCORD_WEBHOOK_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        })
-        .then(response => {
-            alert(`Tebrikler ${username}! Siparişiniz yöneticiye iletildi. Lütfen belirttiğiniz ödeme yöntemine göre transferi yapıp Discord sunucumuzdan bildirin.`);
-        })
-        .catch(error => {
-            console.error('Hata:', error);
-            alert('Sipariş iletilirken bir sorun oluştu, lütfen Discord üzerinden iletişime geçin.');
-        });
-    }
-</script>
+            const item = {
+                name: "MEGAVIP Üyelik (30 Gün)",
+                unitPrice: unitPrice,
+                quantity: currentQty,
+                totalPrice: unitPrice * currentQty,
+                username: user
+            };
+
+            localStorage.setItem('kunefeCart', JSON.stringify(item));
+            window.location.href = 'sepet.html';
+        }
+    </script>
 </body>
 </html>
