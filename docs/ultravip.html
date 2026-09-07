@@ -109,7 +109,7 @@
             const savedUser = localStorage.getItem('kunefeUser');
             if (!savedUser || savedUser.trim() === '') {
                 alert("Sepete urun eklemek icin once giris yapmalisiniz!");
-                window.location.href = "login.html";
+                window.location.href = "giris.html";
                 return;
             }
             let cart = JSON.parse(localStorage.getItem('kunefeCart') || "[]");
@@ -124,7 +124,7 @@
             const savedUser = localStorage.getItem('kunefeUser');
             if (!savedUser || savedUser.trim() === '') {
                 alert("Sepeti goruntulemek icin once giris yapmalisiniz!");
-                window.location.href = "login.html";
+                window.location.href = "giris.html";
                 return;
             }
             window.location.href = "sepet.html";
