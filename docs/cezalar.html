@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cezalar - KünefeSMP</title>
+    <!-- Font Awesome İkonları -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #120a05;
+            background-image: radial-gradient(circle, #231108 0%, #0d0603 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 0 20px 40px 20px;
+        }
+
+        /* HEADER / HOTBAR STİLLERİ */
+        header {
+            width: 100%;
+            max-width: 1300px;
+            margin: 40px auto 30px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(35, 17, 8, 0.85);
+            border: 2px solid #ca8a04;
+            border-radius: 18px;
+            padding: 15px 25px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-box {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
+            color: #422006;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background: #facc15;
+            color: #422006;
+        }
+
+        .user-btn {
+            width: 45px;
+            height: 45px;
+            border: 2px solid #ca8a04;
+            border-radius: 12px;
+            color: #facc15;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.2s;
+        }
+
+        .user-btn:hover {
+            background: #ca8a04;
+            color: #fff;
+        }
+
+        /* İÇERİK KUTUSU VE TABLO STİLLERİ */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(35, 17, 8, 0.6);
+            border: 2px solid #ca8a04;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .page-title {
+            text-align: center;
+            color: #facc15;
+            font-size: 28px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ban-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .ban-table th, .ban-table td {
+            padding: 14px 18px;
+            text-align: left;
+        }
+
+        .ban-table th {
+            background-color: rgba(202, 138, 4, 0.2);
+            color: #facc15;
+            border-bottom: 2px solid #ca8a04;
+            font-size: 15px;
+        }
+
+        .ban-table td {
+            border-bottom: 1px solid rgba(202, 138, 4, 0.2);
+            font-size: 14px;
+        }
+
+        .ban-table tr:hover {
+            background-color: rgba(250, 204, 21, 0.05);
+        }
+
+        .badge-ban {
+            background-color: #ef4444;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .badge-mute {
+            background-color: #f97316;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HOTBAR / NAVBAR -->
+    <header>
+        <a href="index.html" class="logo-box">
+            <i class="fa-solid fa-crown"></i>
+        </a>
+
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fa-solid fa-house"></i> ANASAYFA</a></li>
+                <li><a href="magaza.html"><i class="fa-solid fa-cart-shopping"></i> MAĞAZA</a></li>
+                <li><a href="yardim.html"><i class="fa-solid fa-circle-question"></i> YARDIM</a></li>
+                <li><a href="destek.html"><i class="fa-solid fa-headset"></i> DESTEK</a></li>
+                <li><a href="cezalar.html" class="active"><i class="fa-solid fa-ban"></i> CEZALAR</a></li>
+            </ul>
+        </nav>
+
+        <a href="https://discord.gg/Mj6QMcNQ2" target="_blank" class="user-btn">
+            <i class="fa-solid fa-user"></i>
+        </a>
+    </header>
+
+    <!-- CEZALAR İÇERİĞİ -->
+    <div class="container">
+        <h1 class="page-title"><i class="fa-solid fa-gavel"></i> SUNUCU CEZA LİSTESİ</h1>
+        
+        <table class="ban-table">
+            <thead>
+                <tr>
+                    <th>Oyuncu</th>
+                    <th>Ceza Türü</th>
+                    <th>Sebep</th>
+                    <th>Yetkili</th>
+                    <th>Süre</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>AhmetPro123</td>
+                    <td><span class="badge-ban">BAN</span></td>
+                    <td>Hile Kullanımı (X-Ray)</td>
+                    <td>Console</td>
+                    <td>Süresiz</td>
+                </tr>
+                <tr>
+                    <td>Mehmet_TR</td>
+                    <td><span class="badge-mute">MUTE</span></td>
+                    <td>Sohbet / Küfür</td>
+                    <td>Rehber</td>
+                    <td>3 Saat</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
