@@ -278,6 +278,14 @@
         .hidden {
             display: none !important;
         }
+
+        .error-msg {
+            color: #f87171;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -323,18 +331,20 @@
         <div class="auth-container">
             <div class="auth-card">
                 
-                <!-- GİRİŞ & KAYIT FORMLARI (OTURUM YOKSA GÖRÜNÜR) -->
+                <div id="error-box" class="error-msg"></div>
+
+                <!-- GİRİŞ & KAYIT FORMLARI -->
                 <div id="auth-forms-wrapper">
                     <div class="tab-buttons">
-                        <button class="tab-btn active" onclick="switchTab('login')">Giriş Yap</button>
-                        <button class="tab-btn" onclick="switchTab('register')">Kayıt Ol</button>
+                        <button class="tab-btn active" id="tab-login-btn">Giriş Yap</button>
+                        <button class="tab-btn" id="tab-register-btn">Kayıt Ol</button>
                     </div>
 
                     <!-- GİRİŞ YAP FORM -->
-                    <form id="login-form" class="auth-form" onsubmit="handleLogin(event)" style="margin-top: 20px;">
+                    <form id="login-form" class="auth-form" style="margin-top: 20px;">
                         <div class="form-group">
-                            <label for="login-username">Oyuncu Adı (IGN)</label>
-                            <input type="text" id="login-username" placeholder="Oyuncu adın" required>
+                            <label for="login-email">E-posta Adresi</label>
+                            <input type="email" id="login-email" placeholder="ornek@kunefesmp.com" required>
                         </div>
                         <div class="form-group">
                             <label for="login-password">Şifre</label>
@@ -344,7 +354,7 @@
                     </form>
 
                     <!-- KAYIT OL FORM -->
-                    <form id="register-form" class="auth-form hidden" onsubmit="handleRegister(event)" style="margin-top: 20px;">
+                    <form id="register-form" class="auth-form hidden" style="margin-top: 20px;">
                         <div class="form-group">
                             <label for="reg-username">Oyuncu Adı (IGN)</label>
                             <input type="text" id="reg-username" placeholder="Oyuncu adın" required>
@@ -365,90 +375,181 @@
                     </form>
                 </div>
 
-                <!-- PROFİL EKRANI (GİRİŞ YAPILINCA GÖRÜNÜR) -->
+                <!-- PROFİL EKRANI -->
                 <div id="profile-wrapper" class="profile-box hidden">
                     <img id="user-avatar" class="profile-avatar" src="" alt="Avatar">
                     <div class="profile-info">
                         <h2 id="user-name">Oyuncu</h2>
-                        <p id="user-status">Hoş geldin! KünefeSMP Hesabın Aktif.</p>
+                        <p id="user-email-text">E-posta</p>
                     </div>
-                    <button onclick="handleLogout()" class="logout-btn">Çıkış Yap</button>
+                    <button id="logout-btn" class="logout-btn">Çıkış Yap</button>
                 </div>
 
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT MANIKLARI -->
-    <script>
-        function switchTab(tab) {
-            const loginForm = document.getElementById('login-form');
-            const registerForm = document.getElementById('register-form');
-            const buttons = document.querySelectorAll('.tab-btn');
+    <!-- FIREBASE KÜTÜPHANELERİ VE BAĞLANTI -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { 
+            getAuth, 
+            createUserWithEmailAndPassword, 
+            signInWithEmailAndPassword, 
+            signOut, 
+            onAuthStateChanged,
+            updateProfile 
+        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+        // Firebase Console'dan alacağın yapılandırma bilgileri
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Firebase Başlat
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // UI Elemanları
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const authFormsWrapper = document.getElementById('auth-forms-wrapper');
+        const profileWrapper = document.getElementById('profile-wrapper');
+        const errorBox = document.getElementById('error-box');
+        const tabLoginBtn = document.getElementById('tab-login-btn');
+        const tabRegisterBtn = document.getElementById('tab-register-btn');
+        const logoutBtn = document.getElementById('logout-btn');
+
+        // Sekmeler Arası Geçiş
+        tabLoginBtn.addEventListener('click', () => switchTab('login'));
+        tabRegisterBtn.addEventListener('click', () => switchTab('register'));
+
+        function switchTab(tab) {
+            showError('');
             if (tab === 'login') {
                 loginForm.classList.remove('hidden');
                 registerForm.classList.add('hidden');
-                buttons[0].classList.add('active');
-                buttons[1].classList.remove('active');
+                tabLoginBtn.classList.add('active');
+                tabRegisterBtn.classList.remove('active');
             } else {
                 loginForm.classList.add('hidden');
                 registerForm.classList.remove('hidden');
-                buttons[0].classList.remove('active');
-                buttons[1].classList.add('active');
+                tabLoginBtn.classList.remove('active');
+                tabRegisterBtn.classList.add('active');
             }
         }
 
-        // Oturum Durumunu Kontrol Et
-        function checkAuth() {
-            const loggedInUser = localStorage.getItem('kunefe_user');
-            const authWrapper = document.getElementById('auth-forms-wrapper');
-            const profileWrapper = document.getElementById('profile-wrapper');
-
-            if (loggedInUser) {
-                authWrapper.classList.add('hidden');
-                profileWrapper.classList.remove('hidden');
-                document.getElementById('user-name').innerText = loggedInUser;
-                // Minecraft kafa skinini Visage API ile otomatik çeker
-                document.getElementById('user-avatar').src = `https://mc-heads.net/avatar/${loggedInUser}/100`;
+        function showError(msg) {
+            if (msg) {
+                errorBox.innerText = msg;
+                errorBox.style.display = 'block';
             } else {
-                authWrapper.classList.remove('hidden');
-                profileWrapper.classList.add('hidden');
+                errorBox.style.display = 'none';
             }
         }
 
-        // Giriş Yap İşlemi
-        function handleLogin(e) {
+        // --- KAYIT OL ---
+        registerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const username = document.getElementById('login-username').value;
-            localStorage.setItem('kunefe_user', username);
-            checkAuth();
-        }
+            showError('');
 
-        // Kayıt Ol İşlemi
-        function handleRegister(e) {
-            e.preventDefault();
-            const username = document.getElementById('reg-username').value;
-            const pass = document.getElementById('reg-password').value;
-            const passRepeat = document.getElementById('reg-password-repeat').value;
+            const username = document.getElementById('reg-username').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const password = document.getElementById('reg-password').value;
+            const passwordRepeat = document.getElementById('reg-password-repeat').value;
 
-            if (pass !== passRepeat) {
-                alert("Şifreler eşleşmiyor, lütfen kontrol et!");
+            if (password !== passwordRepeat) {
+                showError("Şifreler birbiriyle eşleşmiyor!");
                 return;
             }
 
-            localStorage.setItem('kunefe_user', username);
-            checkAuth();
-        }
+            try {
+                // Firebase Auth Hesabı Oluştur
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
 
-        // Çıkış Yap İşlemi
-        function handleLogout() {
-            localStorage.removeItem('kunefe_user');
-            checkAuth();
-        }
+                // Profil Ismini Güncelle
+                await updateProfile(user, { displayName: username });
 
-        // Sayfa yüklendiğinde oturumu kontrol et
-        checkAuth();
+                // Firestore Veritabanına Kaydet
+                await setDoc(doc(db, "users", user.uid), {
+                    username: username,
+                    email: email,
+                    createdAt: new Date().toISOString()
+                });
+
+            } catch (error) {
+                if (error.code === 'auth/email-already-in-use') {
+                    showError('Bu e-posta adresi zaten kullanımda.');
+                } else if (error.code === 'auth/weak-password') {
+                    showError('Şifre en az 6 karakter olmalıdır.');
+                } else {
+                    showError('Kayıt oluşturulurken bir hata oluştu: ' + error.message);
+                }
+            }
+        });
+
+        // --- GİRİŞ YAP ---
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            showError('');
+
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+            } catch (error) {
+                if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+                    showError('E-posta veya şifre hatalı!');
+                } else {
+                    showError('Giriş yapılırken bir hata oluştu.');
+                }
+            }
+        });
+
+        // --- ÇIKIŞ YAP ---
+        logoutBtn.addEventListener('click', async () => {
+            await signOut(auth);
+        });
+
+        // --- OTURUM DURUMU DİNLEYİCİ ---
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // Oturum Açık
+                authFormsWrapper.classList.add('hidden');
+                profileWrapper.classList.remove('hidden');
+
+                let username = user.displayName;
+
+                // Eğer Firestore'da kayıtlı ek bilgi varsa çek
+                try {
+                    const userDoc = await getDoc(doc(db, "users", user.uid));
+                    if (userDoc.exists()) {
+                        username = userDoc.data().username || username;
+                    }
+                } catch (e) {
+                    console.error("Kullanıcı verisi çekilemedi:", e);
+                }
+
+                const displayName = username || 'Oyuncu';
+                document.getElementById('user-name').innerText = displayName;
+                document.getElementById('user-email-text').innerText = user.email;
+                document.getElementById('user-avatar').src = `https://mc-heads.net/avatar/${displayName}/100`;
+
+            } else {
+                // Oturum Kapalı
+                authFormsWrapper.classList.remove('hidden');
+                profileWrapper.classList.add('hidden');
+            }
+        });
     </script>
 </body>
 </html>
