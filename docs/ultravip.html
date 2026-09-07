@@ -3,280 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ULTRAVIP Rütbe Menüsü - KünefeSMP</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>KünefeSMP | VIP Satın Alma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
         }
 
         body {
-            background-color: #120a05;
-            background-image: radial-gradient(circle, #231108 0%, #0d0603 100%);
-            color: #fff;
+            background-color: #0b0200;
+            color: #ffffff;
             min-height: 100vh;
-            padding: 0 20px 40px 20px;
-        }
-
-        header {
-            width: 100%;
-            max-width: 1100px;
-            margin: 30px auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(35, 17, 8, 0.85);
-            border: 2px solid #ca8a04;
-            border-radius: 18px;
-            padding: 15px 25px;
-            backdrop-filter: blur(8px);
-        }
-
-        .back-btn {
-            color: #facc15;
-            text-decoration: none;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.2s;
-        }
-
-        .back-btn:hover { color: #fff; }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        @media (max-width: 850px) {
-            .container { grid-template-columns: 1fr; }
-        }
-
-        /* SOL PANEL: ULTRAVIP Özellikleri */
-        .vip-details-card {
-            background: rgba(20, 10, 5, 0.8);
-            border: 2px solid #9333ea;
-            border-radius: 18px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.2);
-        }
-
-        .vip-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(192, 132, 252, 0.2);
-        }
-
-        .vip-badge {
-            width: 100px;
-            height: 80px;
-            background: linear-gradient(135deg, #c084fc, #9333ea);
-            color: #3b0764;
-            font-weight: 900;
-            font-size: 15px;
-            border-radius: 16px;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(192, 132, 252, 0.4);
-            text-shadow: none;
+            padding: 20px;
         }
 
-        .vip-title-box h1 {
-            color: #c084fc;
-            font-size: 26px;
+        .main-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .vip-title-box span {
-            color: #22c55e;
-            font-weight: bold;
+        /* --- ÜST BAR --- */
+        .top-bar {
+            width: 100%;
+            background: #190a02;
+            border: 2px solid #b87b00;
+            border-radius: 12px;
+            padding: 12px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            background: #8b5cf6;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .back-btn:hover { opacity: 0.9; }
+
+        .top-title {
+            font-size: 18px;
+            font-weight: 900;
+            color: #d8b4fe;
+        }
+
+        /* --- İÇERİK IZGARASI --- */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+        }
+
+        /* --- SOL PAKET KARTI --- */
+        .package-card {
+            background: #120401;
+            border: 2px solid #a855f7;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .vip-icon-box {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #c084fc, #9333ea);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 900;
+            font-size: 13px;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            text-align: center;
+            padding: 5px;
+        }
+
+        .vip-title-box h2 {
             font-size: 20px;
+            font-weight: 900;
+            color: #d8b4fe;
+        }
+
+        .vip-price {
+            font-size: 16px;
+            font-weight: 800;
+            color: #22c55e;
+            margin-top: 4px;
         }
 
         .features-list {
             list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #e5e7eb;
         }
 
         .features-list li {
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 1px dashed rgba(255,255,255,0.1);
-            font-size: 15px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-bottom: 8px;
         }
 
-        .features-list li i {
-            color: #c084fc;
-        }
+        .features-list strong { color: #ffffff; }
 
-        /* SAĞ PANEL: Satın Alma / Ödeme Formu */
+        /* --- SAĞ SATIN ALMA FORMU --- */
         .checkout-card {
-            background: rgba(35, 17, 8, 0.9);
-            border: 2px solid #ca8a04;
-            border-radius: 18px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: #120401;
+            border: 2px solid #b87b00;
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .checkout-title {
+            font-size: 20px;
+            font-weight: 900;
+            color: #facc15;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
 
         .form-group label {
-            display: block;
-            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: 800;
             color: #facc15;
-            font-weight: bold;
-            font-size: 14px;
         }
 
         .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px;
-            background: rgba(0,0,0,0.6);
-            border: 1px solid #ca8a04;
-            border-radius: 10px;
-            color: #fff;
+            background: #090200;
+            border: 1px solid #b87b00;
+            border-radius: 8px;
+            padding: 12px 14px;
+            color: #ffffff;
+            font-size: 13px;
             outline: none;
-            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .form-group input::placeholder {
+            color: #6b7280;
         }
 
         .pay-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: #fff;
+            background: #16a34a;
+            color: #ffffff;
             border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 18px;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 900;
             cursor: pointer;
-            transition: 0.2s;
             margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            transition: transform 0.1s, background-color 0.2s;
         }
 
         .pay-btn:hover {
-            transform: scale(1.02);
-            background: linear-gradient(135deg, #4ade80, #16a34a);
+            background: #22c55e;
+            transform: scale(1.01);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="magaza.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Mağazaya Dön</a>
-        <h2 style="color: #c084fc;">ULTRAVIP Özel Menüsü</h2>
-    </header>
+    <div class="main-wrapper">
+        <!-- ÜST BAR -->
+        <div class="top-bar">
+            <a href="magaza.html" class="back-btn">Mağazaya Dön</a>
+            <div class="top-title" id="bar-title">ULTRAVIP Özel Menüsü</div>
+        </div>
 
-    <div class="container">
-        
-        <!-- Rütbe Detayları ve Özellikleri -->
-        <div class="vip-details-card">
-            <div class="vip-header">
-                <div class="vip-badge">ULTRAVIP</div>
-                <div class="vip-title-box">
-                    <h1>ULTRAVIP Paket Ayrıcalıkları</h1>
-                    <span>200.00 ₺ / 30 Gün</span>
+        <!-- İÇERİK IZGARASI -->
+        <div class="content-grid">
+            <!-- SOL PAKET DETAYLARI -->
+            <div class="package-card" id="vip-card">
+                <div class="card-header">
+                    <div class="vip-icon-box" id="vip-badge">ULTRAVIP</div>
+                    <div class="vip-title-box">
+                        <h2 id="vip-name">ULTRAVIP Paket Ayrıcalıkları</h2>
+                        <div class="vip-price" id="vip-price">200.00 ₺ / 30 Gün</div>
+                    </div>
                 </div>
+
+                <ul class="features-list" id="vip-features">
+                    <!-- JavaScript dinamik basacak -->
+                </ul>
             </div>
 
-            <ul class="features-list">
-                <li><i class="fa-solid fa-circle-check"></i> Tüm <b>VIP</b> ve <b>MEGAVIP</b> yetkileri dahildir</li>
-                <li><i class="fa-solid fa-circle-check"></i> <b>[ULTRAVIP]</b> Özel mor sohbet başlığı ve rengi</li>
-                <li><i class="fa-solid fa-circle-check"></i> <b>UltraVIP Kiti</b> ile üst düzey büyülenmiş setler</li>
-                <li><i class="fa-solid fa-circle-check"></i> Fazladan 1 adet **Sethome** hakkı</li>
-                <li><i class="fa-solid fa-circle-check"></i> Işınlanma bekleme süresi **Tamamen Sıfır** (Anında TPA)</li>
-            </ul>
+            <!-- SAĞ FORM -->
+            <div class="checkout-card">
+                <div class="checkout-title">Satın Alma İşlemi</div>
+
+                <form id="checkout-form" style="display: flex; flex-direction: column; gap: 15px;">
+                    <div class="form-group">
+                        <label for="username">Minecraft Kullanıcı Adınız</label>
+                        <input type="text" id="username" placeholder="Oyundaki adınızı eksiksiz girin" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="payment-method">Ödeme Yöntemi</label>
+                        <select id="payment-method">
+                            <option value="shopier">Kredi / Banka Kartı (Shopier/PayTR)</option>
+                            <option value="ininal">Papara / Ininal / IBAN</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-posta Adresiniz (Fiş için)</label>
+                        <input type="email" id="email" placeholder="ornek@kunefesmp.com" required>
+                    </div>
+
+                    <button type="submit" class="pay-btn" id="pay-btn-text">200.00 ₺ Öde ve Rütbeyi Al</button>
+                </form>
+            </div>
         </div>
-
-        <!-- Satın Alma Alanı -->
-        <div class="checkout-card">
-            <h2 style="color:#facc15; margin-bottom: 20px;"><i class="fa-solid fa-cart-shopping"></i> Satın Alma İşlemi</h2>
-            <form onsubmit="processOrder(event)">
-                <div class="form-group">
-                    <label>Minecraft Kullanıcı Adınız</label>
-                    <input type="text" id="username" placeholder="Oyundaki adınızı eksiksiz girin" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Ödeme Yöntemi</label>
-                    <select id="paymentMethod" required>
-                        <option value="kart">Kredi / Banka Kartı (Shopier/PayTR)</option>
-                        <option value="papara">Papara / Ininal</option>
-                        <option value="havale">EFT / Havale</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>E-posta Adresiniz (Fiş için)</label>
-                    <input type="email" placeholder="ornek@kunefesmp.com" required>
-                </div>
-
-                <button type="submit" class="pay-btn"><i class="fa-solid fa-lock"></i> 200.00 ₺ Öde ve Rütbeyi Al</button>
-            </form>
-        </div>
-
     </div>
 
     <script>
-    // Discord Webhook Linkini Buraya Yapıştır
-    const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1546471821107265576/MCvXsl0t3OTschGIUkdpYC5S1bUsDVe0errjXzdxEfGdXi3KVTclBjXNYa9dpr5Yb9Ix";
-
-    function processOrder(e) {
-        e.preventDefault();
-        
-        const username = document.getElementById('username').value;
-        const paymentMethod = document.getElementById('paymentMethod').value;
-        const email = document.querySelector('input[type="email"]').value;
-        const pageTitle = document.title.split(' - ')[0]; // Rütbe Adı
-
-        // Discord'a Gönderilecek Mesaj Formatı
-        const payload = {
-            username: "KünefeSMP Mağaza",
-            avatar_url: "https://i.imgur.com/8N4X40c.png", // Varsayılan Bot Logosu
-            embeds: [{
-                title: "🛒 Yeni VIP Siparişi Alındı!",
-                color: 16429320, // Altın Sarısı Renk
-                fields: [
-                    { name: "👤 Oyuncu Adı", value: `\`${username}\``, inline: true },
-                    { name: "💎 Alınan Rütbe", value: pageTitle, inline: true },
-                    { name: "💳 Ödeme Yöntemi", value: paymentMethod.toUpperCase(), inline: true },
-                    { name: "📧 E-Posta", value: email, inline: false }
-                ],
-                footer: { text: "KünefeSMP Sipariş Takip Sistemi" },
-                timestamp: new Date().toISOString()
-            }]
+        // Tüm VIP ayarlarını tek bir yerden değiştirebilirsin
+        const vipConfigs = {
+            VIP: {
+                title: "VIP Özel Menüsü",
+                badgeText: "VIP",
+                badgeColor: "linear-gradient(135deg, #eab308, #ca8a04)", // Sarı tonları
+                cardBorder: "#eab308",
+                glowColor: "rgba(234, 179, 8, 0.2)",
+                titleColor: "#fef08a",
+                priceText: "50.00 ₺ / 30 Gün",
+                btnText: "50.00 ₺ Öde ve Rütbeyi Al",
+                features: [
+                    "<strong>[VIP]</strong> Özel sarı sohbet başlığı ve rengi",
+                    "<strong>VIP Kiti</strong> ile temel büyülü setler",
+                    "Fazladan 1 adet <strong>Sethome</strong> hakkı",
+                    "Işınlanma bekleme süresi <strong>3 Saniye</strong>"
+                ]
+            },
+            MEGAVIP: {
+                title: "MEGAVIP Özel Menüsü",
+                badgeText: "MEGAVIP",
+                badgeColor: "linear-gradient(135deg, #06b6d4, #0891b2)", // Mavi tonları
+                cardBorder: "#06b6d4",
+                glowColor: "rgba(6, 182, 212, 0.2)",
+                titleColor: "#a5f3fc",
+                priceText: "100.00 ₺ / 30 Gün",
+                btnText: "100.00 ₺ Öde ve Rütbeyi Al",
+                features: [
+                    "Tüm <strong>VIP</strong> yetkileri dahildir",
+                    "<strong>[MEGAVIP]</strong> Özel mavi sohbet başlığı ve rengi",
+                    "<strong>MegaVIP Kiti</strong> ile gelişmiş büyülü setler",
+                    "Fazladan 2 adet <strong>Sethome</strong> hakkı",
+                    "Sanal Sandık komutu (<strong>/ender</strong>)"
+                ]
+            },
+            ULTRAVIP: {
+                title: "ULTRAVIP Özel Menüsü",
+                badgeText: "ULTRAVIP",
+                badgeColor: "linear-gradient(135deg, #c084fc, #9333ea)", // Mor tonları
+                cardBorder: "#a855f7",
+                glowColor: "rgba(168, 85, 247, 0.2)",
+                titleColor: "#d8b4fe",
+                priceText: "200.00 ₺ / 30 Gün",
+                btnText: "200.00 ₺ Öde ve Rütbeyi Al",
+                features: [
+                    "Tüm <strong>VIP</strong> ve <strong>MEGAVIP</strong> yetkileri dahildir",
+                    "<strong>[ULTRAVIP]</strong> Özel mor sohbet başlığı ve rengi",
+                    "<strong>UltraVIP Kiti</strong> ile üst düzey büyülü setler",
+                    "Fazladan 3 adet <strong>Sethome</strong> hakkı",
+                    "Işınlanma bekleme süresi <strong>Tamamen Sıfır</strong> (Anında TPA)"
+                ]
+            }
         };
 
-        // Webhook İsteği Gönderimi
-        fetch(DISCORD_WEBHOOK_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        })
-        .then(response => {
-            alert(`Tebrikler ${username}! Siparişiniz yöneticiye iletildi. Lütfen belirttiğiniz ödeme yöntemine göre transferi yapıp Discord sunucumuzdan bildirin.`);
-        })
-        .catch(error => {
-            console.error('Hata:', error);
-            alert('Sipariş iletilirken bir sorun oluştu, lütfen Discord üzerinden iletişime geçin.');
-        });
-    }
-</script>
+        // Hangi VIP gösterilecekse buraya adını yazman yeterli: 'VIP', 'MEGAVIP' veya 'ULTRAVIP'
+        const currentVip = 'ULTRAVIP'; 
+
+        function applyVipConfig(vipKey) {
+            const config = vipConfigs[vipKey];
+            if (!config) return;
+
+            document.getElementById('bar-title').innerText = config.title;
+            document.getElementById('vip-badge').innerText = config.badgeText;
+            document.getElementById('vip-badge').style.background = config.badgeColor;
+            
+            const card = document.getElementById('vip-card');
+            card.style.borderColor = config.cardBorder;
+            card.style.boxShadow = `0 0 20px ${config.glowColor}`;
+
+            document.getElementById('vip-name').innerText = `${config.badgeText} Paket Ayrıcalıkları`;
+            document.getElementById('vip-name').style.color = config.titleColor;
+            document.getElementById('vip-price').innerText = config.priceText;
+            document.getElementById('pay-btn-text').innerText = config.btnText;
+
+            const featuresUl = document.getElementById('vip-features');
+            featuresUl.innerHTML = config.features.map(f => `<li>${f}</li>`).join('');
+
+            // Giriş yapmış kullanıcının adını otomatik getir
+            const savedUser = localStorage.getItem('kunefeUser');
+            if (savedUser) {
+                document.getElementById('username').value = savedUser;
+            }
+        }
+
+        // Sayfa yüklendiğinde seçili konfigürasyonu uygula
+        applyVipConfig(currentVip);
+    </script>
 </body>
 </html>
