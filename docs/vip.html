@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KünefeSMP | VIP Ayrıcalıkları</title>
+    <title>KünefeSMP | VIP Paket</title>
     
     <style>
         * {
@@ -21,33 +21,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
             padding: 20px;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* DİNAMİK PARLAK ARKA PLAN EFEKTİ */
         body::before {
             content: '';
             position: fixed;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 700px;
-            height: 700px;
+            width: 700px; height: 700px;
             background: radial-gradient(circle, rgba(234, 179, 8, 0.2) 0%, rgba(202, 138, 4, 0.05) 50%, transparent 70%);
             z-index: -2;
             filter: blur(60px);
-            animation: pulseGlow 4s infinite alternate ease-in-out;
         }
 
-        @keyframes pulseGlow {
-            0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
-            100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
-        }
-
-        /* 3D IZGARA DESENİ */
         body::after {
             content: '';
             position: fixed;
@@ -59,7 +48,6 @@
             pointer-events: none;
         }
 
-        /* ÜST MENÜ VE SEPET BUTONU */
         .top-nav {
             width: 100%;
             max-width: 1000px;
@@ -73,10 +61,9 @@
             padding: 12px 25px;
             margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-            z-index: 10;
         }
 
-        .btn-back {
+        .btn-back, .btn-cart {
             color: #eab308;
             text-decoration: none;
             font-weight: 800;
@@ -84,10 +71,20 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: transform 0.2s;
+            transition: all 0.2s;
         }
 
-        .btn-back:hover { transform: translateX(-3px); }
+        .btn-cart {
+            background: rgba(234, 179, 8, 0.15);
+            padding: 8px 16px;
+            border-radius: 10px;
+            border: 1px solid #eab308;
+        }
+
+        .btn-cart:hover {
+            background: #eab308;
+            color: #120501;
+        }
 
         .nav-title {
             color: #fef08a;
@@ -97,38 +94,6 @@
             text-transform: uppercase;
         }
 
-        /* SEPET BUTONU */
-        .cart-trigger-btn {
-            background: rgba(234, 179, 8, 0.15);
-            border: 1px solid #eab308;
-            color: #fef08a;
-            padding: 8px 16px;
-            border-radius: 10px;
-            font-weight: 800;
-            font-size: 13px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.2s;
-        }
-
-        .cart-trigger-btn:hover {
-            background: #eab308;
-            color: #120501;
-            box-shadow: 0 0 15px rgba(234, 179, 8, 0.4);
-        }
-
-        .cart-badge {
-            background: #22c55e;
-            color: #fff;
-            font-size: 11px;
-            padding: 2px 7px;
-            border-radius: 20px;
-            font-weight: 900;
-        }
-
-        /* ANA İÇERİK IZGARASI */
         .main-wrapper {
             width: 100%;
             max-width: 1000px;
@@ -139,7 +104,6 @@
             margin-top: 10px;
         }
 
-        /* SOL PANEL (VIP TANITIMI) */
         .preview-box {
             background: rgba(18, 10, 5, 0.75);
             border: 1px solid rgba(234, 179, 8, 0.25);
@@ -208,7 +172,6 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* SAĞ PANEL (SEPETE EKLE FORMU) */
         .checkout-box {
             background: rgba(18, 10, 5, 0.85);
             border: 1px solid rgba(234, 179, 8, 0.3);
@@ -221,26 +184,10 @@
             justify-content: space-between;
         }
 
-        .form-header {
-            margin-bottom: 20px;
-        }
+        .form-header h3 { font-size: 20px; font-weight: 900; color: #ffffff; }
+        .form-header span { color: #22c55e; font-weight: 900; font-size: 22px; }
 
-        .form-header h3 {
-            font-size: 20px;
-            font-weight: 900;
-            color: #ffffff;
-        }
-
-        .form-header span {
-            color: #22c55e;
-            font-weight: 900;
-            font-size: 22px;
-        }
-
-        .field-group {
-            margin-bottom: 20px;
-        }
-
+        .field-group { margin: 25px 0; }
         .field-group label {
             display: block;
             font-size: 11px;
@@ -260,15 +207,10 @@
             font-size: 14px;
             font-weight: 600;
             outline: none;
-            transition: all 0.2s;
         }
 
-        .field-group input:focus {
-            border-color: #eab308;
-            box-shadow: 0 0 12px rgba(234, 179, 8, 0.25);
-        }
+        .field-group input:focus { border-color: #eab308; }
 
-        /* SEPETE EKLE BUTONU */
         .btn-add-cart {
             width: 100%;
             background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
@@ -281,163 +223,14 @@
             cursor: pointer;
             box-shadow: 0 6px 20px rgba(234, 179, 8, 0.3);
             transition: all 0.2s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
         }
 
         .btn-add-cart:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(234, 179, 8, 0.5);
-            background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
         }
 
-        /* SAĞDAN AÇILAN SEPET ÇEKMECESİ (DRAWER) */
-        .cart-drawer-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            z-index: 100;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .cart-drawer-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .cart-drawer {
-            position: fixed;
-            top: 0; right: -420px;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
-            background: #120703;
-            border-left: 2px solid #eab308;
-            z-index: 101;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.9);
-        }
-
-        .cart-drawer.active { right: 0; }
-
-        .drawer-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(234, 179, 8, 0.2);
-        }
-
-        .drawer-header h4 {
-            font-size: 18px;
-            font-weight: 900;
-            color: #facc15;
-        }
-
-        .close-drawer {
-            background: none;
-            border: none;
-            color: #a1a1aa;
-            font-size: 24px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .close-drawer:hover { color: #fff; }
-
-        /* SEPET İÇERİK LİSTESİ */
-        .cart-items {
-            flex-grow: 1;
-            margin: 20px 0;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .cart-item {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(234, 179, 8, 0.2);
-            border-radius: 10px;
-            padding: 12px 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .cart-item-info h5 {
-            font-size: 14px;
-            font-weight: 800;
-            color: #fff;
-        }
-
-        .cart-item-info span {
-            font-size: 12px;
-            color: #22c55e;
-            font-weight: 800;
-        }
-
-        .remove-btn {
-            background: rgba(239, 68, 68, 0.2);
-            border: 1px solid #ef4444;
-            color: #ef4444;
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-size: 11px;
-            cursor: pointer;
-            font-weight: 800;
-        }
-
-        .remove-btn:hover { background: #ef4444; color: #fff; }
-
-        .cart-empty-text {
-            text-align: center;
-            color: #71717a;
-            font-size: 13px;
-            margin-top: 40px;
-        }
-
-        /* PAPARA BİLGİ KUTUSU */
-        .papara-box-drawer {
-            background: rgba(234, 179, 8, 0.08);
-            border: 1px dashed #eab308;
-            border-radius: 10px;
-            padding: 12px;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .papara-box-drawer div { font-size: 10px; color: #a1a1aa; font-weight: 700; }
-        .papara-box-drawer h6 { font-size: 18px; color: #facc15; font-weight: 900; letter-spacing: 1px; }
-
-        .btn-checkout {
-            width: 100%;
-            background: #22c55e;
-            color: #fff;
-            border: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 900;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
-            transition: background 0.2s;
-        }
-
-        .btn-checkout:hover { background: #16a34a; }
-
-        @media (max-width: 800px) {
-            .main-wrapper { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 800px) { .main-wrapper { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -445,15 +238,10 @@
     <div class="top-nav">
         <a href="magaza.html" class="btn-back">← Mağazaya Dön</a>
         <div class="nav-title">VIP Üyelik</div>
-        
-        <button class="cart-trigger-btn" onclick="toggleCart()">
-            🛒 Sepetim 
-            <span class="cart-badge" id="cartCount">0</span>
-        </button>
+        <a href="sepet.html" class="btn-cart">🛒 Sepetim</a>
     </div>
 
     <div class="main-wrapper">
-        
         <div class="preview-box">
             <div>
                 <div class="vip-head-banner">
@@ -484,105 +272,29 @@
                 </div>
             </div>
 
-            <button class="btn-add-cart" onclick="addToCart()">
+            <button class="btn-add-cart" onclick="addToCartAndGo()">
                 🛒 SEPETE EKLE
-            </button>
-        </div>
-
-    </div>
-
-    <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-    
-    <div class="cart-drawer" id="cartDrawer">
-        <div>
-            <div class="drawer-header">
-                <h4>Alışveriş Sepetin</h4>
-                <button class="close-drawer" onclick="toggleCart()">×</button>
-            </div>
-
-            <div class="cart-items" id="cartItems">
-                <div class="cart-empty-text">Sepetiniz şu anda boş.</div>
-            </div>
-        </div>
-
-        <div>
-            <div class="papara-box-drawer" id="paparaDrawerBox" style="display: none;">
-                <div>PAPARA İLE ÖDEME NUMARASI</div>
-                <h6>1588226875</h6>
-                <div style="margin-top:2px; font-size: 9px; color: #d1d5db;">Açıklamaya oyundaki adınızı yazmayı unutmayın!</div>
-            </div>
-
-            <button class="btn-checkout" id="btnCheckout" onclick="completeOrder()" style="display: none;">
-                SİPARİŞİ TAMAMLA
             </button>
         </div>
     </div>
 
     <script>
-        let cart = [];
-
-        function toggleCart() {
-            document.getElementById('cartDrawer').classList.toggle('active');
-            document.getElementById('cartOverlay').classList.toggle('active');
-        }
-
-        function addToCart() {
+        function addToCartAndGo() {
             const user = document.getElementById('mcUser').value.trim();
             if (!user) {
                 alert("Lütfen önce Minecraft adınızı giriniz!");
                 return;
             }
 
-            // Sepete Ekleme İşlemi
-            cart = [{
-                title: "VIP Üyelik (30 Gün)",
+            // Ürünü sepete ekleyip sepet.html'e yönlendirir
+            const item = {
+                name: "VIP Üyelik (30 Gün)",
                 price: 25.00,
                 username: user
-            }];
+            };
 
-            updateCartUI();
-            toggleCart(); // Otomatik olarak sepeti açar
-        }
-
-        function removeFromCart() {
-            cart = [];
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            const cartItemsContainer = document.getElementById('cartItems');
-            const cartCountBadge = document.getElementById('cartCount');
-            const paparaBox = document.getElementById('paparaDrawerBox');
-            const checkoutBtn = document.getElementById('btnCheckout');
-
-            cartCountBadge.innerText = cart.length;
-
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = `<div class="cart-empty-text">Sepetiniz şu anda boş.</div>`;
-                paparaBox.style.display = 'none';
-                checkoutBtn.style.display = 'none';
-            } else {
-                const item = cart[0];
-                cartItemsContainer.innerHTML = `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <h5>${item.title}</h5>
-                            <span>${item.price.toFixed(2)} ₺</span> (${item.username})
-                        </div>
-                        <button class="remove-btn" onclick="removeFromCart()">Kaldır</button>
-                    </div>
-                `;
-                paparaBox.style.display = 'block';
-                checkoutBtn.style.display = 'block';
-            }
-        }
-
-        function completeOrder() {
-            if (cart.length === 0) return;
-            alert("Siparişiniz alındı! " + cart[0].username + " adlı hesabınız için Papara kontrolü yapıldıktan sonra VIP aktif edilecektir.");
-            cart = [];
-            updateCartUI();
-            toggleCart();
+            localStorage.setItem('kunefeCart', JSON.stringify(item));
+            window.location.href = 'sepet.html';
         }
     </script>
 </body>
