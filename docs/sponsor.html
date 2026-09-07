@@ -236,11 +236,49 @@
     </div>
 
     <script>
-        function processOrder(e) {
-            e.preventDefault();
-            const user = document.getElementById('username').value;
-            alert(`Tebrikler ${user}! SPONSOR rütbe siparişiniz alındı. Ödeme ekranına aktarılıyorsunuz...`);
-        }
-    </script>
+    // Discord Webhook Linkini Buraya Yapıştır
+    const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1546471821107265576/MCvXsl0t3OTschGIUkdpYC5S1bUsDVe0errjXzdxEfGdXi3KVTclBjXNYa9dpr5Yb9Ix";
+
+    function processOrder(e) {
+        e.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const paymentMethod = document.getElementById('paymentMethod').value;
+        const email = document.querySelector('input[type="email"]').value;
+        const pageTitle = document.title.split(' - ')[0]; // Rütbe Adı
+
+        // Discord'a Gönderilecek Mesaj Formatı
+        const payload = {
+            username: "KünefeSMP Mağaza",
+            avatar_url: "https://i.imgur.com/8N4X40c.png", // Varsayılan Bot Logosu
+            embeds: [{
+                title: "🛒 Yeni VIP Siparişi Alındı!",
+                color: 16429320, // Altın Sarısı Renk
+                fields: [
+                    { name: "👤 Oyuncu Adı", value: `\`${username}\``, inline: true },
+                    { name: "💎 Alınan Rütbe", value: pageTitle, inline: true },
+                    { name: "💳 Ödeme Yöntemi", value: paymentMethod.toUpperCase(), inline: true },
+                    { name: "📧 E-Posta", value: email, inline: false }
+                ],
+                footer: { text: "KünefeSMP Sipariş Takip Sistemi" },
+                timestamp: new Date().toISOString()
+            }]
+        };
+
+        // Webhook İsteği Gönderimi
+        fetch(DISCORD_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(response => {
+            alert(`Tebrikler ${username}! Siparişiniz yöneticiye iletildi. Lütfen belirttiğiniz ödeme yöntemine göre transferi yapıp Discord sunucumuzdan bildirin.`);
+        })
+        .catch(error => {
+            console.error('Hata:', error);
+            alert('Sipariş iletilirken bir sorun oluştu, lütfen Discord üzerinden iletişime geçin.');
+        });
+    }
+</script>
 </body>
 </html>
