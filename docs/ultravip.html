@@ -432,7 +432,10 @@
         <div class="top-bar">
             <a href="magaza.html" class="back-btn">← Mağazaya Dön</a>
             <div class="top-title" id="bar-title">ULTRAVIP ÜYELİK</div>
-            <button class="cart-btn">
+            <button class="cart-btn" onclick="goToCart()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+    Sepetim
+</button>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
                 Sepetim
             </button>
@@ -601,10 +604,10 @@
     // Doğrudan Sepet Sayfasına Yönlendir
     window.location.href = "sepet.html"; // Sepet sayfanızın adı neyse onu yazın (örn: sepetim.html)
 }
-        function addToCart() {
+function addToCart() {
     const user = document.getElementById('logged-username').innerText;
     
-    // Sepete eklenecek ürün nesnesi
+    // Sepete eklenecek veri
     const cartItem = {
         id: currentVipKey,
         title: vipData[currentVipKey].name,
@@ -614,65 +617,34 @@
         totalPrice: vipData[currentVipKey].unitPrice * quantity
     };
 
-    // Tarayıcının hafızasındaki (localStorage) mevcut sepeti al
+    // Mevcut sepeti al
     let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
 
-    // Aynı ürün daha önce eklenmiş mi kontrol et
+    // Ürün sepette zaten var mı kontrol et
     const existingIndex = cart.findIndex(item => item.id === cartItem.id);
 
     if (existingIndex > -1) {
-        // Zaten varsa adetini ve toplam fiyatını güncelle
         cart[existingIndex].quantity += quantity;
         cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
     } else {
-        // Yoksa sepete yeni ürün olarak ekle
         cart.push(cartItem);
     }
 
-    // Güncellenmiş sepeti hafızaya kaydet
-    localStorage.getItem('kunefeCart') ? localStorage.setItem('kunefeCart', JSON.stringify(cart)) : localStorage.setItem('kunefeCart', JSON.stringify([cartItem]));
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
 
-    // Doğrudan Sepet Sayfasına Yönlendir
-    window.location.href = "sepet.html"; // Sepet sayfanızın adı neyse onu yazın (örn: sepetim.html)
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
 }
-        function addToCart() {
-    const user = document.getElementById('logged-username').innerText;
-    
-    // Sepete eklenecek ürün nesnesi
-    const cartItem = {
-        id: currentVipKey,
-        title: vipData[currentVipKey].name,
-        price: vipData[currentVipKey].unitPrice,
-        quantity: quantity,
-        user: user,
-        totalPrice: vipData[currentVipKey].unitPrice * quantity
-    };
 
-    // Tarayıcının hafızasındaki (localStorage) mevcut sepeti al
-    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-
-    // Aynı ürün daha önce eklenmiş mi kontrol et
-    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
-
-    if (existingIndex > -1) {
-        // Zaten varsa adetini ve toplam fiyatını güncelle
-        cart[existingIndex].quantity += quantity;
-        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
-    } else {
-        // Yoksa sepete yeni ürün olarak ekle
-        cart.push(cartItem);
-    }
-
-    // Güncellenmiş sepeti hafızaya kaydet
-    localStorage.getItem('kunefeCart') ? localStorage.setItem('kunefeCart', JSON.stringify(cart)) : localStorage.setItem('kunefeCart', JSON.stringify([cartItem]));
-
-    // Doğrudan Sepet Sayfasına Yönlendir
-    window.location.href = "sepet.html"; // Sepet sayfanızın adı neyse onu yazın (örn: sepetim.html)
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
 }
-        function addToCart() {
+function addToCart() {
     const user = document.getElementById('logged-username').innerText;
     
-    // Sepete eklenecek ürün nesnesi
+    // Sepete eklenecek veri
     const cartItem = {
         id: currentVipKey,
         title: vipData[currentVipKey].name,
@@ -682,26 +654,3729 @@
         totalPrice: vipData[currentVipKey].unitPrice * quantity
     };
 
-    // Tarayıcının hafızasındaki (localStorage) mevcut sepeti al
+    // Mevcut sepeti al
     let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
 
-    // Aynı ürün daha önce eklenmiş mi kontrol et
+    // Ürün sepette zaten var mı kontrol et
     const existingIndex = cart.findIndex(item => item.id === cartItem.id);
 
     if (existingIndex > -1) {
-        // Zaten varsa adetini ve toplam fiyatını güncelle
         cart[existingIndex].quantity += quantity;
         cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
     } else {
-        // Yoksa sepete yeni ürün olarak ekle
         cart.push(cartItem);
     }
 
-    // Güncellenmiş sepeti hafızaya kaydet
-    localStorage.getItem('kunefeCart') ? localStorage.setItem('kunefeCart', JSON.stringify(cart)) : localStorage.setItem('kunefeCart', JSON.stringify([cartItem]));
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
 
-    // Doğrudan Sepet Sayfasına Yönlendir
-    window.location.href = "sepet.html"; // Sepet sayfanızın adı neyse onu yazın (örn: sepetim.html)
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
+}
+function addToCart() {
+    const user = document.getElementById('logged-username').innerText;
+    
+    // Sepete eklenecek veri
+    const cartItem = {
+        id: currentVipKey,
+        title: vipData[currentVipKey].name,
+        price: vipData[currentVipKey].unitPrice,
+        quantity: quantity,
+        user: user,
+        totalPrice: vipData[currentVipKey].unitPrice * quantity
+    };
+
+    // Mevcut sepeti al
+    let cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
+
+    // Ürün sepette zaten var mı kontrol et
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+        cart[existingIndex].totalPrice = cart[existingIndex].quantity * cart[existingIndex].price;
+    } else {
+        cart.push(cartItem);
+    }
+
+    // Tarayıcı hafızasına kaydet
+    localStorage.setItem('kunefeCart', JSON.stringify(cart));
+
+    // Doğrudan sepet sayfasına git
+    window.location.href = "sepet.html";
+}
+
+// Üstteki "Sepetim" butonuna basınca sepet sayfasına geçiş fonksiyonu
+function goToCart() {
+    window.location.href = "sepet.html";
 }
     </script>
 </body>
