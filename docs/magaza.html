@@ -38,7 +38,25 @@
 
         .p-title { font-size: 15px; font-weight: 900; }
         .p-price { font-size: 20px; font-weight: 900; color: #22c55e; }
-        .buy-btn { background: linear-gradient(135deg, #fef08a, #facc15); color: #422006; border: none; padding: 10px 0; width: 100%; border-radius: 10px; font-weight: 900; cursor: pointer; text-decoration: none; }
+        
+        /* Satın Al Buton / Link Tarafı */
+        .buy-btn { 
+            background: linear-gradient(135deg, #fef08a, #facc15); 
+            color: #422006; 
+            border: none; 
+            padding: 10px 0; 
+            width: 100%; 
+            border-radius: 10px; 
+            font-weight: 900; 
+            cursor: pointer; 
+            text-decoration: none; 
+            display: block;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+        .buy-btn:hover {
+            transform: scale(1.03);
+            filter: brightness(1.05);
+        }
     </style>
 </head>
 <body>
@@ -77,31 +95,31 @@
                     <div class="badge vip">VIP</div>
                     <div class="p-title">VIP - 30 GÜN</div>
                     <div class="p-price">25.00 ₺</div>
-                    <button class="buy-btn">SATIN AL</button>
+                    <a href="vip.html" class="buy-btn">SATIN AL</a>
                 </div>
                 <div class="product-card">
                     <div class="badge megavip">MEGAVIP</div>
                     <div class="p-title">MEGAVIP - 30 GÜN</div>
                     <div class="p-price">100.00 ₺</div>
-                    <button class="buy-btn">SATIN AL</button>
+                    <a href="megavip.html" class="buy-btn">SATIN AL</a>
                 </div>
                 <div class="product-card">
                     <div class="badge ultravip">ULTRAVIP</div>
                     <div class="p-title">ULTRAVIP - 30 GÜN</div>
                     <div class="p-price">200.00 ₺</div>
-                    <button class="buy-btn">SATIN AL</button>
+                    <a href="ultravip.html" class="buy-btn">SATIN AL</a>
                 </div>
                 <div class="product-card">
                     <div class="badge kunefevip">KÜNEFEVIP</div>
                     <div class="p-title">KUNEFEVIP - 30 GÜN</div>
                     <div class="p-price">300.00 ₺</div>
-                    <button class="buy-btn">SATIN AL</button>
+                    <a href="kunefevip.html" class="buy-btn">SATIN AL</a>
                 </div>
                 <div class="product-card">
                     <div class="badge sponsor">SPONSOR</div>
                     <div class="p-title">SPONSOR - SÜRESİZ</div>
                     <div class="p-price">2,000.00 ₺</div>
-                    <button class="buy-btn">SATIN AL</button>
+                    <a href="sponsor.html" class="buy-btn">SATIN AL</a>
                 </div>
             </div>
         </div>
