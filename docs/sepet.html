@@ -3,327 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KünefeSMP | Sepetim</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <title>KünefeSMP | Sepet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             user-select: none;
         }
 
         body {
-            background-color: #0d0401;
+            background: #09070f;
             background-image: 
-                linear-gradient(rgba(202, 138, 4, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(202, 138, 4, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
+                radial-gradient(at 10% 10%, rgba(168, 85, 247, 0.12) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, rgba(245, 158, 11, 0.12) 0px, transparent 50%);
             color: #ffffff;
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            padding-top: 30px;
-            padding-bottom: 30px;
+            align-items: center;
+            padding: 20px;
         }
 
-        .main-wrapper {
+        .container {
             width: 100%;
-            max-width: 1050px;
+            max-width: 950px;
             display: flex;
             flex-direction: column;
             gap: 20px;
-            padding: 0 15px;
         }
 
         /* --- ÜST BAR --- */
-        .top-bar {
-            width: 100%;
-            background: rgba(25, 10, 2, 0.9);
-            border: 1.5px solid #855302;
-            border-radius: 12px;
-            padding: 12px 20px;
+        .navbar {
+            background: rgba(22, 18, 36, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 14px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-        .back-btn {
-            background: transparent;
-            color: #facc15;
-            border: none;
-            font-weight: 800;
-            font-size: 13px;
-            cursor: pointer;
+        .nav-btn {
+            color: #a78bfa;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: color 0.2s;
+            font-weight: 700;
+            font-size: 14px;
         }
 
-        .back-btn:hover { color: #ffffff; }
-
-        .top-title {
-            font-size: 15px;
+        .nav-title {
             font-weight: 900;
-            color: #ffffff;
             letter-spacing: 1px;
-            text-transform: uppercase;
+            font-size: 16px;
+            color: #fff;
         }
 
-        /* --- İÇERİK IZGARASI --- */
-        .cart-grid {
+        /* --- İÇERİK --- */
+        .grid {
             display: grid;
-            grid-template-columns: 1fr 340px;
+            grid-template-columns: 1fr 320px;
             gap: 20px;
         }
 
-        @media (max-width: 850px) {
-            .cart-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
 
-        /* --- SOL TARAF: ÜRÜN LİSTESİ --- */
-        .cart-items-card {
-            background: rgba(20, 8, 2, 0.85);
-            border: 1px solid #523202;
-            border-radius: 16px;
-            padding: 25px;
+        .glass-card {
+            background: rgba(18, 14, 29, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 16px;
         }
 
-        .cart-item {
-            background: rgba(10, 4, 1, 0.6);
-            border: 1px solid rgba(202, 138, 4, 0.2);
-            border-radius: 12px;
-            padding: 15px;
+        .item-row {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 16px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 15px;
         }
 
-        .item-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
+        .item-name { font-weight: 800; font-size: 16px; }
+        .item-sub { font-size: 13px; color: #22c55e; font-weight: 700; margin-top: 4px; }
 
-        .item-title {
-            font-size: 16px;
-            font-weight: 900;
-            color: #ffffff;
-        }
-
-        .item-price {
-            font-size: 13px;
-            font-weight: 800;
-            color: #22c55e;
-        }
-
-        .item-actions {
+        .controls {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
-        /* Adet Sayacı */
-        .quantity-control {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 4px;
-            border-radius: 8px;
-            border: 1px solid #422502;
-        }
-
-        .qty-btn {
-            background: rgba(202, 138, 4, 0.2);
-            border: 1px solid #ca8a04;
-            color: #facc15;
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 900;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.2s;
-        }
-
-        .qty-btn:hover {
-            background: #ca8a04;
-            color: #0d0401;
-        }
-
-        .qty-input {
+        .btn-sm {
             width: 30px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 900;
-            color: #ffffff;
-            background: transparent;
-            border: none;
-            outline: none;
+            height: 30px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-weight: 800;
+            cursor: pointer;
         }
 
-        .delete-btn {
+        .btn-sm:hover { background: #f59e0b; color: #000; }
+
+        .del-btn {
             background: rgba(239, 68, 68, 0.15);
             border: 1px solid #ef4444;
             color: #ef4444;
-            padding: 8px 12px;
+            padding: 6px 12px;
             border-radius: 8px;
-            cursor: pointer;
             font-weight: 800;
             font-size: 12px;
-            transition: all 0.2s;
+            cursor: pointer;
         }
 
-        .delete-btn:hover {
-            background: #ef4444;
-            color: #ffffff;
-        }
-
-        .empty-cart {
-            text-align: center;
-            padding: 40px 20px;
-            color: #9ca3af;
-            font-size: 15px;
-            font-weight: 800;
-        }
-
-        /* --- SAĞ TARAF: ÖZET VE TOPLAM TUTAR --- */
-        .summary-card {
-            background: rgba(20, 8, 2, 0.85);
-            border: 1px solid #523202;
-            border-radius: 16px;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            height: fit-content;
-        }
+        .del-btn:hover { background: #ef4444; color: #fff; }
 
         .summary-title {
-            font-size: 16px;
-            font-weight: 900;
-            color: #facc15;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid rgba(202, 138, 4, 0.2);
+            font-size: 14px;
+            font-weight: 800;
+            color: #a78bfa;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             padding-bottom: 10px;
         }
 
-        .summary-row {
+        .sum-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            font-size: 13.5px;
-            font-weight: 800;
-            color: #d1d5db;
+            font-size: 14px;
+            font-weight: 700;
+            color: #9ca3af;
         }
 
-        .summary-row.total {
-            font-size: 18px;
-            color: #ffffff;
-            border-top: 1px dashed rgba(202, 138, 4, 0.3);
-            padding-top: 15px;
-            margin-top: 5px;
-        }
-
-        .summary-row.total .total-amount {
-            color: #22c55e;
+        .sum-total {
             font-size: 22px;
             font-weight: 900;
+            color: #22c55e;
         }
 
-        .user-box {
-            background: rgba(10, 4, 1, 0.8);
-            border: 1px solid #422502;
-            border-radius: 8px;
-            padding: 10px 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #ffffff;
-            font-size: 13px;
-            font-weight: 800;
-        }
-
-        .user-box svg {
-            fill: #a855f7;
-            width: 16px;
-            height: 16px;
-        }
-
-        .checkout-btn {
-            background: linear-gradient(135deg, #22c55e, #15803d);
-            color: #ffffff;
+        .pay-btn {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #fff;
             border: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 14px;
+            padding: 16px;
+            border-radius: 12px;
             font-weight: 900;
+            font-size: 15px;
             cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
-            transition: transform 0.2s, filter 0.2s;
+            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+            transition: 0.2s;
         }
 
-        .checkout-btn:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.1);
-        }
+        .pay-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
     </style>
 </head>
 <body>
 
-    <div class="main-wrapper">
-        <!-- ÜST BAR -->
-        <div class="top-bar">
-            <a href="magaza.html" class="back-btn">← Mağazaya Dön</a>
-            <div class="top-title">SEPETİM</div>
-            <div></div> <!-- Dengeleme için boş div -->
+    <div class="container">
+        <div class="navbar">
+            <a href="vip.html" class="nav-btn">← Mağazaya Dön</a>
+            <div class="nav-title">SEPETİNİZ</div>
+            <div></div>
         </div>
 
-        <!-- İÇERİK IZGARASI -->
-        <div class="cart-grid">
-            <!-- SOL: SEPETTEKİ ÜRÜNLER -->
-            <div class="cart-items-card" id="cart-items-container">
-                <!-- JavaScript burayı dolduracak -->
+        <div class="grid">
+            <div class="glass-card" id="cart-list">
+                <!-- JS dolduracak -->
             </div>
 
-            <!-- SAĞ: ÖZET VE TOPLAM YAZISI -->
-            <div class="summary-card">
-                <div class="summary-title">SIPARIŞ ÖZETI</div>
-
-                <div>
-                    <div style="font-size: 11px; font-weight: 800; color: #facc15; margin-bottom: 6px;">GİRİŞ YAPILAN HESAP</div>
-                    <div class="user-box">
-                        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                        <span id="logged-username">asd</span>
-                    </div>
-                </div>
-
-                <div class="summary-row">
+            <div class="glass-card" style="height: fit-content;">
+                <div class="summary-title">ÖDENECEK TUTAR</div>
+                
+                <div class="sum-row">
                     <span>Toplam Adet:</span>
-                    <span id="total-count">0 Adet</span>
+                    <span id="tot-count" style="color: #fff;">0</span>
                 </div>
 
-                <div class="summary-row total">
-                    <span>Toplam Tutar:</span>
-                    <span class="total-amount" id="total-price">0.00 ₺</span>
+                <div class="sum-row" style="align-items: center; margin-top: 10px;">
+                    <span>Toplam:</span>
+                    <span class="sum-total" id="tot-price">0.00 ₺</span>
                 </div>
 
-                <button class="checkout-btn" onclick="proceedToCheckout()">ÖDEMEYE GEÇ</button>
+                <button class="pay-btn" onclick="checkout()">ÖDEMEYİ TAMAMLA</button>
             </div>
         </div>
     </div>
@@ -332,99 +200,75 @@
         let cart = [];
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Kullanıcı adını yükle
-            const savedUser = localStorage.getItem('kunefeUser');
-            if (savedUser) {
-                document.getElementById('logged-username').innerText = savedUser;
-            }
-
-            // Sepeti yükle ve çiz
-            loadCart();
+            render();
         });
 
-        function loadCart() {
+        function render() {
             try {
                 cart = JSON.parse(localStorage.getItem('kunefeCart')) || [];
-            } catch (e) {
-                cart = [];
-            }
-            renderCart();
-        }
+            } catch(e) { cart = []; }
 
-        function renderCart() {
-            const container = document.getElementById('cart-items-container');
-            
+            const listEl = document.getElementById('cart-list');
+
             if (cart.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-cart">
-                        🛒 Sepetiniz şu anda boş.<br><br>
-                        <a href="magaza.html" style="color: #facc15; text-decoration: underline;">Mağazaya dönüp ürün ekleyebilirsiniz.</a>
-                    </div>
-                `;
-                document.getElementById('total-count').innerText = "0 Adet";
-                document.getElementById('total-price').innerText = "0.00 ₺";
+                listEl.innerHTML = '<div style="text-align: center; color: #9ca3af; padding: 40px; font-weight: 700;">Sepetiniz boş.</div>';
+                document.getElementById('tot-count').innerText = "0";
+                document.getElementById('tot-price').innerText = "0.00 ₺";
                 return;
             }
 
             let html = '';
-            let totalAmount = 0;
-            let totalCount = 0;
+            let grandTotal = 0;
+            let grandCount = 0;
 
-            cart.forEach((item, index) => {
-                const itemTotal = item.price * item.quantity;
-                totalAmount += itemTotal;
-                totalCount += item.quantity;
+            cart.forEach((item, idx) => {
+                const itemPrice = Number(item.price) || 0;
+                const itemQty = Number(item.quantity) || 1;
+                const total = itemPrice * itemQty;
+
+                grandTotal += total;
+                grandCount += itemQty;
 
                 html += `
-                    <div class="cart-item">
-                        <div class="item-info">
-                            <div class="item-title">${item.title}</div>
-                            <div class="item-price">${itemTotal.toFixed(2)} ₺ (${item.price} ₺ / adet)</div>
+                    <div class="item-row">
+                        <div>
+                            <div class="item-name">${item.title || 'Ürün'}</div>
+                            <div class="item-sub">${total.toFixed(2)} ₺ (${itemPrice.toFixed(2)} ₺ / adet)</div>
                         </div>
-
-                        <div class="item-actions">
-                            <div class="quantity-control">
-                                <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                                <input type="text" class="qty-input" value="${item.quantity}" readonly>
-                                <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
-                            </div>
-                            <button class="delete-btn" onclick="removeItem(${index})">Sil</button>
+                        <div class="controls">
+                            <button class="btn-sm" onclick="modQty(${idx}, -1)">-</button>
+                            <span style="font-weight: 800;">${itemQty}</span>
+                            <button class="btn-sm" onclick="modQty(${idx}, 1)">+</button>
+                            <button class="del-btn" onclick="delItem(${idx})">Sil</button>
                         </div>
                     </div>
                 `;
             });
 
-            container.innerHTML = html;
-            document.getElementById('total-count').innerText = `${totalCount} Adet`;
-            document.getElementById('total-price').innerText = `${totalAmount.toFixed(2)} ₺`;
+            listEl.innerHTML = html;
+            document.getElementById('tot-count').innerText = grandCount;
+            document.getElementById('tot-price').innerText = grandTotal.toFixed(2) + ' ₺';
         }
 
-        function changeQty(index, change) {
-            cart[index].quantity += change;
-            if (cart[index].quantity < 1) {
-                cart[index].quantity = 1;
-            }
-            saveAndRefresh();
+        function modQty(idx, change) {
+            cart[idx].quantity = (Number(cart[idx].quantity) || 1) + change;
+            if (cart[idx].quantity < 1) cart[idx].quantity = 1;
+            save();
         }
 
-        function removeItem(index) {
-            cart.splice(index, 1);
-            saveAndRefresh();
+        function delItem(idx) {
+            cart.splice(idx, 1);
+            save();
         }
 
-        function saveAndRefresh() {
+        function save() {
             localStorage.setItem('kunefeCart', JSON.stringify(cart));
-            renderCart();
+            render();
         }
 
-        function proceedToCheckout() {
-            if (cart.length === 0) {
-                alert("Sepetiniz boş!");
-                return;
-            }
-            alert("Ödeme sayfasına yönlendiriliyorsunuz...");
-            // Buraya ödeme sayfanızın adını koyabilirsiniz:
-            // window.location.href = "odeme.html";
+        function checkout() {
+            if(cart.length === 0) return alert("Sepetiniz boş!");
+            alert("Sipariş alındı! Ödeme sayfasına yönlendiriliyorsunuz.");
         }
     </script>
 </body>
