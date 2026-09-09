@@ -195,6 +195,19 @@
             border-bottom: 1px solid rgba(202, 138, 4, 0.15);
         }
 
+        .player-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .player-head {
+            width: 26px;
+            height: 26px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
         .badge-ban {
             background: #ef4444;
             color: #ffffff;
@@ -278,7 +291,7 @@
                 </li>
                 <li>
                     <a href="cezalar.html" class="active">
-                        <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm5.31-3.1L6.1 5.69C7.45 4.63 9.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z"/></svg>
+                        <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm5.31-3.1L6.1 5.69C7.45 4.63 9.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85 me-1.69 4.9z"/></svg>
                         CEZALAR
                     </a>
                 </li>
@@ -315,49 +328,61 @@
     </div>
 
     <script>
-        const penalties = [
-            {
-                player: "xWemmbux",
-                type: "BAN",
-                reason: "Yetkiliye Saygısızlık",
-                staff: "UnplugMC",
-                duration: "Süresiz"
-            }
-        ];
-
-        function renderPenalties() {
+        async function fetchAndRenderPenalties() {
             const tbody = document.getElementById('penalty-list-body');
             const noPenaltyMsg = document.getElementById('no-penalty-msg');
 
             tbody.innerHTML = '';
 
-            if (penalties.length === 0) {
+            try {
+                // cezalar.json dosyasından canlı veri çekme
+                const response = await fetch('cezalar.json');
+                if (!response.ok) throw new Error('JSON dosyası okunamadı');
+                
+                const rawData = await response.json();
+
+                // Boş olan satırları filtrele (sadece oyuncu adı dolu olanları al)
+                const activePenalties = rawData.filter(item => item.oyuncu && item.oyuncu.trim() !== "");
+
+                if (activePenalties.length === 0) {
+                    noPenaltyMsg.style.display = 'block';
+                    return;
+                }
+
+                noPenaltyMsg.style.display = 'none';
+
+                activePenalties.forEach(item => {
+                    const tr = document.createElement('tr');
+
+                    let badgeClass = 'badge-ban';
+                    const turUpper = (item.tur || '').toUpperCase();
+                    if (turUpper === 'MUTE') badgeClass = 'badge-mute';
+                    if (turUpper === 'KICK') badgeClass = 'badge-kick';
+
+                    tr.innerHTML = `
+                        <td>
+                            <div class="player-cell">
+                                <img src="https://mc-heads.net/avatar/${item.oyuncu}/26" class="player-head" alt="${item.oyuncu}" onError="this.src='https://mc-heads.net/avatar/Steve/26'">
+                                ${item.oyuncu}
+                            </div>
+                        </td>
+                        <td><span class="${badgeClass}">${item.tur}</span></td>
+                        <td>${item.sebep}</td>
+                        <td>${item.yetkili}</td>
+                        <td>${item.sure}</td>
+                    `;
+
+                    tbody.appendChild(tr);
+                });
+
+            } catch (error) {
+                console.error("Hata:", error);
                 noPenaltyMsg.style.display = 'block';
-                return;
+                noPenaltyMsg.innerText = "Cezalar yüklenirken bir hata oluştu veya 'cezalar.json' dosyası bulunamadı.";
             }
-
-            noPenaltyMsg.style.display = 'none';
-
-            penalties.forEach(item => {
-                const tr = document.createElement('tr');
-
-                let badgeClass = 'badge-ban';
-                if (item.type.toUpperCase() === 'MUTE') badgeClass = 'badge-mute';
-                if (item.type.toUpperCase() === 'KICK') badgeClass = 'badge-kick';
-
-                tr.innerHTML = `
-                    <td>${item.player}</td>
-                    <td><span class="${badgeClass}">${item.type}</span></td>
-                    <td>${item.reason}</td>
-                    <td>${item.staff}</td>
-                    <td>${item.duration}</td>
-                `;
-
-                tbody.appendChild(tr);
-            });
         }
 
-        renderPenalties();
+        fetchAndRenderPenalties();
     </script>
 </body>
 </html>
