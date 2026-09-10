@@ -394,6 +394,22 @@
                 }, 2000);
             });
         }
+
+    async function fetchPlayerCount() {
+        const subText = document.querySelector('.ip-card .sub-text');
+        try {
+            const response = await fetch('https://api.mcsrvstat.us/2/oyna.kunefesmp.com.tr');
+            const data = await response.json();
+            if (data.online && data.players) {
+                subText.innerText = `${data.players.online} / ${data.players.max} oyuncu aktif.`;
+            } else {
+                subText.innerText = 'Sunucu şu an çevrimdışı.';
+            }
+        } catch (e) {
+            subText.innerText = 'Oyuncu sayısı alınamadı.';
+        }
+    }
+    fetchPlayerCount();
     </script>
 </body>
 </html>
