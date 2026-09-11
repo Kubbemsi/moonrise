@@ -128,7 +128,7 @@
         /* --- AUTH & PROFILE CONTAINER --- */
         .auth-container {
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
             z-index: 10;
             margin: auto 0;
         }
@@ -236,31 +236,18 @@
             filter: brightness(1.06);
         }
 
-        /* Mesaj Kutuları */
+        /* Hata Mesajı */
         .error-msg {
             color: #f87171;
             background: rgba(239, 68, 68, 0.12);
             border: 1px solid rgba(239, 68, 68, 0.4);
-            padding: 14px 16px;
+            padding: 12px 16px;
             border-radius: 12px;
             font-size: 13px;
             font-weight: 700;
             text-align: center;
             display: none;
             line-height: 1.4;
-        }
-
-        .success-msg {
-            color: #86efac;
-            background: rgba(34, 197, 94, 0.12);
-            border: 1px solid rgba(34, 197, 94, 0.4);
-            padding: 16px 18px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 700;
-            text-align: center;
-            display: none;
-            line-height: 1.5;
         }
 
         /* --- PROFİL SEKSİYONU --- */
@@ -294,18 +281,6 @@
             color: #d1d5db;
             font-weight: 700;
             margin-top: 4px;
-        }
-
-        .verify-tag {
-            display: inline-block;
-            margin-top: 8px;
-            font-size: 11px;
-            font-weight: 800;
-            padding: 6px 14px;
-            border-radius: 20px;
-            background: rgba(34, 197, 94, 0.15);
-            border: 1px solid #22c55e;
-            color: #86efac;
         }
 
         .logout-btn {
@@ -360,9 +335,8 @@
         <div class="auth-container">
             <div class="auth-card">
                 
-                <!-- BİLDİRİM KUTULARI -->
+                <!-- HATA BİLDİRİM KUTUSU -->
                 <div id="error-box" class="error-msg"></div>
-                <div id="success-box" class="success-msg"></div>
 
                 <!-- GİRİŞ & KAYIT FORMLARI -->
                 <div id="auth-forms-wrapper">
@@ -391,8 +365,8 @@
                             <input type="text" id="reg-username" placeholder="Minecraft kullanıcı adın" required>
                         </div>
                         <div class="form-group">
-                            <label for="reg-email">GERÇEK E-POSTA ADRESİ</label>
-                            <input type="email" id="reg-email" placeholder="ornek@gmail.com" required>
+                            <label for="reg-email">E-POSTA ADRESİ</label>
+                            <input type="email" id="reg-email" placeholder="ornek@kunefesmp.com" required>
                         </div>
                         <div class="form-group">
                             <label for="reg-password">ŞİFRE</label>
@@ -402,7 +376,7 @@
                             <label for="reg-password-repeat">TEKRAR ŞİFRE</label>
                             <input type="password" id="reg-password-repeat" placeholder="••••••••" required>
                         </div>
-                        <button type="submit" class="submit-btn">KAYIT OL VE DOĞRULA</button>
+                        <button type="submit" class="submit-btn">KAYIT OL</button>
                     </form>
                 </div>
 
@@ -412,7 +386,6 @@
                     <div class="profile-info">
                         <h2 id="user-name">Oyuncu</h2>
                         <p id="user-email-text">E-posta</p>
-                        <div class="verify-tag">✓ Doğrulanmış Hesap</div>
                     </div>
                     <button id="logout-btn" class="logout-btn">ÇIKIŞ YAP</button>
                 </div>
@@ -421,7 +394,7 @@
         </div>
     </div>
 
-    <!-- FIREBASE KÜTÜPHANELERİ VE SIKI E-POSTA KORUMASI -->
+    <!-- FIREBASE KÜTÜPHANELERİ VE HIZLI OTURUM -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { 
@@ -430,8 +403,7 @@
             signInWithEmailAndPassword, 
             signOut, 
             onAuthStateChanged,
-            updateProfile,
-            sendEmailVerification
+            updateProfile
         } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
@@ -456,7 +428,6 @@
         const authFormsWrapper = document.getElementById('auth-forms-wrapper');
         const profileWrapper = document.getElementById('profile-wrapper');
         const errorBox = document.getElementById('error-box');
-        const successBox = document.getElementById('success-box');
         const tabLoginBtn = document.getElementById('tab-login-btn');
         const tabRegisterBtn = document.getElementById('tab-register-btn');
         const logoutBtn = document.getElementById('logout-btn');
@@ -466,7 +437,7 @@
         tabRegisterBtn.addEventListener('click', () => switchTab('register'));
 
         function switchTab(tab) {
-            clearMessages();
+            showError('');
             if (tab === 'login') {
                 loginForm.classList.remove('hidden');
                 registerForm.classList.add('hidden');
@@ -480,31 +451,19 @@
             }
         }
 
-        function clearMessages() {
-            errorBox.style.display = 'none';
-            successBox.style.display = 'none';
-        }
-
         function showError(msg) {
-            clearMessages();
             if (msg) {
                 errorBox.innerText = msg;
                 errorBox.style.display = 'block';
+            } else {
+                errorBox.style.display = 'none';
             }
         }
 
-        function showSuccess(msg) {
-            clearMessages();
-            if (msg) {
-                successBox.innerHTML = msg;
-                successBox.style.display = 'block';
-            }
-        }
-
-        // --- KAYIT OL (DOĞRULAMA GÖNDER VE GİRİŞİ ENGELE!) ---
+        // --- KAYIT OL (ANINDA GİRİŞ YAPAR) ---
         registerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            clearMessages();
+            showError('');
 
             const username = document.getElementById('reg-username').value.trim();
             const email = document.getElementById('reg-email').value.trim();
@@ -513,13 +472,6 @@
 
             if (password !== passwordRepeat) {
                 showError("Şifreler birbiriyle eşleşmiyor!");
-                return;
-            }
-
-            // Basit e-posta format doğrulaması
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-            if (!emailRegex.test(email)) {
-                showError("Lütfen geçerli bir e-posta adresi girin!");
                 return;
             }
 
@@ -538,17 +490,8 @@
                     createdAt: new Date().toISOString()
                 });
 
-                // 4. Doğrulama ve teşekkür e-postasını gönder!
-                await sendEmailVerification(user);
-
-                // 5. HEMEN ÇIKIŞ YAP! (E-postasını onaylamadan profile girmesini engelliyoruz)
-                await signOut(auth);
-                localStorage.removeItem('kunefeUser');
-
-                // 6. Bilgilendir ve Giriş Yap sekmesine geçir
-                showSuccess(`🎉 <b>Kayıt başarılı! KünefeSMP'ye hoş geldin!</b><br><br>Giriş yapabilmek için <b>${email}</b> adresine gönderdiğimiz doğrulama bağlantısına tıklaman gerekiyor.<br><br>Lütfen gelen kutunu (ve spam klasörünü) kontrol et. Onayladıktan sonra buradan giriş yapabilirsin!`);
-                registerForm.reset();
-                switchTab('login');
+                // Oturumu hafızaya yaz (anında içeridesin)
+                localStorage.setItem('kunefeUser', username);
 
             } catch (error) {
                 if (error.code === 'auth/email-already-in-use') {
@@ -563,28 +506,16 @@
             }
         });
 
-        // --- GİRİŞ YAP (ONAYSIZ KULLANICIYI KAPIDAN GERİ ÇEVİR!) ---
+        // --- GİRİŞ YAP ---
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            clearMessages();
+            showError('');
 
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value;
 
             try {
-                const userCredential = await signInWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-
-                // E-POSTA ONAYLI MI KONTROL ET
-                if (!user.emailVerified) {
-                    // Onaylı DEĞİL! Hemen oturumu kapat ve içeri alma!
-                    await signOut(auth);
-                    localStorage.removeItem('kunefeUser');
-                    showError("⚠️ Giriş başarısız! E-posta adresiniz henüz doğrulanmamış. Lütfen gelen kutunuzdaki bağlantıya tıklayarak hesabınızı onaylayın.");
-                    return;
-                }
-
-                // Onaylıysa devam eder...
+                await signInWithEmailAndPassword(auth, email, password);
             } catch (error) {
                 if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
                     showError('E-posta veya şifre hatalı!');
@@ -602,8 +533,7 @@
 
         // --- OTURUM DURUMU DİNLEYİCİ ---
         onAuthStateChanged(auth, async (user) => {
-            // SADECE E-POSTASI DOĞRULANMIŞSA İÇERİ AL!
-            if (user && user.emailVerified) {
+            if (user) {
                 authFormsWrapper.classList.add('hidden');
                 profileWrapper.classList.remove('hidden');
 
@@ -626,7 +556,6 @@
                 document.getElementById('user-avatar').src = `https://mc-heads.net/avatar/${displayName}/100`;
 
             } else {
-                // Eğer kullanıcı onaylı değilse veya oturumu kapalıysa formları göster
                 authFormsWrapper.classList.remove('hidden');
                 profileWrapper.classList.add('hidden');
                 localStorage.removeItem('kunefeUser');
