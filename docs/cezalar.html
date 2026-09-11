@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KünefeSMP | Cezalar</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
     <!-- MOBİL KULLANICI GELİRSE MOBİL SİTESİNE YÖNLENDİR -->
-<script>
-    if (window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        window.location.href = "cezalar-mobil.html";
-    }
-</script>
+    <script>
+        if (window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            window.location.href = "cezalar-mobil.html";
+        }
+    </script>
     
     <style>
         * {
@@ -51,7 +53,7 @@
             z-index: -1;
         }
 
-        /* --- ÜST MENÜ --- */
+        /* --- ÜST MENÜ (BİREBİR KORUNDU) --- */
         header {
             width: 100%;
             max-width: 1300px;
@@ -133,129 +135,193 @@
 
         .user-btn:hover { background: rgba(202, 138, 4, 0.2); }
 
-        /* CEZA KART KUTUSU */
+        /* --- CEZA KART KUTUSU --- */
         .penalty-card {
-            width: 92%;
-            max-width: 1600px;
+            width: 100%;
+            max-width: 1200px;
             background: rgba(28, 10, 3, 0.9);
             border: 2px solid #ca8a04;
-            border-radius: 20px;
-            padding: 35px 30px;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            border-radius: 24px;
+            padding: 40px 36px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
             margin-top: 10px;
+            z-index: 10;
+        }
+
+        .header-box {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(35, 17, 8, 0.9);
+            border: 1.5px solid #ca8a04;
+            color: #fef08a;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
         }
 
         .title {
-            text-align: center;
-            font-size: 26px;
+            font-size: 36px;
             font-weight: 900;
             color: #facc15;
-            letter-spacing: 1px;
-            margin-bottom: 25px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 25px rgba(250, 204, 21, 0.35);
             text-transform: uppercase;
         }
 
-        /* TABLO YAPISI */
+        .subtitle {
+            font-size: 13px;
+            color: #fef08a;
+            font-weight: 800;
+            opacity: 0.85;
+            margin-top: 4px;
+        }
+
+        /* --- TABLO YAPISI --- */
         .table-container {
             width: 100%;
             overflow-x: auto;
+            border-radius: 16px;
+            border: 1px solid rgba(202, 138, 4, 0.35);
+            background: rgba(18, 7, 2, 0.6);
         }
 
         table {
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
+            border-collapse: collapse;
+            text-align: left;
         }
 
         thead tr {
-            background: rgba(61, 23, 8, 0.8);
+            background: linear-gradient(90deg, rgba(61, 23, 8, 0.95), rgba(45, 16, 5, 0.95));
+            border-bottom: 2px solid #ca8a04;
         }
 
         th {
             color: #facc15;
-            font-size: 14px;
-            font-weight: 800;
-            text-align: left;
-            padding: 14px 18px;
-            border-bottom: 2px solid #ca8a04;
+            font-size: 13px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 18px 20px;
+            white-space: nowrap;
         }
 
-        th:first-child { border-top-left-radius: 10px; }
-        th:last-child { border-top-right-radius: 10px; }
-
         tbody tr {
-            transition: background 0.2s ease;
+            transition: all 0.2s ease;
             border-bottom: 1px solid rgba(202, 138, 4, 0.15);
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
         }
 
         tbody tr:hover {
-            background: rgba(202, 138, 4, 0.08);
+            background: rgba(250, 204, 21, 0.05);
         }
 
         td {
-            padding: 16px 18px;
+            padding: 16px 20px;
             font-size: 14px;
             font-weight: 700;
             color: #e5e7eb;
-            border-bottom: 1px solid rgba(202, 138, 4, 0.15);
+            white-space: nowrap;
         }
 
         .player-cell {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.3px;
         }
 
         .player-head {
-            width: 26px;
-            height: 26px;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+            image-rendering: pixelated;
+            border: 1px solid rgba(202, 138, 4, 0.4);
         }
 
+        /* ROZETLER */
         .badge-ban {
-            background: #ef4444;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
             color: #ffffff;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 12px;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 11px;
             font-weight: 900;
             display: inline-block;
             text-transform: uppercase;
-            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+            box-shadow: 0 2px 10px rgba(239, 68, 68, 0.35);
+            letter-spacing: 0.5px;
         }
 
         .badge-mute {
-            background: #f59e0b;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
             color: #ffffff;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 12px;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 11px;
             font-weight: 900;
             display: inline-block;
             text-transform: uppercase;
-            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+            box-shadow: 0 2px 10px rgba(245, 158, 11, 0.35);
+            letter-spacing: 0.5px;
         }
 
         .badge-kick {
-            background: #3b82f6;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
             color: #ffffff;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 12px;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 11px;
             font-weight: 900;
             display: inline-block;
             text-transform: uppercase;
-            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 2px 10px rgba(59, 130, 246, 0.35);
+            letter-spacing: 0.5px;
+        }
+
+        .staff-name {
+            color: #fef08a;
+            font-weight: 800;
         }
 
         .empty-state {
             text-align: center;
-            padding: 40px 20px;
+            padding: 50px 20px;
             color: #9ca3af;
             font-weight: 700;
             font-size: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .empty-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1.5px solid #22c55e;
+            color: #22c55e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         span:empty { display: none !important; }
@@ -263,7 +329,7 @@
 </head>
 <body>
 
-    <!-- ÜST MENÜ -->
+    <!-- ÜST MENÜ (BİREBİR KORUNDU) -->
     <header>
         <a href="index.html" class="logo-box">
             <svg width="24" height="24" viewBox="0 0 24 24"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>
@@ -311,24 +377,34 @@
 
     <!-- CEZA KART KUTUSU -->
     <div class="penalty-card">
-        <h1 class="title">Sunucu Ceza Listesi</h1>
+        <div class="header-box">
+            <div class="header-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#facc15"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm5.31-3.1L6.1 5.69C7.45 4.63 9.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z"/></svg>
+                <span>DİSİPLİN VE ADALET MERKEZİ</span>
+            </div>
+            <h1 class="title">Sunucu Ceza Listesi</h1>
+            <p class="subtitle">Sunucudaki son ban, mute ve kick kayıtları anlık olarak listelenir</p>
+        </div>
 
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>Oyuncu</th>
-                        <th>Ceza Türü</th>
-                        <th>Sebep</th>
-                        <th>Yetkili</th>
-                        <th>Süre</th>
+                        <th>OYUNCU</th>
+                        <th>CEZA TÜRÜ</th>
+                        <th>SEBEP</th>
+                        <th>YETKİLİ</th>
+                        <th>SÜRE</th>
                     </tr>
                 </thead>
                 <tbody id="penalty-list-body">
                 </tbody>
             </table>
             <div id="no-penalty-msg" class="empty-state" style="display: none;">
-                Henüz sistemde aktif bir ceza kaydı bulunmamaktadır.
+                <div class="empty-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                </div>
+                <span>Henüz sistemde aktif bir ceza kaydı bulunmamaktadır.</span>
             </div>
         </div>
     </div>
@@ -351,7 +427,7 @@
                 const activePenalties = rawData.filter(item => item.oyuncu && item.oyuncu.trim() !== "");
 
                 if (activePenalties.length === 0) {
-                    noPenaltyMsg.style.display = 'block';
+                    noPenaltyMsg.style.display = 'flex';
                     return;
                 }
 
@@ -368,13 +444,13 @@
                     tr.innerHTML = `
                         <td>
                             <div class="player-cell">
-                                <img src="https://mc-heads.net/avatar/${item.oyuncu}/26" class="player-head" alt="${item.oyuncu}" onError="this.src='https://mc-heads.net/avatar/Steve/26'">
-                                ${item.oyuncu}
+                                <img src="https://mc-heads.net/avatar/${item.oyuncu}/28" class="player-head" alt="${item.oyuncu}" onError="this.src='https://mc-heads.net/avatar/Steve/28'">
+                                <span>${item.oyuncu}</span>
                             </div>
                         </td>
                         <td><span class="${badgeClass}">${item.tur}</span></td>
                         <td>${item.sebep}</td>
-                        <td>${item.yetkili}</td>
+                        <td><span class="staff-name">${item.yetkili}</span></td>
                         <td>${item.sure}</td>
                     `;
 
@@ -383,8 +459,8 @@
 
             } catch (error) {
                 console.error("Hata:", error);
-                noPenaltyMsg.style.display = 'block';
-                noPenaltyMsg.innerText = "Cezalar yüklenirken bir hata oluştu veya 'cezalar.json' dosyası bulunamadı.";
+                noPenaltyMsg.style.display = 'flex';
+                noPenaltyMsg.innerHTML = "<span>Cezalar yüklenirken bir hata oluştu veya 'cezalar.json' dosyası bulunamadı.</span>";
             }
         }
 
