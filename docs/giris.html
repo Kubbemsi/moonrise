@@ -7,11 +7,12 @@
     <title>KünefeSMP | Hesabım</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- MOBİL KULLANICI GELİRSE MOBİL SİTESİNE YÖNLENDİR -->
     <script>
     if (window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         window.location.href = "giris-mobil.html";
     }
-</script>
+    </script>
     
     <style>
         * {
@@ -51,7 +52,7 @@
             pointer-events: none;
         }
 
-        /* --- ÜST MENÜ --- */
+        /* --- ÜST MENÜ (BİREBİR KORUNDU) --- */
         header {
             width: 100%;
             max-width: 1300px;
@@ -127,7 +128,7 @@
         /* --- AUTH & PROFILE CONTAINER --- */
         .auth-container {
             width: 100%;
-            max-width: 480px;
+            max-width: 500px;
             z-index: 10;
             margin: auto 0;
         }
@@ -135,10 +136,10 @@
         .auth-card {
             background: rgba(35, 17, 8, 0.85);
             border: 2px solid #ca8a04;
-            border-radius: 20px;
-            padding: 35px 30px;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 22px;
+            padding: 36px 32px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -147,10 +148,10 @@
         /* Sekme Butonları */
         .tab-buttons {
             display: flex;
-            gap: 10px;
-            background: rgba(13, 4, 1, 0.5);
-            padding: 5px;
-            border-radius: 12px;
+            gap: 8px;
+            background: rgba(13, 4, 1, 0.6);
+            padding: 6px;
+            border-radius: 14px;
             border: 1px solid rgba(202, 138, 4, 0.3);
         }
 
@@ -158,22 +159,28 @@
             flex: 1;
             padding: 12px 0;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 14px;
             font-weight: 900;
             cursor: pointer;
             background: transparent;
-            color: #ffffff;
-            transition: all 0.2s ease;
+            color: #d1d5db;
+            transition: all 0.25s ease;
         }
 
         .tab-btn.active {
             background: linear-gradient(135deg, #fef08a, #facc15);
             color: #422006;
-            box-shadow: 0 4px 12px rgba(250, 204, 21, 0.2);
+            box-shadow: 0 4px 15px rgba(250, 204, 21, 0.25);
         }
 
         /* Form Elemanları */
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
         .form-group {
             display: flex;
             flex-direction: column;
@@ -181,25 +188,28 @@
         }
 
         .form-group label {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 800;
             color: #facc15;
+            letter-spacing: 0.5px;
         }
 
         .form-group input {
-            background: rgba(13, 4, 1, 0.7);
+            background: rgba(13, 4, 1, 0.75);
             border: 1.5px solid rgba(202, 138, 4, 0.4);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 14px 16px;
             color: #ffffff;
             font-size: 14px;
             font-weight: 700;
             outline: none;
-            transition: border-color 0.2s ease;
+            transition: all 0.2s ease;
         }
 
         .form-group input:focus {
             border-color: #facc15;
+            box-shadow: 0 0 12px rgba(250, 204, 21, 0.25);
+            background: rgba(13, 4, 1, 0.9);
         }
 
         .form-group input::placeholder {
@@ -211,25 +221,46 @@
             background: linear-gradient(135deg, #fef08a, #facc15);
             color: #422006;
             border: none;
-            padding: 14px 0;
-            border-radius: 10px;
+            padding: 15px 0;
+            border-radius: 12px;
             font-size: 15px;
             font-weight: 900;
             cursor: pointer;
-            margin-top: 5px;
+            margin-top: 6px;
             transition: transform 0.2s ease, filter 0.2s ease;
-            box-shadow: 0 4px 15px rgba(250, 204, 21, 0.2);
+            box-shadow: 0 4px 18px rgba(250, 204, 21, 0.25);
         }
 
         .submit-btn:hover {
             transform: scale(1.02);
-            filter: brightness(1.05);
+            filter: brightness(1.06);
         }
 
-        .auth-form {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+        /* Mesaj Kutuları */
+        .error-msg {
+            color: #f87171;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            display: none;
+            line-height: 1.4;
+        }
+
+        .success-msg {
+            color: #86efac;
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            display: none;
+            line-height: 1.5;
         }
 
         /* --- PROFİL SEKSİYONU --- */
@@ -244,17 +275,18 @@
         .profile-avatar {
             width: 100px;
             height: 100px;
-            border-radius: 18px;
+            border-radius: 20px;
             border: 3px solid #facc15;
             background: #1c0a03;
-            box-shadow: 0 0 20px rgba(250, 204, 21, 0.3);
+            box-shadow: 0 0 25px rgba(250, 204, 21, 0.35);
             image-rendering: pixelated;
         }
 
         .profile-info h2 {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 900;
             color: #facc15;
+            letter-spacing: 0.5px;
         }
 
         .profile-info p {
@@ -264,40 +296,54 @@
             margin-top: 4px;
         }
 
+        .verify-tag {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+        .verify-tag.verified {
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid #22c55e;
+            color: #86efac;
+        }
+        .verify-tag.unverified {
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid #f59e0b;
+            color: #fef08a;
+            cursor: pointer;
+        }
+
         .logout-btn {
             background: linear-gradient(135deg, #ef4444, #dc2626);
             color: #ffffff;
             border: none;
-            padding: 12px 0;
+            padding: 14px 0;
             width: 100%;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 14px;
             font-weight: 900;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.25);
         }
 
         .logout-btn:hover {
             transform: scale(1.02);
+            filter: brightness(1.08);
         }
 
         .hidden {
             display: none !important;
-        }
-
-        .error-msg {
-            color: #f87171;
-            font-size: 13px;
-            font-weight: 700;
-            text-align: center;
-            display: none;
         }
     </style>
 </head>
 <body>
 
     <div class="hero-section">
-        <!-- ÜST MENÜ -->
+        <!-- ÜST MENÜ (BİREBİR KORUNDU) -->
         <header>
             <a href="index.html" class="logo-box">
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>
@@ -337,7 +383,9 @@
         <div class="auth-container">
             <div class="auth-card">
                 
+                <!-- BİLDİRİM KUTULARI -->
                 <div id="error-box" class="error-msg"></div>
+                <div id="success-box" class="success-msg"></div>
 
                 <!-- GİRİŞ & KAYIT FORMLARI -->
                 <div id="auth-forms-wrapper">
@@ -349,35 +397,35 @@
                     <!-- GİRİŞ YAP FORM -->
                     <form id="login-form" class="auth-form" style="margin-top: 20px;">
                         <div class="form-group">
-                            <label for="login-email">E-posta Adresi</label>
+                            <label for="login-email">E-POSTA ADRESİ</label>
                             <input type="email" id="login-email" placeholder="ornek@kunefesmp.com" required>
                         </div>
                         <div class="form-group">
-                            <label for="login-password">Şifre</label>
+                            <label for="login-password">ŞİFRE</label>
                             <input type="password" id="login-password" placeholder="••••••••" required>
                         </div>
-                        <button type="submit" class="submit-btn">Giriş Yap</button>
+                        <button type="submit" class="submit-btn">GİRİŞ YAP</button>
                     </form>
 
                     <!-- KAYIT OL FORM -->
                     <form id="register-form" class="auth-form hidden" style="margin-top: 20px;">
                         <div class="form-group">
-                            <label for="reg-username">Oyuncu Adı (IGN)</label>
-                            <input type="text" id="reg-username" placeholder="Oyuncu adın" required>
+                            <label for="reg-username">OYUNCU ADI (IGN)</label>
+                            <input type="text" id="reg-username" placeholder="Minecraft kullanıcı adın" required>
                         </div>
                         <div class="form-group">
-                            <label for="reg-email">E-posta Adresi</label>
-                            <input type="email" id="reg-email" placeholder="ornek@kunefesmp.com" required>
+                            <label for="reg-email">GERÇEK E-POSTA ADRESİ</label>
+                            <input type="email" id="reg-email" placeholder="ornek@gmail.com" required>
                         </div>
                         <div class="form-group">
-                            <label for="reg-password">Şifre</label>
-                            <input type="password" id="reg-password" placeholder="••••••••" required>
+                            <label for="reg-password">ŞİFRE</label>
+                            <input type="password" id="reg-password" placeholder="En az 6 karakter" required>
                         </div>
                         <div class="form-group">
-                            <label for="reg-password-repeat">Tekrar Şifre</label>
+                            <label for="reg-password-repeat">TEKRAR ŞİFRE</label>
                             <input type="password" id="reg-password-repeat" placeholder="••••••••" required>
                         </div>
-                        <button type="submit" class="submit-btn">Kayıt Ol</button>
+                        <button type="submit" class="submit-btn">KAYIT OL VE DOĞRULA</button>
                     </form>
                 </div>
 
@@ -387,15 +435,16 @@
                     <div class="profile-info">
                         <h2 id="user-name">Oyuncu</h2>
                         <p id="user-email-text">E-posta</p>
+                        <div id="verify-status" class="verify-tag"></div>
                     </div>
-                    <button id="logout-btn" class="logout-btn">Çıkış Yap</button>
+                    <button id="logout-btn" class="logout-btn">ÇIKIŞ YAP</button>
                 </div>
 
             </div>
         </div>
     </div>
 
-    <!-- FIREBASE KÜTÜPHANELERİ VE BAĞLANTI -->
+    <!-- FIREBASE KÜTÜPHANELERİ VE E-POSTA DOĞRULAMA -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { 
@@ -404,7 +453,8 @@
             signInWithEmailAndPassword, 
             signOut, 
             onAuthStateChanged,
-            updateProfile 
+            updateProfile,
+            sendEmailVerification
         } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
@@ -429,16 +479,18 @@
         const authFormsWrapper = document.getElementById('auth-forms-wrapper');
         const profileWrapper = document.getElementById('profile-wrapper');
         const errorBox = document.getElementById('error-box');
+        const successBox = document.getElementById('success-box');
         const tabLoginBtn = document.getElementById('tab-login-btn');
         const tabRegisterBtn = document.getElementById('tab-register-btn');
         const logoutBtn = document.getElementById('logout-btn');
+        const verifyStatus = document.getElementById('verify-status');
 
         // Sekmeler Arası Geçiş
         tabLoginBtn.addEventListener('click', () => switchTab('login'));
         tabRegisterBtn.addEventListener('click', () => switchTab('register'));
 
         function switchTab(tab) {
-            showError('');
+            clearMessages();
             if (tab === 'login') {
                 loginForm.classList.remove('hidden');
                 registerForm.classList.add('hidden');
@@ -452,19 +504,31 @@
             }
         }
 
+        function clearMessages() {
+            errorBox.style.display = 'none';
+            successBox.style.display = 'none';
+        }
+
         function showError(msg) {
+            clearMessages();
             if (msg) {
                 errorBox.innerText = msg;
                 errorBox.style.display = 'block';
-            } else {
-                errorBox.style.display = 'none';
             }
         }
 
-        // --- KAYIT OL ---
+        function showSuccess(msg) {
+            clearMessages();
+            if (msg) {
+                successBox.innerHTML = msg;
+                successBox.style.display = 'block';
+            }
+        }
+
+        // --- KAYIT OL (VE DOĞRULAMA & TEŞEKKÜR E-POSTASI GÖNDER) ---
         registerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            showError('');
+            clearMessages();
 
             const username = document.getElementById('reg-username').value.trim();
             const email = document.getElementById('reg-email').value.trim();
@@ -476,12 +540,19 @@
                 return;
             }
 
+            // Gerçek e-posta regex kontrolü
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+            if (!emailRegex.test(email)) {
+                showError("Lütfen geçerli ve gerçek bir e-posta adresi girin!");
+                return;
+            }
+
             try {
                 // Firebase Auth Hesabı Oluştur
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
 
-                // Profil Ismini Güncelle
+                // Profil İsmini Güncelle
                 await updateProfile(user, { displayName: username });
 
                 // Firestore Veritabanına Kaydet
@@ -491,14 +562,20 @@
                     createdAt: new Date().toISOString()
                 });
 
-                // Oturum verisini hafızaya yaz
-                localStorage.setItem('kunefeUser', username);
+                // --- E-POSTAYA DOĞRULAMA VE HOŞ GELDİN MESAJI GÖNDERME ---
+                await sendEmailVerification(user);
+
+                // Kullanıcıya teşekkür & doğrulama uyarısı göster
+                showSuccess(`🎉 <b>Kayıt başarılı!</b><br>KünefeSMP ailesine katıldığın için teşekkür ederiz!<br><b>${email}</b> adresine bir doğrulama e-postası gönderdik. Lütfen gelen kutunu kontrol et.`);
+                registerForm.reset();
 
             } catch (error) {
                 if (error.code === 'auth/email-already-in-use') {
                     showError('Bu e-posta adresi zaten kullanımda.');
                 } else if (error.code === 'auth/weak-password') {
                     showError('Şifre en az 6 karakter olmalıdır.');
+                } else if (error.code === 'auth/invalid-email') {
+                    showError('Geçersiz bir e-posta formatı girdiniz.');
                 } else {
                     showError('Kayıt oluşturulurken bir hata oluştu: ' + error.message);
                 }
@@ -508,14 +585,13 @@
         // --- GİRİŞ YAP ---
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            showError('');
+            clearMessages();
 
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value;
 
             try {
                 await signInWithEmailAndPassword(auth, email, password);
-                // Giriş başarılı olduğunda onAuthStateChanged çalışacak ve hafızaya yazacak
             } catch (error) {
                 if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
                     showError('E-posta veya şifre hatalı!');
@@ -528,20 +604,17 @@
         // --- ÇIKIŞ YAP ---
         logoutBtn.addEventListener('click', async () => {
             await signOut(auth);
-            // Oturum kapandığında hafızadaki oyuncu verisini temizle
             localStorage.removeItem('kunefeUser');
         });
 
         // --- OTURUM DURUMU DİNLEYİCİ ---
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                // Oturum Açık
                 authFormsWrapper.classList.add('hidden');
                 profileWrapper.classList.remove('hidden');
 
                 let username = user.displayName;
 
-                // Eğer Firestore'da kayıtlı ek bilgi varsa çek
                 try {
                     const userDoc = await getDoc(doc(db, "users", user.uid));
                     if (userDoc.exists()) {
@@ -552,20 +625,33 @@
                 }
 
                 const displayName = username || 'Oyuncu';
-
-                // --- ISTEDIGIN OTURUMU HAFIZAYA KAYDETME SATIRI ---
                 localStorage.setItem('kunefeUser', displayName);
 
                 document.getElementById('user-name').innerText = displayName;
                 document.getElementById('user-email-text').innerText = user.email;
                 document.getElementById('user-avatar').src = `https://mc-heads.net/avatar/${displayName}/100`;
 
+                // E-posta Onay Durumu Rozeti
+                if (user.emailVerified) {
+                    verifyStatus.className = 'verify-tag verified';
+                    verifyStatus.innerText = '✓ E-posta Doğrulandı';
+                    verifyStatus.onclick = null;
+                } else {
+                    verifyStatus.className = 'verify-tag unverified';
+                    verifyStatus.innerHTML = '⚠️ E-posta Doğrulanmadı (Tekrar Gönder)';
+                    verifyStatus.onclick = async () => {
+                        try {
+                            await sendEmailVerification(user);
+                            alert("Doğrulama e-postası tekrar gönderildi! Lütfen gelen kutunu kontrol et.");
+                        } catch (err) {
+                            alert("Lütfen biraz bekleyip tekrar deneyin.");
+                        }
+                    };
+                }
+
             } else {
-                // Oturum Kapalı
                 authFormsWrapper.classList.remove('hidden');
                 profileWrapper.classList.add('hidden');
-                
-                // Oturum kapandığında hafızadaki oyuncu verisini temizle
                 localStorage.removeItem('kunefeUser');
             }
         });
