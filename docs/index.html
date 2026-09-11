@@ -15,6 +15,13 @@
     </script>
     
     <style>
+        .mascot-img {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            object-fit: contain;
+            image-rendering: pixelated; /* Minecraft ikonuysa piksel netliğini korur */
+}
         * {
             margin: 0;
             padding: 0;
@@ -507,10 +514,9 @@
             </div>
 
             <!-- ORTA ROZET -->
-            <div class="mascot-box">
-                <!-- Sunucu Rozeti İkonu -->
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="#facc15"><path d="M12 2L1 21h22L12 2zm0 3.83L19.13 19H4.87L12 5.83zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg>
-            </div>
+        <div class="mascot-box">
+            <img src="favicon.png" alt="KünefeSMP" class="mascot-img">
+        </div>
 
             <!-- DISCORD KARTI -->
             <a href="https://discord.gg/Mj6QMcNQ2" target="_blank" class="card-btn discord-card">
