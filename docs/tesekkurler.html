@@ -80,7 +80,6 @@
     </style>
 </head>
 <body>
-
     <div class="success-card">
         <div class="icon-wrapper">✓</div>
         <h1>Ödemeniz Alındı!</h1>
@@ -106,7 +105,7 @@
         </div>
 
         <div class="info-alert">
-            ℹ️ <b>Oyun İçi Kontrol:</b> Sunucuya bağlanıp chate <b>/kp</b> yazarak Künefe Parası bakiyenizi kontrol edebilirsiniz.
+            ℹ️ <b>Oyun İçi Kontrol:</b> Sunucuya bağlanıp chate <b>/kp</b> yazarak veya yetkilerinizi kontrol ederek teslimatı görebilirsiniz.
         </div>
 
         <div class="btn-group">
@@ -116,30 +115,36 @@
     </div>
 
     <script>
-        // ========================================================
-        // 1. BURAYA DİSCORD WEBHOOK LİNKİNİ YAPIŞTIR:
-        // ========================================================
+        // ================================================
+        // BURAYA DİSCORD WEBHOOK LİNKİNİ YAPIŞTIR:
+        // ================================================
         const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1546471821107265576/MCvXsl0t3OTschGIUkdpYC5S1bUsDVe0errjXzdxEfGdXi3KVTclBjXNYa9dpr5Yb9Ix";
+
+        // Rütbe Fiyatları (TL)
+        const PRICES = {
+            sponsor:    1000,
+            kunefevip:  300,
+            ultravip:   200,
+            megavip:    100,
+            vip:        25
+        };
 
         document.addEventListener("DOMContentLoaded", function() {
             const user = localStorage.getItem('kunefeUser') || "Bilinmiyor";
             const cart = JSON.parse(localStorage.getItem('kunefeCart') || "[]");
-            
+
             const now = new Date();
-            const dateStr = now.toLocaleDateString('tr-TR');
-            const timeStr = now.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
-            const fullDateStr = `${dateStr} - ${timeStr}`;
+            const fullDateStr = now.toLocaleDateString('tr-TR') + " - " + now.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
 
             document.getElementById('disp-user').innerText = user;
             document.getElementById('disp-time').innerText = fullDateStr;
 
-            // Sepet boşsa Discord'a boş mesaj atma
             if (!cart || cart.length === 0) {
                 document.getElementById('disp-items').innerText = "Kayıtlı aktif sipariş bulunamadı.";
                 return;
             }
 
-            // Sepeti hemen boşalt ki sayfa F5 yapıldığında tekrar göndermesin
+            // Sepeti temizle (F5 koruması)
             localStorage.removeItem('kunefeCart');
 
             let total = 0;
@@ -149,38 +154,42 @@
             cart.forEach(item => {
                 const title = item.title || item.name || "Ürün";
                 const qty = item.quantity || 1;
-                const price = (item.price || 0) * qty;
-                total += price;
-
-                itemsTextArray.push(`• **${qty}x** ${title} (${price} TL)`);
-
-                const lowerTitle = title.toLowerCase();
+                const lower = title.toLowerCase();
                 const id = (item.id || "").toLowerCase();
 
-                // 1) KP Paketleri (1, 10, 100, 1000)
-                if (lowerTitle.includes('kp') || lowerTitle.includes('künefe') || lowerTitle.includes('kunefe') || id.includes('kp')) {
+                // Fiyat: önce sepetteki fiyata bak, yoksa tablomuzdan al
+                let itemPrice = item.price;
+                if (!itemPrice || itemPrice <= 0) {
+                    if      (lower.includes('sponsor')   || id.includes('sponsor'))   itemPrice = PRICES.sponsor;
+                    else if (lower.includes('künefevip') || lower.includes('kunefevip') || id.includes('kunefevip')) itemPrice = PRICES.kunefevip;
+                    else if (lower.includes('ultravip')  || lower.includes('ultra vip')  || id.includes('ultravip'))  itemPrice = PRICES.ultravip;
+                    else if (lower.includes('megavip')   || lower.includes('mega vip')   || id.includes('megavip'))   itemPrice = PRICES.megavip;
+                    else if (lower.includes('vip')       || id.includes('vip'))       itemPrice = PRICES.vip;
+                    else itemPrice = 0;
+                }
+
+                const price = itemPrice * qty;
+                total += price;
+                itemsTextArray.push(`• **${qty}x** ${title} (${price} TL)`);
+
+                // Ürüne göre otomatik konsol komutu
+                if (lower.includes('sponsor') || id.includes('sponsor')) {
+                    commandsArray.push(`lp user ${user} parent add sponsor`);
+                } else if (lower.includes('künefevip') || lower.includes('kunefevip') || id.includes('kunefevip')) {
+                    commandsArray.push(`lp user ${user} parent add kunefevip`);
+                } else if (lower.includes('ultravip') || lower.includes('ultra vip') || id.includes('ultravip')) {
+                    commandsArray.push(`lp user ${user} parent add ultravip`);
+                } else if (lower.includes('megavip') || lower.includes('mega vip') || id.includes('megavip')) {
+                    commandsArray.push(`lp user ${user} parent add megavip`);
+                } else if (lower.includes('vip') || id.includes('vip')) {
+                    commandsArray.push(`lp user ${user} parent add vip`);
+                } else if (lower.includes('kp') || lower.includes('künefe') || lower.includes('kunefe') || id.includes('kp')) {
                     const match = title.match(/\d+/);
                     let amount = 100;
-                    if (match) {
-                        amount = parseInt(match[0]);
-                    } else if (id.includes('1000')) {
-                        amount = 1000;
-                    } else if (id.includes('100')) {
-                        amount = 100;
-                    } else if (id.includes('10')) {
-                        amount = 10;
-                    } else if (id.includes('1')) {
-                        amount = 1;
-                    }
+                    if (match) amount = parseInt(match[0]);
                     commandsArray.push(`points give ${user} ${amount * qty}`);
-                } 
-                // 2) VIP Paketleri
-                else if (lowerTitle.includes('vip') || id.includes('vip')) {
-                    commandsArray.push(`lp user ${user} parent add vip`);
-                } 
-                // 3) Diğer Ürünler
-                else {
-                    commandsArray.push(`# ${title} (${qty}x) - Kontrol ediniz`);
+                } else {
+                    commandsArray.push(`# ${title} (${qty}x) - Manuel kontrol`);
                 }
             });
 
@@ -188,30 +197,26 @@
             document.getElementById('disp-total').innerText = total + " TL";
 
             if (!DISCORD_WEBHOOK_URL || DISCORD_WEBHOOK_URL.includes("BURAYA_")) {
-                console.warn("Discord Webhook linki henüz girilmemiş!");
+                console.warn("Discord Webhook linki girilmemiş!");
                 return;
             }
 
-            // Discord Embed
             const payload = {
                 username: "KünefeSMP Mağaza",
                 avatar_url: "https://kunefesmp.com.tr/favicon.png",
-                embeds: [
-                    {
-                        title: "🛒 YENİ BAŞARILI SİPARİŞ!",
-                        description: "Bir oyuncu Shopier üzerinden ödemesini başarıyla tamamladı.",
-                        color: 0xF59E0B,
-                        fields: [
-                            { name: "👤 Oyuncu Adı", value: `\`${user}\``, inline: true },
-                            { name: "💰 Toplam Tutar", value: `**${total} TL**`, inline: true },
-                            { name: "🕒 Sipariş Saati", value: `\`${fullDateStr}\``, inline: true },
-                            { name: "📦 Satın Alınan Ürünler", value: itemsTextArray.join("\n") || "Belirtilmedi", inline: false },
-                            { name: "⚡ Hazır Konsol Komutu (Tek Tıkla Kopyala)", value: `\`\`\`text\n${commandsArray.join("\n")}\n\`\`\``, inline: false }
-                        ],
-                        footer: { text: "KünefeSMP | Lütfen Shopier SMS/E-posta onayınızı kontrol ettikten sonra teslim ediniz." },
-                        timestamp: new Date().toISOString()
-                    }
-                ]
+                embeds: [{
+                    title: "🛒 YENİ BAŞARILI SİPARİŞ!",
+                    description: "Bir oyuncu Shopier üzerinden ödemesini başarıyla tamamladı.",
+                    color: 0xF59E0B,
+                    fields: [
+                        { name: "👤 Oyuncu Adı",   value: `\`${user}\``,         inline: true },
+                        { name: "💰 Toplam Tutar",  value: `**${total} TL**`,     inline: true },
+                        { name: "🕒 Sipariş Saati", value: `\`${fullDateStr}\``,  inline: true },
+                        { name: "📦 Satın Alınan Ürünler", value: itemsTextArray.join("\n") || "Belirtilmedi", inline: false },
+                        { name: "⚡ Hazır Konsol Komutu (Tek Tıkla Kopyala)", value: `\`\`\`text\n${commandsArray.join("\n")}\n\`\`\``, inline: false }
+                    ],
+                    timestamp: new Date().toISOString()
+                }]
             };
 
             fetch(DISCORD_WEBHOOK_URL, {
