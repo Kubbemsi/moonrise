@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>KünefeSMP | Minecraft Sunucusu</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-    <!-- PC KULLANICISI GELIRSE PC SİTESİNE GERİ YÖNLENDİR -->
     <script>
         if (window.innerWidth > 768 && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             window.location.href = "index.html";
@@ -14,9 +13,7 @@
     </script>
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            margin: 0; padding: 0; box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
@@ -44,8 +41,8 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(rgba(202, 138, 4, 0.05) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(202, 138, 4, 0.05) 1px, transparent 1px);
+            background: linear-gradient(rgba(202,138,4,0.05) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(202,138,4,0.05) 1px, transparent 1px);
             background-size: 30px 30px;
             pointer-events: none;
         }
@@ -67,8 +64,7 @@
         }
 
         .logo-box {
-            width: 42px;
-            height: 42px;
+            width: 42px; height: 42px;
             background: linear-gradient(135deg, #fef08a 0%, #facc15 100%);
             color: #422006;
             border-radius: 10px;
@@ -77,54 +73,179 @@
             align-items: center;
             text-decoration: none;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            flex-shrink: 0;
         }
 
-        /* MOBİL NAV - Scroll edilebilir yatay */
-        nav {
-            flex: 1;
-            overflow-x: auto;
-            margin: 0 10px;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        nav::-webkit-scrollbar { display: none; }
-
-        nav ul {
-            display: flex;
-            gap: 6px;
-            list-style: none;
-            white-space: nowrap;
+        .header-title {
+            font-size: 16px;
+            font-weight: 900;
+            color: #facc15;
+            letter-spacing: 1px;
         }
 
-        nav ul li a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 11px;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        nav ul li a.active, nav ul li a:hover {
-            background: #facc15;
-            color: #422006;
-        }
-
-        .user-btn {
-            width: 42px;
-            height: 42px;
+        /* HAMBURGER BUTONU */
+        .hamburger-btn {
+            width: 42px; height: 42px;
             border: 2px solid #ca8a04;
             border-radius: 10px;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: #facc15;
-            text-decoration: none;
+            gap: 5px;
+            cursor: pointer;
             flex-shrink: 0;
+            background: transparent;
+        }
+
+        .hamburger-btn span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: #facc15;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-btn.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .hamburger-btn.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-btn.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* DRAWER MENÜ */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 50;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .drawer-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0; right: 0;
+            width: 75%;
+            max-width: 280px;
+            height: 100%;
+            background: #111007;
+            border-left: 2px solid #ca8a04;
+            z-index: 100;
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 30px 0 30px 0;
+        }
+
+        .drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 24px 24px 24px;
+            border-bottom: 1px solid rgba(202,138,4,0.2);
+            margin-bottom: 16px;
+        }
+
+        .drawer-logo {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, #fef08a, #facc15);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: #422006;
+        }
+
+        .drawer-title {
+            font-size: 15px;
+            font-weight: 900;
+            color: #facc15;
+            letter-spacing: 0.5px;
+        }
+
+        .drawer-subtitle {
+            font-size: 10px;
+            color: #9ca3af;
+            font-weight: 700;
+        }
+
+        .drawer-nav {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 0 12px;
+        }
+
+        .drawer-nav a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #d1d5db;
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            transition: all 0.2s ease;
+        }
+
+        .drawer-nav a:hover, .drawer-nav a.active {
+            background: rgba(202, 138, 4, 0.15);
+            color: #facc15;
+        }
+
+        .drawer-nav a .nav-icon {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .drawer-nav a.active .nav-icon {
+            background: rgba(202,138,4,0.2);
+        }
+
+        .drawer-divider {
+            height: 1px;
+            background: rgba(202,138,4,0.15);
+            margin: 8px 24px;
+        }
+
+        .drawer-footer {
+            padding: 16px 24px 0 24px;
+            border-top: 1px solid rgba(202,138,4,0.2);
+        }
+
+        .drawer-footer a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            background: rgba(250,204,21,0.1);
+            border: 1px solid rgba(202,138,4,0.3);
+            color: #facc15;
+            font-weight: 800;
+            font-size: 13px;
         }
 
         /* ANA İÇERİK */
@@ -144,7 +265,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: rgba(35, 17, 8, 0.9);
+            background: rgba(35,17,8,0.9);
             border: 1.5px solid #ca8a04;
             color: #fef08a;
             padding: 5px 14px;
@@ -155,8 +276,7 @@
         }
 
         .mascot-img-center {
-            width: 80px;
-            height: 80px;
+            width: 80px; height: 80px;
             border-radius: 20px;
             object-fit: contain;
             image-rendering: pixelated;
@@ -176,9 +296,8 @@
             font-size: 42px;
             font-weight: 900;
             color: #facc15;
-            text-shadow: 0 0 25px rgba(250, 204, 21, 0.45);
+            text-shadow: 0 0 25px rgba(250,204,21,0.45);
             letter-spacing: 2px;
-            line-height: 1.1;
         }
 
         .server-subtitle {
@@ -207,7 +326,6 @@
             color: #d1d5db;
         }
 
-        /* YouTube Butonu */
         .youtube-btn {
             background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
             border: 2px solid #ef4444;
@@ -224,13 +342,10 @@
         }
 
         .yt-icon-wrapper {
-            width: 34px;
-            height: 34px;
+            width: 34px; height: 34px;
             background: rgba(255,255,255,0.15);
             border-radius: 9px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             flex-shrink: 0;
         }
 
@@ -273,22 +388,17 @@
         }
 
         .card-icon {
-            width: 44px;
-            height: 44px;
+            width: 44px; height: 44px;
             border-radius: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; align-items: center; justify-content: center;
             flex-shrink: 0;
         }
 
         .ip-card .card-icon { background: rgba(66,32,6,0.15); }
         .discord-card .card-icon { background: rgba(0,0,0,0.15); }
-
         .card-text { display: flex; flex-direction: column; gap: 2px; }
         .card-text .main-text { font-size: 14px; font-weight: 900; }
         .card-text .sub-text { font-size: 11px; font-weight: 800; opacity: 0.9; }
-
         .sub-row { display: flex; align-items: center; gap: 6px; }
 
         .status-dot {
@@ -310,7 +420,6 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(22,163,74,0); }
         }
 
-        /* TOAST */
         .toast {
             position: fixed;
             bottom: 24px;
@@ -326,12 +435,71 @@
             display: none;
             align-items: center;
             gap: 8px;
-            z-index: 100;
+            z-index: 200;
             white-space: nowrap;
         }
     </style>
 </head>
 <body>
+
+    <!-- DRAWER OVERLAY -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+    <!-- DRAWER MENÜ -->
+    <div class="drawer" id="drawer">
+        <div class="drawer-header">
+            <div class="drawer-logo">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>
+            </div>
+            <div>
+                <div class="drawer-title">KünefeSMP</div>
+                <div class="drawer-subtitle">Minecraft Sunucusu</div>
+            </div>
+        </div>
+
+        <nav class="drawer-nav">
+            <a href="mobil.html" class="active">
+                <div class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                </div>
+                ANA SAYFA
+            </a>
+            <a href="magaza-mobil.html">
+                <div class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                </div>
+                MAĞAZA
+            </a>
+            <a href="yardim-mobil.html">
+                <div class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm1.07-7.75l-.9.92C12.45 11.9 12 12.5 12 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
+                </div>
+                YARDIM
+            </a>
+            <a href="destek-mobil.html">
+                <div class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/></svg>
+                </div>
+                DESTEK
+            </a>
+            <a href="cezalar-mobil.html">
+                <div class="nav-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm5.31-3.1L6.1 5.69C7.45 4.63 9.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z"/></svg>
+                </div>
+                CEZALAR
+            </a>
+        </nav>
+
+        <div class="drawer-divider"></div>
+
+        <div class="drawer-footer">
+            <a href="giris-mobil.html">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                HESABIM
+            </a>
+        </div>
+    </div>
+
     <div class="hero-section">
 
         <!-- HEADER -->
@@ -339,40 +507,21 @@
             <a href="mobil.html" class="logo-box">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>
             </a>
-            <nav>
-                <ul>
-                    <li><a href="mobil.html" class="active">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-                        ANASAYFA
-                    </a></li>
-                    <li><a href="magaza-mobil.html">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
-                        MAĞAZA
-                    </a></li>
-                    <li><a href="yardim-mobil.html">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 16h-2v-2h2v2zm1.07-7.75l-.9.92C12.45 11.9 12 12.5 12 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H7c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.04-.42 1.99-1.07 2.75z"/></svg>
-                        YARDIM
-                    </a></li>
-                    <li><a href="destek-mobil.html">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/></svg>
-                        DESTEK
-                    </a></li>
-                    <li><a href="cezalar-mobil.html">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm5.31-3.1L6.1 5.69C7.45 4.63 9.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z"/></svg>
-                        CEZALAR
-                    </a></li>
-                </ul>
-            </nav>
-            <a href="giris-mobil.html" class="user-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-            </a>
+
+            <span class="header-title">KünefeSMP</span>
+
+            <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleDrawer()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </header>
 
         <!-- ANA İÇERİK -->
         <main class="main-content">
             <div class="version-badge">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="#facc15"><path d="M12 2L1 21h22L12 2zm0 3.83L19.13 19H4.87L12 5.83zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg>
-                <span>1.21+ SÜRÜM DESTEĞİ</span>
+                1.21+ SÜRÜM DESTEĞİ
             </div>
 
             <img src="favicon.png" alt="KünefeSMP" class="mascot-img-center">
@@ -424,13 +573,34 @@
         </div>
     </div>
 
-    <!-- TOAST -->
     <div id="toast" class="toast">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
         <span>IP Adresi Kopyalandı!</span>
     </div>
 
     <script>
+        function toggleDrawer() {
+            const drawer = document.getElementById('drawer');
+            const overlay = document.getElementById('drawerOverlay');
+            const btn = document.getElementById('hamburgerBtn');
+            const isOpen = drawer.classList.contains('open');
+            if (isOpen) {
+                closeDrawer();
+            } else {
+                drawer.classList.add('open');
+                overlay.classList.add('open');
+                btn.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeDrawer() {
+            document.getElementById('drawer').classList.remove('open');
+            document.getElementById('drawerOverlay').classList.remove('open');
+            document.getElementById('hamburgerBtn').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
         function copyIP(ip) {
             navigator.clipboard.writeText(ip).then(() => {
                 const toast = document.getElementById('toast');
